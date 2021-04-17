@@ -1,0 +1,56 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Spectral&display=swap");
+/* Header */
+nav {
+  background-color: #021A4F;
+}
+
+nav a {
+  color: white;
+}
+
+.carousel .carousel-indicators li {
+  width: 1vw;
+  height: 1vw;
+  max-width: 10px;
+  max-height: 10px;
+  border-radius: 100%;
+  margin-right: 15px;
+  -webkit-box-shadow: 0 2px 5px 1px rgba(0, 0, 0, 0.73);
+          box-shadow: 0 2px 5px 1px rgba(0, 0, 0, 0.73);
+  border: solid 1px #ffffff;
+  background-color: #ffffff;
+}
+
+.carousel .carousel-indicators li.active {
+  background-color: rgba(0, 0, 0, 0);
+}
+
+.slider-box {
+  position: absolute;
+  display: block;
+  top: 22%;
+  left: 55%;
+  width: auto;
+  background-color: rgba(2, 26, 79, 0.5);
+  -webkit-box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+          box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+  z-index: 10;
+}
+
+.slider-box p {
+  font-size: 3vw;
+  font-family: 'Spectral', serif;
+  max-width: 400px;
+}
+
+.slider-p {
+  position: absolute;
+  left: 5%;
+  top: 10%;
+  font-size: 3vw;
+  font-family: 'Spectral', serif;
+  z-index: 10;
+  max-width: 35vw;
+}
+/*# sourceMappingURL=header.css.map */
