@@ -5,8 +5,39 @@ nav {
   background-color: #021A4F;
 }
 
-nav a {
-  color: white;
+@media only screen and (max-width: 768px) {
+  nav {
+    background-color: white !important;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  nav a {
+    color: white !important;
+  }
+}
+
+.nav-icons {
+  font-size: 12px;
+}
+
+.nav-icons a {
+  color: #b6b6b6;
+}
+
+.nav-icons a:hover {
+  color: #021a4e;
+  text-decoration: none;
+}
+
+.nav-btn {
+  font-size: 25px;
+  font-weight: 900;
+  color: #B6B6B6;
+}
+
+.nav-btn:hover {
+  color: #021a4e;
 }
 
 .carousel .carousel-indicators li {
@@ -20,6 +51,7 @@ nav a {
           box-shadow: 0 2px 5px 1px rgba(0, 0, 0, 0.73);
   border: solid 1px #ffffff;
   background-color: #ffffff;
+  opacity: 1;
 }
 
 .carousel .carousel-indicators li.active {
@@ -42,15 +74,5 @@ nav a {
   font-size: 3vw;
   font-family: 'Spectral', serif;
   max-width: 400px;
-}
-
-.slider-p {
-  position: absolute;
-  left: 5%;
-  top: 10%;
-  font-size: 3vw;
-  font-family: 'Spectral', serif;
-  z-index: 10;
-  max-width: 35vw;
 }
 /*# sourceMappingURL=header.css.map */
