@@ -1,17 +1,18 @@
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Spectral&display=swap');
-
-$primaryColor: #021A4F;
-$primaryFontFamily: Open Sans , sans-serif;
+@import "custom";
 
 /* Header */
+
+body {
+    font-family: $primaryFontFamily;
+}
+
 nav {
     @media only screen and (max-width: 768px) {
-        background-color: white!important;
-        
+        background-color: white;
     }
+    
     @media only screen and (min-width: 768px) {
-
+        background-color: $primaryColor;
         a {
             color: white!important;
         }
@@ -26,7 +27,7 @@ nav {
     }
 
     a:hover {
-        color: #021a4e;
+        color: $primaryColor;
         text-decoration: none;
     }
 }
@@ -37,7 +38,7 @@ nav {
     color: #B6B6B6;
 }
 .nav-btn:hover {
-    color: #021a4e;
+    color: $primaryColor; 
 }
 
 .carousel{
