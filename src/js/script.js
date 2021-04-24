@@ -1,0 +1,9 @@
+$(window).on('scroll',function(){
+    if($(window).scrollTop()>70){
+        $('nav').addClass('scroll');
+    }
+    else{
+        $('nav').removeClass('scroll');
+    }
+    //console.log($(window).scrollTop())
+})

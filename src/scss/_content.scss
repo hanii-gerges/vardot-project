@@ -95,5 +95,16 @@
 
 
 .statistics {
-    height: 450px;
+    .number {
+        font-size: 66px;
+        letter-spacing: 1.65px;
+    }
+    p {
+        font-size: 24px;
+        font-weight: 600;
+        letter-spacing: 1.48px;
+        width: auto;
+        max-width: 260px;
+    }
 }
+

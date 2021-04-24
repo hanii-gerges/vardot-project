@@ -4,15 +4,24 @@
 body {
   font-family: Open Sans, sans-serif; }
 
-@media only screen and (max-width: 768px) {
-  nav {
-    background-color: white; } }
+nav {
+  transition: all 0.4s; }
+  @media only screen and (max-width: 768px) {
+    nav {
+      border-bottom: 2px solid #e4c800;
+      background-color: white; } }
+  @media only screen and (min-width: 768px) {
+    nav {
+      height: 40px;
+      background-color: #021A4F; }
+      nav a {
+        color: white !important; } }
 
 @media only screen and (min-width: 768px) {
-  nav {
-    background-color: #021A4F; }
-    nav a {
-      color: white !important; } }
+  .scroll {
+    height: 80px;
+    border-bottom: 4px solid #e4c800;
+    background-color: rgba(2, 26, 79, 0.9); } }
 
 .nav-icons {
   font-size: 12px; }
@@ -131,7 +140,15 @@ body {
   font-size: 14px;
   line-height: 1.64; }
 
-.statistics {
-  height: 450px; }
+.statistics .number {
+  font-size: 66px;
+  letter-spacing: 1.65px; }
+
+.statistics p {
+  font-size: 24px;
+  font-weight: 600;
+  letter-spacing: 1.48px;
+  width: auto;
+  max-width: 260px; }
 
 /* footer */

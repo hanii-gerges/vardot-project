@@ -7,17 +7,27 @@ body {
 }
 
 nav {
+    transition: all 0.4s;
     @media only screen and (max-width: 768px) {
+        border-bottom: 2px solid $secondaryColor;
         background-color: white;
     }
     
     @media only screen and (min-width: 768px) {
+        height: 40px;
         background-color: $primaryColor;
         a {
             color: white!important;
         }
     }
-    
+}
+
+@media only screen and (min-width: 768px) {
+    .scroll{
+        height: 80px;
+        border-bottom: 4px solid $secondaryColor;
+        background-color: rgba($color: $primaryColor, $alpha: 0.9);
+    }
 }
 
 .nav-icons {
