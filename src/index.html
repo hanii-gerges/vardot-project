@@ -5,11 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="fontawesome-free-5.15.3-web/css/all.min.css"> <!--load all styles -->
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/content.css">
+    <link rel="stylesheet" href="css/footer.css">
     <title>Siences University</title>
 </head>
 <body>
-
   <!-- header start -->
   <div class="container navbar d-none d-md-flex justify-content-between">
     <a class="navbar-brand" href=""><img src="images/group-4.png" alt=""></a>
@@ -24,15 +25,18 @@
         </form>
       </div>
     </div>
-    
     <!-- navbar start -->
     <header class="sticky-top">
       <nav class="navbar navbar-light navbar-expand-md sticky-top py-md-0 justify-content-between justify-content-md-center">
-        
         <button class="navbar-toggler " type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-        <a class="navbar-brand d-block d-md-none" href=""><img src="images/group-4.png" alt=""></a>
+        <a class="navbar-brand d-block d-md-none" href="">
+          <picture>
+            <source media="(min-width:768px)" srcset="images/brand-white.png">
+            <img src="images/group-4.png" alt="">
+          </picture>
+        </a>
         <form class="d-inline d-md-none" action="">
           <button type="submit" class="px-3 fas fa-search fa-2x btn nav-btn" href="#"></button>
         </form>
@@ -100,7 +104,6 @@
         <span class="carousel-control-next-icon d-none" aria-hidden="true"></span>
         <span class="sr-only">Next</span>
       </a>
-
     </div>
     <!-- slider end -->
   <!-- header end -->
@@ -114,31 +117,28 @@
             <a href="">
               <img src="images/news1.png" alt="">
               <div class="col-12">
-                <div class="img-title text-white font-weight-bold d-flex align-items-center justify-content-center"> UNDERGRADUATE COURSES </div>
+                <div class="img-title text-white font-weight-bold d-flex align-items-center justify-content-center text-center"> UNDERGRADUATE COURSES </div>
               </div>          
             </a>
           </div>
           <div class="col-12 col-sm-6 mb-4 img-box">
             <a href="">
-
               <img src="images/news2.jpg" alt="">
               <div class="col-12">
-                <div class="img-title text-white font-weight-bold d-flex align-items-center justify-content-center"> GRADUATE COURSES </div>
+                <div class="img-title text-white font-weight-bold d-flex align-items-center justify-content-center text-center"> GRADUATE COURSES </div>
               </div>
             </a>
           </div>
           <div class="col-12 col-sm-6 mb-4 img-box">
             <a href="">
-
               <img src="images/news4.jpg" alt="">
               <div class="col-12">
-                <div class="img-title text-white font-weight-bold d-flex align-items-center justify-content-center"> INTERNATIONAL STUDENTS </div>
+                <div class="img-title text-white font-weight-bold d-flex align-items-center justify-content-center text-center"> INTERNATIONAL STUDENTS </div>
               </div>
             </a>
           </div>
           <div class="col-12 col-sm-6 mb-4 img-box">
             <a href="">
-
               <img src="images/news3.jpg" alt="">
               <div class="col-12">
                 <div class="img-title text-white font-weight-bold d-flex align-items-center justify-content-center"> SCHOLARSHIPS </div>
@@ -149,8 +149,8 @@
       </div>
       <div class="col-12 col-md-6 mb-5">
         <div class="news">
-          <div class="wrapper mb-4">
-            <a class="text-uppercase font-weight-bold heading link" href="#">news</a>
+          <div class="wrapper mb-4 pt-3">
+            <a class="text-uppercase heading link" href="#">news</a>
           </div>
           <div class="wrapper">
             <p class="text-primary text-capitalize info mb-2 mt-4">january 06, 2017</p>
@@ -178,16 +178,13 @@
               <a href="" class="font-weight-bold more link mb-3">READ MORE</a>
             </div>
           </div>
-
         </div>
-          
       </div>
     </div>
   </div>
   <!-- news section end -->
-
   <!-- statistics section start-->
-  <div class="statistics container-fluid bg-primary statistics mt-md-4">
+  <div class="statistics container-fluid bg-primary statistics mt-md-4 mb-5">
     <div class="container">
       <div class="row justify-content-center py-5">
         <div class="col-12 col-sm-6 col-md-4 mt-5 justify-content-center text-center">
@@ -195,7 +192,6 @@
           <div class="number text-secondary font-weight-bold mb-3"> 90+ </div>
           <p class="text-secondary text-center mb-3 d-inline-block"> Profession-ready degree programs </p>
         </div>
-        
         <div class="col-12 col-sm-6 col-md-4 mt-5 justify-content-center text-center">
           <img class=" mb-3 " src="images/icons/mail.png" alt="">
           <div class="number text-secondary font-weight-bold text-center mb-3"> #1 </div>
@@ -209,12 +205,76 @@
       </div>
     </div>
   </div>
-  <!-- statistics section end-->
+  <!-- statistics section end -->
 
+  <!-- events section start -->
+  <div class="container text-center pt-5">
+    <div class="mb-4 pb-2">
+      <a class="heading text-uppercase link" href="">events</a>
+    </div>
+    <div class="row">
+      <div class="col-12 col-md-6 col-lg-4">
+        <div class="card border-0 text-left">
+          <img class="card-img-top" src="images/events1.png" alt="">
+          <div class="border card-border">
+            <div class="card-body py-3">
+              <ul class="list-inline mb-2">
+                <li class="list-inline-item info text-primary">2:00 P.M - 4:00 P.M.</li>
+                <li class="list-inline-item text">|</li>
+                <li class="list-inline-item info text-primary">Ajloun Campus</li>
+              </ul>
+              <a class="card-text title text-primary link"> Postgraduate Drop-in Evening </a>
+              <p class="card-text text mb-auto mt-2"> Our Postgraduate Drop-in Evenings are an excellent opportunity for you to meet our staff and talk to current students… </p>
+            </div>
+            <div class="text-right">
+              <a href="#" class="more link font-weight-bold">LEARN MORE</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-md-6 col-lg-4">
+        <div class="card border-0 text-left">
+          <img class="card-img-top" src="images/events2.png" alt="">
+          <div class="border card-border">
+            <div class="card-body py-3">
+              <ul class="list-inline mb-2">
+                <li class="list-inline-item info text-primary">2:00 P.M - 4:00 P.M.</li>
+                <li class="list-inline-item text">|</li>
+                <li class="list-inline-item info text-primary">Irbed Campus</li>
+              </ul>
+              <a class="card-text title text-primary link"> Undergraduate Music Open Day </a>
+              <p class="card-text text mt-2"> Music open days are aimed at candidates who have made Kingston University one of their university choices… </p>
+            </div>
+            <div class="text-right">
+              <a href="#" class="more link font-weight-bold">LEARN MORE</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class=" col-12 col-md-6 col-lg-4">
+        <div class="card border-0 text-left">
+          <img class="card-img-top" src="images/events3.png" alt="">
+          <div class="border card-border">
+            <div class="card-body py-3">
+              <ul class="list-inline mb-2">
+                <li class="list-inline-item info text-primary">4:00 P.M - 6:00 P.M.</li>
+                <li class="list-inline-item text">|</li>
+                <li class="list-inline-item info text-primary">Amman Campus</li>
+              </ul>
+              <a class="card-text title text-primary link"> Making Nature’ Exhibition At Wellcome Collection </a>
+              <p class="card-text text mb-auto mt-2"> The question of how humans relate to other animals has captivated, scientists, ethicists and artists for centuries... </p>
+            </div>
+            <div class="text-right">
+              <a href="#" class="more link font-weight-bold">LEARN MORE</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- events section end -->
   <script src="js/jquery/jquery-3.6.0.min.js"></script>  
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
   <script src="js/script.js"></script>
-
- 
 </body>
 </html>

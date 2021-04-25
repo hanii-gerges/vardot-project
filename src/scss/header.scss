@@ -1,9 +1,11 @@
-@import "custom";
+@import "su_variables";
+@import "fonts";
 
 /* Header */
 
 body {
     font-family: $primaryFontFamily;
+    height: 300vh;
 }
 
 nav {
@@ -70,8 +72,6 @@ nav {
         li.active {
             background-color: rgba(0,0,0,0);
         }
-    
-   
     }
     
 }
