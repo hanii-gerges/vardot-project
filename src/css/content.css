@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Open+Sans&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,600;1,700;1,800&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Spectral&display=swap");
 /* content */
 .text {
@@ -32,27 +32,25 @@
   .news p {
     width: 100%; }
 
-.block-with-text {
+.truncate {
   overflow: hidden;
   position: relative;
-  max-height: 3.6em;
+  max-height: 4.7em;
   margin-right: -1em;
   padding-right: 1em; }
-
-.block-with-text:before {
-  content: '...';
-  position: absolute;
-  right: 0;
-  bottom: 0; }
-
-.block-with-text:after {
-  content: '';
-  position: absolute;
-  right: 0;
-  width: 1em;
-  height: 1em;
-  margin-top: 0.2em;
-  background: #F3F3F3; }
+  .truncate:before {
+    content: '...';
+    position: absolute;
+    right: 0;
+    bottom: 0; }
+  .truncate:after {
+    content: '';
+    position: absolute;
+    right: 0;
+    width: 1em;
+    height: 1em;
+    margin-top: 0.2em;
+    background: #F3F3F3; }
 
 .more {
   font-size: 14px;
@@ -84,5 +82,60 @@
   width: auto;
   max-width: 260px; }
 
-.card-border {
+.card-wrapper .card-border {
   min-height: 14.5rem; }
+
+.card-wrapper .icon-wrapper {
+  position: absolute;
+  top: 2%;
+  right: 3%;
+  width: 4.5rem;
+  height: 4.3rem;
+  background-image: url("/images/icons/calendar.png");
+  background-repeat: no-repeat;
+  background-position: center; }
+
+.card-wrapper .icon-day {
+  position: absolute;
+  top: 40%;
+  width: 100%;
+  text-align: center;
+  font-size: 18px;
+  font-weight: 800;
+  line-height: 1.06; }
+
+.card-wrapper .icon-month {
+  position: absolute;
+  bottom: 7%;
+  width: 100%;
+  text-align: center;
+  font-size: 12px;
+  line-height: 1.58;
+  font-weight: bold; }
+
+.apply-now {
+  position: relative;
+  background-image: url("/images/apply.png");
+  background-repeat: no-repeat;
+  background-position: bottom;
+  background-size: cover;
+  height: 35rem; }
+  .apply-now .apply-now-text {
+    font-size: 58px;
+    font-weight: 800;
+    line-height: 1.59;
+    text-shadow: 0 2px 4px rgba(83, 83, 83, 0.48); }
+  .apply-now .button {
+    font-size: 3.3rem;
+    font-weight: 800;
+    line-height: 1.06; }
+
+.button {
+  color: #e4c800;
+  border-radius: 0%; }
+  .button:hover {
+    color: #021A4F;
+    background-color: #e4c800; }
+
+.get-in-touch .button {
+  font-size: 1.1rem; }

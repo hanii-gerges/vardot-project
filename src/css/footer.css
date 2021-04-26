@@ -1,3 +1,27 @@
-@import url("https://fonts.googleapis.com/css2?family=Open+Sans&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,600;1,700;1,800&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Spectral&display=swap");
 /* footer */
+footer .link:hover {
+  color: white; }
+
+footer .title {
+  letter-spacing: 0.93px; }
+
+footer ul {
+  margin-bottom: 0%; }
+  footer ul li {
+    padding-top: 0.15rem;
+    padding-bottom: 0.15rem; }
+  footer ul a {
+    font-family: Open Sans , sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.82px;
+    color: white; }
+
+footer .border-left {
+  border-left: 0.06rem solid #4d4d4d !important; }
+
+footer .copy-rights {
+  background-color: #223663;
+  font-size: 0.68rem; }

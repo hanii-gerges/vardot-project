@@ -42,27 +42,27 @@
     }
 }
 
-.block-with-text {
+.truncate {
     overflow: hidden;
     position: relative; 
-    max-height: 3.6em; 
+    max-height: 4.7em; 
     margin-right: -1em;
     padding-right: 1em;
-}
-.block-with-text:before {
-    content: '...';
-    position: absolute;
-    right: 0;
-    bottom: 0;
-}
-.block-with-text:after {
-    content: '';
-    position: absolute;
-    right: 0;
-    width: 1em;
-    height: 1em;
-    margin-top: 0.2em;
-    background: #F3F3F3;
+    &:before {
+        content: '...';
+        position: absolute;
+        right: 0;
+        bottom: 0;
+    }
+    &:after {
+        content: '';
+        position: absolute;
+        right: 0;
+        width: 1em;
+        height: 1em;
+        margin-top: 0.2em;
+        background: #F3F3F3;
+    }
 }
 
 .more {
@@ -102,6 +102,71 @@
     }
 }
 
-.card-border {
-    min-height: 14.5rem;
+.card-wrapper {
+    .card-border {
+        min-height: 14.5rem;
+    }
+    .icon-wrapper {
+        position: absolute;
+        top: 2%;
+        right: 3%;
+        width: 4.5rem;
+        height: 4.3rem;
+        background-image: url('/images/icons/calendar.png');
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+    .icon-day {
+        position: absolute;
+        top: 40%;
+        width: 100%;
+        text-align: center;
+        font-size: 18px;
+        font-weight: 800;
+        line-height: 1.06;
+    }
+    .icon-month {
+        position: absolute;
+        bottom: 7%;
+        width: 100%;
+        text-align: center;
+        font-size: 12px;
+        line-height: 1.58;
+        font-weight: bold;
+    }
+}
+
+.apply-now {
+    position: relative;
+    background-image: url('/images/apply.png');
+    background-repeat: no-repeat;
+    background-position: bottom;
+    background-size: cover;
+    height: 35rem;
+
+    .apply-now-text {
+        font-size: 58px;
+        font-weight: 800;
+        line-height: 1.59;
+        text-shadow: 0 2px 4px rgba(83, 83, 83, 0.48);
+    }
+    .button {
+        font-size: 3.3rem;
+        font-weight: 800;
+        line-height: 1.06;
+    }
+}
+
+.button {
+    color: $secondaryColor;
+    border-radius: 0%;
+    &:hover {
+        color: $primaryColor;
+        background-color: $secondaryColor;
+    }
+}
+.get-in-touch {
+    .button {
+        font-size: 1.1rem;
+    }
 }
