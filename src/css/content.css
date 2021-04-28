@@ -91,6 +91,7 @@ a:hover {
     .statistics p {
       font-size: 1.5rem; } }
 
+/* events */
 .card-wrapper .card-border {
   min-height: 14.5rem; }
 
@@ -122,7 +123,16 @@ a:hover {
   line-height: 1.58;
   font-weight: bold; }
 
-/* Flashing */
+.event-wrapper {
+  border-top: 1px solid #EAEAEA; }
+  .event-wrapper a:hover img {
+    transition: all .4s;
+    opacity: .5; }
+
+.top {
+  top: 10%; }
+
+/* Flashing effect*/
 .hover13:hover {
   opacity: 1;
   -webkit-animation: flash 1.5s;
@@ -186,6 +196,7 @@ a:hover {
     color: #021A4F;
     background-color: #e4c800; }
 
+/* scroll-top button */
 #button {
   display: inline-block;
   background-color: #E4C800;
@@ -235,7 +246,7 @@ a:hover {
   background-size: cover;
   margin: -50px 0 0 -50px; }
 
-ol.prefixed {
+ol .prefixed {
   counter-reset: item;
   list-style-type: none;
   *list-style-type: decimal;
@@ -248,27 +259,25 @@ ol.prefixed li:before {
 
 ol.styled {
   counter-reset: item; }
-
-ol.styled li {
-  background: rgba(78, 68, 50, 0.1);
-  border-radius: 4px;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: calc(1.305rem + 0.66vw);
-  line-height: 2;
-  margin-bottom: 10px;
-  align-items: center; }
-  @media (min-width: 1200px) {
-    ol.styled li {
-      font-size: 1.8rem; } }
-
-ol.styled li:before {
-  content: "" counter(item, decimal) "";
-  background: #021A4F;
-  border-radius: 4px;
-  color: #f7f7ef;
-  font-size: calc(1.305rem + 0.66vw);
-  margin: 0 5px 0 8px;
-  padding: 10px 15px; }
-  @media (min-width: 1200px) {
-    ol.styled li:before {
-      font-size: 1.8rem; } }
+  ol.styled li {
+    background: rgba(78, 68, 50, 0.1);
+    border-radius: 4px;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: calc(1.305rem + 0.66vw);
+    line-height: 2;
+    margin-bottom: 10px;
+    align-items: center; }
+    @media (min-width: 1200px) {
+      ol.styled li {
+        font-size: 1.8rem; } }
+    ol.styled li::before {
+      content: "" counter(item, decimal) "";
+      background: #021A4F;
+      border-radius: 4px;
+      color: #f7f7ef;
+      font-size: calc(1.305rem + 0.66vw);
+      margin: 0 5px 0 8px;
+      padding: 10px 15px; }
+      @media (min-width: 1200px) {
+        ol.styled li::before {
+          font-size: 1.8rem; } }

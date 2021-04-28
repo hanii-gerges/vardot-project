@@ -2,7 +2,7 @@
 @import "node_modules/bootstrap/scss/_variables.scss";
 @import "node_modules/bootstrap/scss/_mixins.scss";
 @import "su_variables";
-@import "fonts";
+// @import "fonts";
 
 
 /* content */
@@ -114,6 +114,7 @@ a {
     }
 }
 
+/* events */
 .card-wrapper {
     .card-border {
         min-height: 14.5rem;
@@ -148,7 +149,22 @@ a {
     }
 }
 
-/* Flashing */
+.event-wrapper {
+    border-top: 1px solid #EAEAEA;
+    a {
+        &:hover {
+            img {
+                transition: all .4s;
+                opacity: .5;
+            }
+        }
+    }
+}
+.top {
+    top: 10%;
+}
+
+/* Flashing effect*/
 .hover13 {
     &:hover {
         opacity: 1;
@@ -225,6 +241,7 @@ a {
     }
 }
 
+/* scroll-top button */
 #button {
     display: inline-block;
     background-color: #E4C800;
@@ -284,34 +301,42 @@ a {
 }
 
 
-  ol.prefixed {
-      counter-reset: item;
-      list-style-type: none;
-      *list-style-type: decimal; /*Conditional hack for ie7*/
-  }
-
-  ol.prefixed li:before {
-      content: 'Q' counter(item, decimal) '. ';
-      counter-increment: item;
-      display: block;
-  }
-
-  ol.styled { counter-reset: item; }
-  ol.styled li {
-      background: rgba(78,68,50,.10);
-      border-radius: 4px;
-      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-      @include font-size(1.8rem);
-      line-height: 2;
-      margin-bottom: 10px;
-      align-items: center;
-  }
-  ol.styled li:before {
-      content: '' counter(item, decimal) '';
-      background: $primaryColor;
-      border-radius: 4px;
-      color: #f7f7ef;
-      @include font-size(1.8rem);
-      margin: 0 5px 0 8px;
-      padding: 10px 15px;
-  }
+ol {
+    .prefixed {
+        counter-reset: item;
+        list-style-type: none;
+        *list-style-type: decimal; /*Conditional hack for ie7*/
+    }
+    
+    &.prefixed {
+        li {
+            &:before {
+                content: 'Q' counter(item, decimal) '. ';
+                counter-increment: item;
+                display: block;
+            }
+        }
+    }
+    
+    &.styled {
+        counter-reset: item;
+        li {
+            background: rgba(78,68,50,.10);
+            border-radius: 4px;
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            @include font-size(1.8rem);
+            line-height: 2;
+            margin-bottom: 10px;
+            align-items: center;
+            &::before {
+                content: '' counter(item, decimal) '';
+                background: $primaryColor;
+                border-radius: 4px;
+                color: #f7f7ef;
+                @include font-size(1.8rem);
+                margin: 0 5px 0 8px;
+                padding: 10px 15px;
+            }
+        }
+    }
+}
