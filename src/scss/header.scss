@@ -1,3 +1,6 @@
+@import "node_modules/bootstrap/scss/_functions.scss";
+@import "node_modules/bootstrap/scss/_variables.scss";
+@import "node_modules/bootstrap/scss/_mixins.scss";
 @import "su_variables";
 @import "fonts";
 
@@ -9,21 +12,29 @@ body {
 
 nav {
     transition: all 0.4s;
-    @media only screen and (max-width: 768px) {
+    @include media-breakpoint-down(md) {
         border-bottom: 2px solid $secondaryColor;
         background-color: white;
     }
     
-    @media only screen and (min-width: 768px) {
+    @include media-breakpoint-up(md) {
         height: 40px;
         background-color: $primaryColor;
         a {
             color: white!important;
         }
     }
+    .mobile-link-underline {
+        @include media-breakpoint-down(sm)
+        {
+            color: $primaryColor!important;
+            border-bottom: 1px solid black;
+            width: 8rem;
+        }
+    }
 }
 
-@media only screen and (min-width: 768px) {
+@include media-breakpoint-up (md) {
     .scroll{
         height: 80px;
         border-bottom: 4px solid $secondaryColor;
@@ -35,6 +46,7 @@ nav {
     font-size: 12px;
     a {
         color: #b6b6b6;
+        transition: all 0.4s;
     }
 
     a:hover {
@@ -53,7 +65,15 @@ nav {
 }
 
 .carousel{
-
+    img {
+        object-fit: cover;
+        height: 39.2vw;
+        @include media-breakpoint-down(sm)
+        {
+            height: 60vw;
+    
+        }
+    }
     .carousel-indicators {
         li {
             width: 1vw;
@@ -81,15 +101,141 @@ nav {
     top: 22%;
     left: 55%;
     width: auto;
-    background-color: rgba($color: $primaryColor, $alpha: 0.5);
+    @include media-breakpoint-down(sm) {
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+    background-color: rgba($color: $primaryColor, $alpha: 0.75);
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
     z-index: 10;
     p {
-        font-size: 3vw;
+        @include font-size(1rem);
+        @include media-breakpoint-up(sm)
+        {
+            @include font-size(1.5rem);
+        }
+        @include media-breakpoint-up(xl) {
+            @include font-size(2.7rem);
+        }
         font-family: 'Spectral', serif;  
-        max-width: 400px;  
-        
+        max-width: 400px;
     }
+}
+
+.link-nav { 
+    &:after {
+        @include media-breakpoint-down(sm)
+        {
+            display: none;
+        }
+        content: '';
+        position: absolute;
+        bottom: 10%;
+        left: 0;
+        width: 100%;
+        height: 1px;
+        background-color: $secondaryColor;
+        transform: scaleX(0);
+        transform-origin: bottom left;
+
+        transition: transform 0.3s;
+    }
+
+    &:hover {
+        &:after {
+            transform: scaleX(1);
+        }
+    }
+}
+/* search animation */
+#search {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    
+    -webkit-transition: all 0.25s ease-in-out;
+	-moz-transition: all 0.25s ease-in-out;
+	-o-transition: all 0.25s ease-in-out;
+	-ms-transition: all 0.25s ease-in-out;
+	transition: all 0.25s ease-in-out;
+
+    -webkit-transform: translate(0px, -100%) scale(0, 0);
+	-moz-transform: translate(0px, -100%) scale(0, 0);
+	-o-transform: translate(0px, -100%) scale(0, 0);
+	-ms-transform: translate(0px, -100%) scale(0, 0);
+	transform: translate(0px, -100%) scale(0, 0);
+    
+    opacity: 0;
+    h3 {
+        position: absolute;
+        top: 25%;
+        width: 100%;
+        color: #fff;
+        text-align: center;
+    }
+    input[type="search"] {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        // width: 100%;
+        color: rgb(255, 255, 255);
+        background: rgba(0, 0, 0, 0);
+        @include media-breakpoint-down(sm)
+        {
+            @include font-size(2.5rem);
+        }
+        @include font-size(3.75rem);
+        font-weight: 300;
+        text-align: center;
+        border: 0px;
+        margin: 0px auto;
+        margin-top: -51px;
+        padding-left: 30px;
+        padding-right: 30px;
+        outline: none;
+    }
+    .btn {
+        position: absolute;
+        @include media-breakpoint-down(sm)
+        {
+            top: 45%;
+        }
+        top: 50%;
+        left: 50%;
+        min-width: 100px;
+        max-width: 200px;
+        margin-top: 61px;
+        margin-left: -45px;
+    }
+    .close {
+        position: fixed;
+        top: 15px;
+        right: 15px;
+        color: #fff;
+        background-color: #888;
+        border-color: #ccc;
+        opacity: 1;
+        padding: 10px 17px;
+        font-size: 27px;
+    }
+    
+    
+    
+    
+}
+
+#search.open {
+    -webkit-transform: translate(0px, 0px) scale(1, 1);
+    -moz-transform: translate(0px, 0px) scale(1, 1);
+	-o-transform: translate(0px, 0px) scale(1, 1);
+	-ms-transform: translate(0px, 0px) scale(1, 1);
+	transform: translate(0px, 0px) scale(1, 1); 
+    opacity: 1;
 }
 
 

@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="images/icons/favicon.png">
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="fontawesome-free-5.15.3-web/css/all.min.css"> <!--load all styles -->
     <link rel="stylesheet" href="css/header.css">
@@ -13,54 +14,66 @@
 <body>
   <!-- header start -->
   <div class="container navbar d-none d-md-flex justify-content-between">
-    <a class="navbar-brand" href=""><img src="images/group-4.png" alt=""></a>
+    <a class="navbar-brand" href=""><img src="images/group-4.png" alt="siences university"></a>
       <div class="nav-icons d-flex align-items-center">
         <a class="mr-2 fab fa-linkedin fa-2x" href="#"></a>
         <a class="mr-2 fab fa-youtube-square fa-2x" href="#"></a>
         <a class="mr-2 fab fa-instagram-square fa-2x" href="#"></a>
         <a class="mr-2 fab fa-twitter-square fa-2x" href="#"></a>
         <a class="mr-2 fab fa-facebook-square fa-2x" href="#"></a>
-        <form class="d-inline" action="">
-          <button type="submit" class="px-3 fas fa-search fa-2x btn nav-btn" href="#"></button>
-        </form>
+        <a href="#search" class="px-3 fas fa-search fa-2x btn nav-btn"></a>
       </div>
     </div>
     <!-- navbar start -->
     <header class="sticky-top">
-      <nav class="navbar navbar-light navbar-expand-md sticky-top py-md-0 justify-content-between justify-content-md-center">
-        <button class="navbar-toggler " type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <a class="navbar-brand d-block d-md-none" href="">
-          <picture>
-            <source media="(min-width:768px)" srcset="images/brand-white.png">
-            <img src="images/group-4.png" alt="">
-          </picture>
-        </a>
-        <form class="d-inline d-md-none" action="">
-          <button type="submit" class="px-3 fas fa-search fa-2x btn nav-btn" href="#"></button>
-        </form>
-        <div class="collapse navbar-collapse justify-content-md-center" id="navbarSupportedContent">
-          <ul class="navbar-nav">
-            <li class="nav-item pr-1 mr-md-3 active">
-              <a class="nav-link px-1 px-md-4 text-left text-md-center" href="#">ABOUT</a>
-            </li>
-            <li class="nav-item pr-2 mr-md-2">
-              <a class="nav-link px-1 px-md-4 text-left text-md-center" href="#">ACADEMICS</a>
-            </li>
-            <li class="nav-item pr-2 mr-md-2">
-              <a class="nav-link px-1 px-md-4 text-left text-md-center" href="#">ADMISSIONS</a>
-            </li>
-            <li class="nav-item pr-2 mr-md-2">
-              <a class="nav-link px-1 px-md-4 text-left text-md-center" href="#">INTERNATIONAL</a>
-            </li>
-            <li class="nav-item pr-2 mr-md-2">
-              <a class="nav-link px-1 px-md-4 text-left text-md-center" href="#">EVENTS</a>
-            </li>
-            <li class="nav-item pr-2 mr-md-2 mr-lg-0">
-              <a class="nav-link px-1 px-md-3 text-left text-md-center text-nowrap" href="#">CONTACT US</a>
-            </li>
-          </ul>
+      <nav class="navbar navbar-light navbar-expand-md py-md-0 justify-content-between justify-content-md-center">
+        <div class="container">
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <a class="navbar-brand d-block d-md-none" href="">
+            <picture>
+              <source media="(min-width:768px)" srcset="images/brand-white.png">
+              <img src="images/group-4.png" alt="siences university">
+            </picture>
+          </a>
+          <a href="#search" class="px-3 fas fa-search fa-2x btn nav-btn d-inline d-md-none"></a>
+          <div id="search">
+            <button type="button" class="close">×</button>
+            <form>
+              <input type="search" value="" placeholder="What are you looking for?">
+              <button type="submit" class="btn btn-primary button">Search</button>
+            </form>
+          </div>
+          <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
+            <ul class="navbar-nav">
+              <li class="nav-item position-relative mr-3 mx-lg-4  d-flex justify-content-center">
+                <a class="nav-link text-left text-center link-nav mobile-link-underline link" href="#">ABOUT</a>
+              </li>
+              <li class="nav-item position-relative mr-3 mx-lg-4  d-flex justify-content-center">
+                <a class="nav-link text-left text-center link-nav mobile-link-underline link" href="#">ACADEMICS</a>
+              </li>
+              <li class="nav-item position-relative mr-3 mx-lg-4  d-flex justify-content-center">
+                <a class="nav-link text-left text-center link-nav mobile-link-underline link" href="#">ADMISSIONS</a>
+              </li>
+              <li class="nav-item position-relative mr-3 mx-lg-4  d-flex justify-content-center">
+                <a class="nav-link text-left text-center link-nav mobile-link-underline link" href="#">INTERNATIONAL</a>
+              </li>
+              <li class="nav-item position-relative mr-3 mx-lg-4  d-flex justify-content-center">
+                <a class="nav-link text-left text-center link-nav mobile-link-underline link" href="#">EVENTS</a>
+              </li>
+              <li class="nav-item position-relative mr-3 mx-lg-4  d-flex justify-content-center">
+                <a class="nav-link text-left text-center link-nav mobile-link-underline link text-nowrap" href="#">CONTACT US</a>
+              </li>
+              <li class="d-block d-md-none d-flex align-items-center justify-content-center my-4 px-3">
+                <a class="mr-2 fab fa-linkedin fa-2x mx-2" href="#"></a>
+                <a class="mr-2 fab fa-youtube-square fa-2x mx-2" href="#"></a>
+                <a class="mr-2 fab fa-instagram-square fa-2x mx-2" href="#"></a>
+                <a class="mr-2 fab fa-twitter-square fa-2x mx-2" href="#"></a>
+                <a class="mr-2 fab fa-facebook-square fa-2x mx-2" href="#"></a>
+              </li>
+            </ul>
+          </div>
         </div>
       </nav>
     </header>
@@ -81,19 +94,19 @@
          </div>
          <!-- <p class="slider-p text-uppercase d-none text-white">one of the top 10 universities in design</p> -->
         <div class="carousel-item active">
-          <img src="images/slider1@3x.jpg" class="d-block w-100" alt="...">
+          <img src="images/slider1@3x.jpg" class="d-block w-100" alt="slider image">
         </div>
         <div class="carousel-item">
-          <img src="images/slider3.png" class="d-block w-100" alt="...">
+          <img src="images/slider3.png" class="d-block w-100" alt="slider image">
         </div>
         <div class="carousel-item">
-          <img src="images/slider1@3x.jpg" class="d-block w-100" alt="...">
+          <img src="images/slider1@3x.jpg" class="d-block w-100" alt="slider image">
         </div>
         <div class="carousel-item ">
-          <img src="images/slider3.png" class="d-block w-100" alt="...">
+          <img src="images/slider3.png" class="d-block w-100" alt="slider image">
         </div>
         <div class="carousel-item">
-          <img src="images/slider1@3x.jpg" class="d-block w-100" alt="...">
+          <img src="images/slider1@3x.jpg" class="d-block w-100" alt="slider image">
         </div>
       </div>
       <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -105,17 +118,18 @@
         <span class="sr-only">Next</span>
       </a>
     </div>
+    <h1 class="invisible">Siences University</h1>
     <!-- slider end -->
   <!-- header end -->
 
   <!-- news section start -->
   <div class="container  mt-5">
     <div class="row">
-      <div class="col-12 col-md-6">
+      <div class="col-12 col-xl-6">
         <div class="row">
-          <div class="col-12 col-sm-6 mb-4 img-box">
+          <div class="col-12 col-sm-6 mb-4 img-box hover11">
             <a href="">
-              <img src="images/news1.png" alt="">
+              <img src="images/news1.png" alt="UNDERGRADUATE COURSES">
               <div class="col-12">
                 <div class="img-title text-white font-weight-bold d-flex align-items-center justify-content-center text-center"> UNDERGRADUATE COURSES </div>
               </div>          
@@ -123,7 +137,7 @@
           </div>
           <div class="col-12 col-sm-6 mb-4 img-box">
             <a href="">
-              <img src="images/news2.jpg" alt="">
+              <img src="images/news2.jpg" alt="GRADUATE COURSES">
               <div class="col-12">
                 <div class="img-title text-white font-weight-bold d-flex align-items-center justify-content-center text-center"> GRADUATE COURSES </div>
               </div>
@@ -131,7 +145,7 @@
           </div>
           <div class="col-12 col-sm-6 mb-4 img-box">
             <a href="">
-              <img src="images/news4.jpg" alt="">
+              <img src="images/news4.jpg" alt="INTERNATIONAL STUDENTS">
               <div class="col-12">
                 <div class="img-title text-white font-weight-bold d-flex align-items-center justify-content-center text-center"> INTERNATIONAL STUDENTS </div>
               </div>
@@ -139,7 +153,7 @@
           </div>
           <div class="col-12 col-sm-6 mb-4 img-box">
             <a href="">
-              <img src="images/news3.jpg" alt="">
+              <img src="images/news3.jpg" alt="SCHOLARSHIPS">
               <div class="col-12">
                 <div class="img-title text-white font-weight-bold d-flex align-items-center justify-content-center"> SCHOLARSHIPS </div>
               </div>
@@ -147,14 +161,20 @@
           </div>
         </div>
       </div>
-      <div class="col-12 col-md-6 mb-5">
+      <div class="col-12 col-xl-6 mb-5">
         <div class="news">
           <div class="wrapper mb-4 pt-3">
-            <a class="text-uppercase heading link" href="#">news</a>
+            <a href="#">
+              <h2 class="text-uppercase heading link d-inline-block">
+                news
+              </h2>
+            </a>
           </div>
           <div class="wrapper">
             <p class="text-primary text-capitalize info mb-2 mt-4">january 06, 2017</p>
-            <a class="text-capitalize title link mb-2" href="#">smart exhibition upends classical style</a>
+            <a class="mb-2" href="#">
+              <h3 class="text-capitalize title link d-inline"> smart exhibition upends classical style </h3>
+            </a>
             <p class="text mt-2 truncate"> Even the most casual observer is probably acquainted with the Classical style, that aesthetic anchored in the ancient </p>
             <div class="d-flex justify-content-end">
               <a href="" class="font-weight-bold more link mb-3">READ MORE</a>
@@ -163,7 +183,9 @@
           </div>
           <div class="wrapper">
             <p class="text-primary text-capitalize info mb-2 mt-4">December 13, 2016</p>
-            <a class="text-capitalize title link mb-2" href="#">Sciences University To Offer Now Undergraduate Major In Creative Writing </a>
+            <a class="mb-2" href="#">
+              <h3 class="text-capitalize title link d-inline"> Sciences University To Offer Now Undergraduate Major In Creative Writing </h3>
+            </a>            
             <p class="text mt-2 truncate"> The Department of English Language and Literature will offer a new undergraduate major in creative writing, beginning </p>
             <div class="d-flex justify-content-end">
               <a href="" class="font-weight-bold more link mb-3">READ MORE</a>
@@ -172,7 +194,9 @@
           </div>
           <div class="wrapper">
             <p class="text-primary text-capitalize info mb-2 mt-4">November 13, 2016</p>
-            <a class="text-capitalize title link mb-2" href="#"> New Method Uses Heat Flow To Levitate Variety Of Objects </a>
+            <a class="mb-2" href="#">
+              <h3 class="text-capitalize title link d-inline"> New Method Uses Heat Flow To Levitate Variety Of Objects </h3>
+            </a>
             <p class="text mt-2 truncate"> Even the most casual observer is probably acquainted with the Classical style, that aesthetic anchored in the ancient</p>
             <div class="d-flex justify-content-end">
               <a href="" class="font-weight-bold more link mb-3">READ MORE</a>
@@ -188,17 +212,17 @@
     <div class="container">
       <div class="row justify-content-center py-5">
         <div class="col-12 col-sm-6 col-md-4 mt-5 justify-content-center text-center">
-          <img class="mb-3" src="images/icons/worker.png" alt="">
+          <img class="mb-3" src="images/icons/worker.png" alt="worker">
           <div class="number text-secondary font-weight-bold mb-3"> 90+ </div>
           <p class="text-secondary text-center mb-3 d-inline-block"> Profession-ready degree programs </p>
         </div>
         <div class="col-12 col-sm-6 col-md-4 mt-5 justify-content-center text-center">
-          <img class=" mb-3 " src="images/icons/mail.png" alt="">
+          <img class=" mb-3 " src="images/icons/mail.png" alt="mail">
           <div class="number text-secondary font-weight-bold text-center mb-3"> #1 </div>
           <p class="text-secondary text-center mb-3 d-inline-block"> Our MBA for salary-to-debt ratio </p>
         </div>
         <div class="col-12 col-sm-6 col-md-4 mt-5 justify-content-center text-center">
-          <img class=" mb-3 " src="images/icons/hat.png" alt="">
+          <img class=" mb-3 " src="images/icons/hat.png" alt="graduation hat">
           <div class="number text-secondary font-weight-bold mb-3 odometer"> 100,000 </div>
           <p class="text-secondary text-center mb-3 d-inline-block"> Sciences University alumni worldwide </p>
         </div>
@@ -210,10 +234,14 @@
   <!-- events section start -->
   <div class="container text-center py-5 mb-0 mb-md-4">
     <div class="mb-3">
-      <a class="heading text-uppercase link" href="">events</a>
+      <a href="">
+        <h2 class="text-uppercase heading link d-inline-block">
+          events
+        </h2>
+      </a>
     </div>
     <div class="row">
-      <div class="col-12 col-md-6 col-lg-4 mt-3">
+      <div class="col-12 col-md-6 col-lg-4 mt-3 hover13">
         <div class="card card-wrapper border-0 text-left">
           <div class="icon-wrapper">
             <div class="position-relative w-100 h-100">
@@ -221,24 +249,26 @@
               <div class="icon-month text-primary"> March </div>
             </div>
           </div>
-          <img class="card-img-top" src="images/events1.png" alt="">
+          <img class="card-img-top" src="images/events1.png" alt="Postgraduate Drop-in Evening">
           <div class="border card-border d-flex flex-column">
-            <div class="card-body py-3">
+            <div class="card-body">
               <ul class="list-inline mb-2">
                 <li class="list-inline-item info text-primary">2:00 P.M - 4:00 P.M.</li>
                 <li class="list-inline-item text">|</li>
                 <li class="list-inline-item info text-primary">Ajloun Campus</li>
               </ul>
-              <a class="card-text title text-primary link"> Postgraduate Drop-in Evening </a>
+              <a href="#">
+                <h3 class="card-text title text-primary link"> Postgraduate Drop-in Evening  </h3>
+              </a>
               <p class="card-text truncate text mb-auto mt-2 w-100"> Our Postgraduate Drop-in Evenings are an excellent opportunity for you to meet our staff and talk to current students </p>
             </div>
             <div class="text-right mb-2 pb-1 pr-1">
-              <a href="#" class="more link font-weight-bold mr-3">LEARN MORE</a>
+              <a href="#" class="more link font-weight-bold mr-3 stretched-link">LEARN MORE</a>
             </div>
           </div>
         </div>
       </div>
-      <div class="col-12 col-md-6 col-lg-4 mt-3">
+      <div class="col-12 col-md-6 col-lg-4 mt-3 hover13">
         <div class="card card-wrapper border-0 text-left">
           <div class="icon-wrapper">
             <div class="position-relative w-100 h-100">
@@ -246,7 +276,7 @@
               <div class="icon-month text-primary"> May </div>
             </div>
           </div>
-          <img class="card-img-top" src="images/events2.png" alt="">
+          <img class="card-img-top" src="images/events2.png" alt="Undergraduate Music Open Day">
           <div class="border card-border d-flex flex-column">
             <div class="card-body py-3">
               <ul class="list-inline mb-2">
@@ -254,16 +284,18 @@
                 <li class="list-inline-item text">|</li>
                 <li class="list-inline-item info text-primary">Irbed Campus</li>
               </ul>
-              <a class="card-text title text-primary link"> Undergraduate Music Open Day </a>
+              <a href="#">
+                <h3 class="card-text title text-primary link"> Undergraduate Music Open Day </h3>
+              </a>              
               <p class="card-text truncate text mt-2 w-100"> Music open days are aimed at candidates who have made Kingston University one of their university choices </p>
             </div>
             <div class="text-right mb-2 pb-1 pr-1">
-              <a href="#" class="more link font-weight-bold mr-3">LEARN MORE</a>
+              <a href="#" class="more link font-weight-bold mr-3 stretched-link">LEARN MORE</a>
             </div>
           </div>
         </div>
       </div>
-      <div class=" col-12 col-md-6 col-lg-4 mt-3">
+      <div class=" col-12 col-md-6 col-lg-4 mt-3 hover13">
         <div class="card card-wrapper border-0 text-left">
           <div class="icon-wrapper">
             <div class="position-relative w-100 h-100">
@@ -271,19 +303,21 @@
               <div class="icon-month text-primary"> August </div>
             </div>
           </div>
-          <img class="card-img-top" src="images/events3.png" alt="">
+          <img class="card-img-top" src="images/events3.png" alt="Making Nature’ Exhibition At Wellcome Collection">
           <div class="border card-border d-flex flex-column">
-            <div class="card-body py-3">
+            <div class="card-body">
               <ul class="list-inline mb-2">
                 <li class="list-inline-item info text-primary">4:00 P.M - 6:00 P.M.</li>
                 <li class="list-inline-item text">|</li>
                 <li class="list-inline-item info text-primary">Amman Campus</li>
               </ul>
-              <a class="card-text title text-primary link"> Making Nature’ Exhibition At Wellcome Collection </a>
+              <a href="#">
+                <h3 class="card-text title text-primary link"> Making Nature’ Exhibition At Wellcome Collection </h3>
+              </a>              
               <p class="card-text truncate text mb-auto mt-2 w-100"> The question of how humans relate to other animals has captivated, scientists, ethicists and artists for centuries </p>
             </div>
             <div class="text-right mb-2 pb-1 pr-1">
-              <a href="#" class="more link font-weight-bold mr-3">LEARN MORE</a>
+              <a href="#" class="more link font-weight-bold mr-3 stretched-link">LEARN MORE</a>
             </div>
           </div>
         </div>
@@ -298,17 +332,17 @@
         <span class="apply-now-text text-primary"> ADMISSIONS ARE NOW OPEN FOR 2017/2018 INTAKE </span>
       </div>
       <div class="col-12">
-        <button class="button btn btn-primary px-5 py-4"> APPLY NOW! </button>
+        <button class="button-xl btn btn-primary px-5 py-4 text-nowrap"> APPLY NOW! </button>
       </div>
     </div>
   </div>
   <!-- apply-now section end -->
 
   <!-- get-in-touch section start -->
-  <div class="container get-in-touch my-5">
+  <div class="container my-5">
     <div class="row justify-content-center pb-5">
-      <div class="col-12 col-md-10 bg-light">
-        <form action="" method="post">
+      <div class="col-12 col-md-10 get-in-touch">
+        <form action="#" method="post">
           <div class="row px-lg-5 py-5 justify-content-center">
             <div class="col-12 text-center my-4">
               <span class="heading text-primary"> GET IN TOUCH </span>
@@ -323,7 +357,7 @@
               <input class="form-control" type="email" name="email" placeholder="Email" required>
             </div>
             <div class="col-12 px-md-5 my-2">
-              <textarea class="form-control" name="message"  cols="30" rows="10" placeholder="Message" required></textarea>
+              <textarea class="form-control" name="message"  cols="30" rows="7" placeholder="Message" required></textarea>
             </div>
             <div class="col-12 mt-4 mb-2 text-center">
               <button class="btn btn-primary button font-weight-bold px-5 py-3" type="submit">SUBMIT</button>
@@ -338,7 +372,7 @@
   <footer class="bg-primary text-start mt-5">
     <div class="container p-4">
       <div class="row">
-        <div class="col-lg-3 col-md-6 mb-4 mb-md-0 border-left">
+        <div class="col-lg-3 col-md-6 mb-4 mb-md-0 border-left order-1">
           <div class="text-secondary font-weight-bold title mb-2">EXPLORE</div>
           <ul class="list-unstyled mb-0">
             <li>
@@ -367,7 +401,7 @@
             </li>
           </ul>
         </div>
-        <div class="col-lg-3 col-md-6 mb-4 mb-md-0 border-left">
+        <div class="col-lg-3 col-md-6 mb-4 mb-md-0 border-left order-2">
           <div class="text-secondary font-weight-bold title mb-2 mb-0">QUICK LINKS</div>
           <ul class="list-unstyled">
             <li>
@@ -394,7 +428,7 @@
             </li>
           </ul>
         </div>
-        <div class="col-lg-3 col-md-6 mb-4 mb-md-0 border-left">
+        <div class="col-lg-3 col-md-6 mb-4 mb-md-0 border-left order-3">
           <div class="text-secondary font-weight-bold title mb-2">HOW TO FIND US</div>
           <ul class="list-unstyled mb-0">
             <li>
@@ -419,9 +453,9 @@
             </li>
           </ul>
         </div>
-        <div class="col-lg-3 col-md-6 mb-4 mb-md-0 border-left order-first order-md-last">
-          <div class="mb-5 mt-4 text-right text-lg-left">
-            <img src="images/brand-white.png" alt="">
+        <div class="col-lg-3 col-md-6 mb-4 mb-md-0 border-left order-first order-md-1 order-lg-4">
+          <div class="mb-5 mt-4 text-center text-md-left">
+            <img src="images/brand-white.png" alt="Sciences University">
           </div>
           <div class="text-secondary font-weight-bold title mb-2">FOLLOW US</div>
           <ul class="list-unstyled">

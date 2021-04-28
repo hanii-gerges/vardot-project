@@ -1,20 +1,42 @@
+@import "node_modules/bootstrap/scss/_functions.scss";
+@import "node_modules/bootstrap/scss/_variables.scss";
+@import "node_modules/bootstrap/scss/_mixins.scss";
 @import "su_variables";
 @import "fonts";
 
+
 /* content */
+a {
+    &:hover {
+        text-decoration: none;
+    }
+}
 .text {
     color: #4a4a4a;
     line-height: 1.63;
 }
 
-.link:hover {
-    text-decoration: none;
-    border-bottom: 1px solid $secondaryColor;
+.link {
+    transition: all 0.4s;
+    border-bottom: 1px solid rgba($secondaryColor, $alpha: 0);
+    &:hover {
+        text-decoration: none;
+        border-bottom: 1px solid rgba($secondaryColor, $alpha: 1);
+    }
 }
 
 .img-box {
+    a:hover {
+        img {
+            opacity: .5;
+            border: 1px solid $primaryColor;
+        }
+    }
     img {
         width: 100%;
+        opacity: 1;
+	    -webkit-transition: .3s ease-in-out;
+	    transition: .3s ease-in-out;
     }
     .img-title {
         height: 3.2rem;
@@ -27,6 +49,7 @@
         background-color: rgba($primaryColor, $alpha: 0.8);
     }
 }
+
 
 .news {
     background-color: #f3f3f3;
@@ -48,21 +71,6 @@
     max-height: 4.7em; 
     margin-right: -1em;
     padding-right: 1em;
-    &:before {
-        content: '...';
-        position: absolute;
-        right: 0;
-        bottom: 0;
-    }
-    &:after {
-        content: '';
-        position: absolute;
-        right: 0;
-        width: 1em;
-        height: 1em;
-        margin-top: 0.2em;
-        background: #F3F3F3;
-    }
 }
 
 .more {
@@ -79,8 +87,12 @@
 }
 
 .title {
+    font-size: 1rem;
     font-weight: 600;
     letter-spacing: 0.4px;
+    &:hover {
+        text-decoration: none;
+    }
 }
 
 .info {
@@ -90,11 +102,11 @@
 
 .statistics {
     .number {
-        font-size: 66px;
+        @include font-size(4.1rem);
         letter-spacing: 1.65px;
     }
     p {
-        font-size: 24px;
+        @include font-size(1.5rem);
         font-weight: 600;
         letter-spacing: 1.48px;
         width: auto;
@@ -112,7 +124,7 @@
         right: 3%;
         width: 4.5rem;
         height: 4.3rem;
-        background-image: url('/images/icons/calendar.png');
+        background-image: url('../images/icons/calendar.png');
         background-repeat: no-repeat;
         background-position: center;
     }
@@ -136,28 +148,75 @@
     }
 }
 
+/* Flashing */
+.hover13 {
+    &:hover {
+        opacity: 1;
+        -webkit-animation: flash 1.5s;
+        animation: flash 1.5s;
+    }
+}
+@-webkit-keyframes flash {
+	0% {
+		opacity: .4;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+@keyframes flash {
+	0% {
+		opacity: .4;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
+// .hover10 .icon-wrapper {
+// 	-webkit-filter: blur(0);
+// 	filter: blur(0);
+// 	-webkit-transition: .3s ease-in-out;
+// 	transition: .3s ease-in-out;
+// }
+// .hover10:hover .icon-wrapper{
+// 	-webkit-filter: blur(3px);
+// 	filter: blur(3px);
+// }
+
+
 .apply-now {
     position: relative;
-    background-image: url('/images/apply.png');
+    background-image: url('../images/apply.png');
     background-repeat: no-repeat;
     background-position: bottom;
     background-size: cover;
     height: 35rem;
 
     .apply-now-text {
-        font-size: 58px;
+        @include font-size(3.6rem);
         font-weight: 800;
         line-height: 1.59;
         text-shadow: 0 2px 4px rgba(83, 83, 83, 0.48);
     }
-    .button {
-        font-size: 3.3rem;
-        font-weight: 800;
-        line-height: 1.06;
+}
+
+.get-in-touch {
+    background-color: #f7f7f7;
+    form {
+        input,textarea {
+            border-radius: 0%;
+            &::placeholder {
+                font-size: 14px;
+                line-height: 1.57;
+                color: #9f9f9f;
+            }
+        }
     }
 }
 
 .button {
+    @include font-size(1rem);
     color: $secondaryColor;
     border-radius: 0%;
     &:hover {
@@ -165,8 +224,15 @@
         background-color: $secondaryColor;
     }
 }
-.get-in-touch {
-    .button {
-        font-size: 1.1rem;
+
+.button-xl {
+    @include font-size(3.3rem);
+    font-weight: 800;
+    line-height: 1.06;
+    color: $secondaryColor;
+    border-radius: 0%;
+    &:hover {
+        color: $primaryColor;
+        background-color: $secondaryColor;
     }
 }

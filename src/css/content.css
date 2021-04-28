@@ -1,16 +1,29 @@
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,600;1,700;1,800&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Spectral&display=swap");
 /* content */
+a:hover {
+  text-decoration: none; }
+
 .text {
   color: #4a4a4a;
   line-height: 1.63; }
 
-.link:hover {
-  text-decoration: none;
-  border-bottom: 1px solid #e4c800; }
+.link {
+  transition: all 0.4s;
+  border-bottom: 1px solid rgba(228, 200, 0, 0); }
+  .link:hover {
+    text-decoration: none;
+    border-bottom: 1px solid #e4c800; }
+
+.img-box a:hover img {
+  opacity: .5;
+  border: 1px solid #021A4F; }
 
 .img-box img {
-  width: 100%; }
+  width: 100%;
+  opacity: 1;
+  -webkit-transition: .3s ease-in-out;
+  transition: .3s ease-in-out; }
 
 .img-box .img-title {
   height: 3.2rem;
@@ -38,19 +51,6 @@
   max-height: 4.7em;
   margin-right: -1em;
   padding-right: 1em; }
-  .truncate:before {
-    content: '...';
-    position: absolute;
-    right: 0;
-    bottom: 0; }
-  .truncate:after {
-    content: '';
-    position: absolute;
-    right: 0;
-    width: 1em;
-    height: 1em;
-    margin-top: 0.2em;
-    background: #F3F3F3; }
 
 .more {
   font-size: 14px;
@@ -64,23 +64,32 @@
   letter-spacing: 0.9px; }
 
 .title {
+  font-size: 1rem;
   font-weight: 600;
   letter-spacing: 0.4px; }
+  .title:hover {
+    text-decoration: none; }
 
 .info {
   font-size: 14px;
   line-height: 1.64; }
 
 .statistics .number {
-  font-size: 66px;
+  font-size: calc(1.535rem + 3.42vw);
   letter-spacing: 1.65px; }
+  @media (min-width: 1200px) {
+    .statistics .number {
+      font-size: 4.1rem; } }
 
 .statistics p {
-  font-size: 24px;
+  font-size: calc(1.275rem + 0.3vw);
   font-weight: 600;
   letter-spacing: 1.48px;
   width: auto;
   max-width: 260px; }
+  @media (min-width: 1200px) {
+    .statistics p {
+      font-size: 1.5rem; } }
 
 .card-wrapper .card-border {
   min-height: 14.5rem; }
@@ -91,7 +100,7 @@
   right: 3%;
   width: 4.5rem;
   height: 4.3rem;
-  background-image: url("/images/icons/calendar.png");
+  background-image: url("../images/icons/calendar.png");
   background-repeat: no-repeat;
   background-position: center; }
 
@@ -113,29 +122,66 @@
   line-height: 1.58;
   font-weight: bold; }
 
+/* Flashing */
+.hover13:hover {
+  opacity: 1;
+  -webkit-animation: flash 1.5s;
+  animation: flash 1.5s; }
+
+@-webkit-keyframes flash {
+  0% {
+    opacity: .4; }
+  100% {
+    opacity: 1; } }
+
+@keyframes flash {
+  0% {
+    opacity: .4; }
+  100% {
+    opacity: 1; } }
+
 .apply-now {
   position: relative;
-  background-image: url("/images/apply.png");
+  background-image: url("../images/apply.png");
   background-repeat: no-repeat;
   background-position: bottom;
   background-size: cover;
   height: 35rem; }
   .apply-now .apply-now-text {
-    font-size: 58px;
+    font-size: calc(1.485rem + 2.82vw);
     font-weight: 800;
     line-height: 1.59;
     text-shadow: 0 2px 4px rgba(83, 83, 83, 0.48); }
-  .apply-now .button {
-    font-size: 3.3rem;
-    font-weight: 800;
-    line-height: 1.06; }
+    @media (min-width: 1200px) {
+      .apply-now .apply-now-text {
+        font-size: 3.6rem; } }
+
+.get-in-touch {
+  background-color: #f7f7f7; }
+  .get-in-touch form input, .get-in-touch form textarea {
+    border-radius: 0%; }
+    .get-in-touch form input::placeholder, .get-in-touch form textarea::placeholder {
+      font-size: 14px;
+      line-height: 1.57;
+      color: #9f9f9f; }
 
 .button {
+  font-size: 1rem;
   color: #e4c800;
   border-radius: 0%; }
   .button:hover {
     color: #021A4F;
     background-color: #e4c800; }
 
-.get-in-touch .button {
-  font-size: 1.1rem; }
+.button-xl {
+  font-size: calc(1.455rem + 2.46vw);
+  font-weight: 800;
+  line-height: 1.06;
+  color: #e4c800;
+  border-radius: 0%; }
+  @media (min-width: 1200px) {
+    .button-xl {
+      font-size: 3.3rem; } }
+  .button-xl:hover {
+    color: #021A4F;
+    background-color: #e4c800; }
