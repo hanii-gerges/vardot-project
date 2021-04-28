@@ -282,3 +282,36 @@ a {
     background-size: cover;
     margin:-50px 0 0 -50px;
 }
+
+
+  ol.prefixed {
+      counter-reset: item;
+      list-style-type: none;
+      *list-style-type: decimal; /*Conditional hack for ie7*/
+  }
+
+  ol.prefixed li:before {
+      content: 'Q' counter(item, decimal) '. ';
+      counter-increment: item;
+      display: block;
+  }
+
+  ol.styled { counter-reset: item; }
+  ol.styled li {
+      background: rgba(78,68,50,.10);
+      border-radius: 4px;
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      @include font-size(1.8rem);
+      line-height: 2;
+      margin-bottom: 10px;
+      align-items: center;
+  }
+  ol.styled li:before {
+      content: '' counter(item, decimal) '';
+      background: $primaryColor;
+      border-radius: 4px;
+      color: #f7f7ef;
+      @include font-size(1.8rem);
+      margin: 0 5px 0 8px;
+      padding: 10px 15px;
+  }
