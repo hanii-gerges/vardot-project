@@ -28,3 +28,26 @@ $(function () {
         }
     });
 });
+
+//scroll-up button
+var btn = $('#button');
+
+$(window).on('scroll',function() {
+  if ($(window).scrollTop() > 300) {
+    btn.addClass('show');
+  } else {
+    btn.removeClass('show');
+  }
+});
+
+btn.on('click', function(e) {
+  e.preventDefault();
+  $('html, body').animate({scrollTop:0}, '300');
+});
+
+
+$(window).on('load',function() { // makes sure the whole site is loaded
+    $('#status').fadeOut(); // will first fade out the loading animation
+    $('#preloader').delay(50).fadeOut(100); // will fade out the white DIV that covers the website.
+    $('body').delay(50).css({'overflow':'visible'});
+    })

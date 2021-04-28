@@ -134,7 +134,8 @@ nav {
   -o-transform: translate(0px, -100%) scale(0, 0);
   -ms-transform: translate(0px, -100%) scale(0, 0);
   transform: translate(0px, -100%) scale(0, 0);
-  opacity: 0; }
+  opacity: 0;
+  z-index: 10000; }
   #search h3 {
     position: absolute;
     top: 25%;
@@ -182,16 +183,15 @@ nav {
     top: 15px;
     right: 15px;
     color: #fff;
-    background-color: #888;
+    background-color: #e4c800;
     border-color: #ccc;
     opacity: 1;
     padding: 10px 17px;
     font-size: 27px; }
-
-#search.open {
-  -webkit-transform: translate(0px, 0px) scale(1, 1);
-  -moz-transform: translate(0px, 0px) scale(1, 1);
-  -o-transform: translate(0px, 0px) scale(1, 1);
-  -ms-transform: translate(0px, 0px) scale(1, 1);
-  transform: translate(0px, 0px) scale(1, 1);
-  opacity: 1; }
+  #search.open {
+    -webkit-transform: translate(0px, 0px) scale(1, 1);
+    -moz-transform: translate(0px, 0px) scale(1, 1);
+    -o-transform: translate(0px, 0px) scale(1, 1);
+    -ms-transform: translate(0px, 0px) scale(1, 1);
+    transform: translate(0px, 0px) scale(1, 1);
+    opacity: 1; }
