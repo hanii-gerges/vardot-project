@@ -128,6 +128,11 @@ a:hover {
   .event-wrapper a:hover img {
     transition: all .4s;
     opacity: .5; }
+  .event-wrapper a:hover .text {
+    transition: all .4s;
+    color: black; }
+  .event-wrapper a:hover .title {
+    border-bottom: 1px solid #e4c800; }
 
 .top {
   top: 10%; }
@@ -281,3 +286,10 @@ ol.styled {
       @media (min-width: 1200px) {
         ol.styled li::before {
           font-size: 1.8rem; } }
+
+.about .about-border {
+  width: 150px;
+  border-bottom: 10px solid #e4c800 !important; }
+
+.about small {
+  line-height: 2; }

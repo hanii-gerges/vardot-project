@@ -157,6 +157,13 @@ a {
                 transition: all .4s;
                 opacity: .5;
             }
+            .text {
+                transition: all .4s;
+                color: black;
+            }
+            .title {
+                border-bottom: 1px solid $secondaryColor;
+            }
         }
     }
 }
@@ -338,5 +345,15 @@ ol {
                 padding: 10px 15px;
             }
         }
+    }
+}
+
+.about {
+    .about-border {
+        width: 150px;
+        border-bottom: 10px solid $secondaryColor!important;
+    }
+    small {
+        line-height: 2;
     }
 }

@@ -64,6 +64,53 @@ nav {
     color: $primaryColor; 
 }
 
+.internal-header {
+    position: relative;
+    .blurry {
+        filter: blur(6px);
+        -webkit-filter: blur(6px);
+        height: 500px;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        &.about {
+            background-image: url("../images/about.jpg");
+        }
+        &.admissions {
+            background-image: url("../images/admissions.jpg");
+        }
+        &.academics {
+            background-image: url("../images/academics.jpg");
+        }
+        &.international {
+            background-image: url("../images/about.jpg");
+        }
+        &.events {
+            background-image: url("../images/events.jpg");
+        }
+        &.contact-us {
+            background-image: url("../images/about.jpg");
+        }
+    }
+    .bread-crumbs {
+        background-color: rgb(0,0,0); /* Fallback color */
+        background-color: rgba(0,0,0, 0); /* Black w/opacity/see-through */
+        color: white;
+        font-weight: bold;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 2;
+        width: 80%;
+        padding: 20px;
+        text-align: center;
+        .head {
+            text-shadow: 2px 2px 10px #000000;
+        }
+    }
+}
+
 .carousel{
     img {
         object-fit: cover;
@@ -71,7 +118,6 @@ nav {
         @include media-breakpoint-down(sm)
         {
             height: 60vw;
-    
         }
     }
     .carousel-indicators {
