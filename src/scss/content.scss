@@ -231,8 +231,12 @@ a {
     }
 }
 .top {
-    top: 10%;
-}
+    @media screen and ( max-height: 600px ){
+        top: 20%;
+    }
+    @media screen and ( min-height: 600px ){
+        top: 10%;
+    }}
 
 
 .apply-now {

@@ -177,8 +177,13 @@ a:hover {
   .event-wrapper a:hover .title {
     border-bottom: 1px solid #e4c800; }
 
-.top {
-  top: 10%; }
+@media screen and (max-height: 600px) {
+  .top {
+    top: 20%; } }
+
+@media screen and (min-height: 600px) {
+  .top {
+    top: 10%; } }
 
 .apply-now {
   position: relative;
