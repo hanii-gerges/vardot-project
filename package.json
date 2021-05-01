@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
+    "aos": "^2.3.4",
     "bootstrap": "^4.6.0",
     "jquery": "^3.6.0",
     "rfs": "^9.0.3"

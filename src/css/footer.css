@@ -1,6 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,600;1,700;1,800&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Spectral&display=swap");
 /* footer */
+footer .link-social:hover {
+  color: #e4c800; }
+
 footer .link:hover {
   color: white; }
 
@@ -21,6 +24,9 @@ footer ul {
 
 footer .border-left {
   border-left: 0.06rem solid #4d4d4d !important; }
+  @media (max-width: 767.98px) {
+    footer .border-left {
+      border-left: 0.06rem solid rgba(255, 255, 255, 0) !important; } }
 
 footer .copy-rights {
   background-color: #223663;

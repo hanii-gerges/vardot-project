@@ -7,6 +7,11 @@
 /* footer */
 
 footer {
+    .link-social {
+        &:hover {
+            color: $secondaryColor;
+        }
+    }
     .link {
         &:hover {
             color: white;
@@ -30,6 +35,10 @@ footer {
         }
     }
     .border-left {
+        @include media-breakpoint-down(sm)
+        {
+            border-left: 0.06rem solid rgba($color: white, $alpha: 0)!important;
+        }
         border-left: 0.06rem solid #4d4d4d!important;
     }
     .copy-rights {

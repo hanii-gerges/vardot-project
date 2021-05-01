@@ -1,6 +1,6 @@
 // sticky top navbar on scroll
 $(window).on('scroll',function(){
-    if($(window).scrollTop()>70){
+    if($(window).scrollTop()>65){
         $('nav').addClass('scroll');
         $('nav .navbar-brand').addClass('d-xl-block');
         $('.collapse').addClass('justify-content-xl-end');
@@ -13,6 +13,18 @@ $(window).on('scroll',function(){
         $('.collapse').removeClass('justify-content-xl-end');
         $('.navbar-nav li').removeClass('mx-xl-2');
     }
+    
+    // scroll-up button
+    var btn = $('#button');
+    if ($(window).scrollTop() > 300) {
+      btn.addClass('show');
+    } else {
+      btn.removeClass('show');
+    }
+    btn.on('click', function(e) {
+      e.preventDefault();
+      $('html, body').animate({scrollTop:0}, '300');
+    });
 })
 
 $(function () {
@@ -29,21 +41,8 @@ $(function () {
     });
 });
 
-// scroll-up button
-var btn = $('#button');
 
-$(window).on('scroll',function() {
-  if ($(window).scrollTop() > 300) {
-    btn.addClass('show');
-  } else {
-    btn.removeClass('show');
-  }
-});
 
-btn.on('click', function(e) {
-  e.preventDefault();
-  $('html, body').animate({scrollTop:0}, '300');
-});
 
 // preloader
 $(window).on('load',function() { // makes sure the whole site is loaded
@@ -52,7 +51,7 @@ $(window).on('load',function() { // makes sure the whole site is loaded
     $('body').delay(50).css({'overflow':'visible'});
 })
 
-
+// odometer
 $.fn.isInViewport = function() {
   var elementTop = $(this).offset().top;
   var elementBottom = elementTop + $(this).outerHeight();
@@ -66,13 +65,12 @@ $.fn.isInViewport = function() {
 $(window).on('resize scroll', function() {
   $('.odometer').each(function() {
     if ($(this).isInViewport()) {
-        
       setTimeout(function(){
         odometer1.innerHTML = 90;
       }, 0);
       setTimeout(function(){
         odometer2.innerHTML = 1;
-      }, 0);
+      }, 0);  
       setTimeout(function(){
         odometer3.innerHTML = 100000;
       }, 0);

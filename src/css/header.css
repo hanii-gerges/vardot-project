@@ -6,27 +6,37 @@ body {
 
 nav {
   transition: all 0.4s; }
+  nav a {
+    max-height: 60px;
+    overflow: hidden; }
   @media (max-width: 991.98px) {
     nav {
-      border-bottom: 2px solid #e4c800;
       background-color: white; } }
+  @media (max-width: 767.98px) {
+    nav {
+      border-bottom: 2px solid #e4c800;
+      box-shadow: 0 2px 10px 0.1px rgba(0, 0, 0, 0.73); } }
   @media (min-width: 768px) {
     nav {
       height: 40px;
       background-color: #021A4F; }
       nav a {
+        max-width: 170px;
         color: white !important; } }
   @media (max-width: 767.98px) {
     nav .mobile-link-underline {
       color: #021A4F !important;
       border-bottom: 1px solid black;
-      width: 8rem; } }
+      width: 100%; } }
+  nav .active {
+    color: #e4c800 !important; }
 
 @media (min-width: 768px) {
   .scroll {
     height: 80px;
     border-bottom: 4px solid #e4c800;
-    background-color: rgba(2, 26, 79, 0.9); } }
+    background-color: rgba(2, 26, 79, 0.9);
+    box-shadow: 0 2px 5px 1px rgba(0, 0, 0, 0.73); } }
 
 .nav-icons {
   font-size: 12px; }
@@ -67,10 +77,6 @@ nav {
     .internal-header .blurry.contact-us {
       background-image: url("../images/about.jpg"); }
   .internal-header .bread-crumbs {
-    background-color: black;
-    /* Fallback color */
-    background-color: rgba(0, 0, 0, 0);
-    /* Black w/opacity/see-through */
     color: white;
     font-weight: bold;
     position: absolute;
@@ -83,6 +89,11 @@ nav {
     text-align: center; }
     .internal-header .bread-crumbs .head {
       text-shadow: 2px 2px 10px #000000; }
+      .internal-header .bread-crumbs .head a {
+        color: white;
+        transition: all .3s; }
+        .internal-header .bread-crumbs .head a:hover {
+          color: #021A4F !important; }
 
 .carousel img {
   object-fit: cover;
@@ -123,7 +134,9 @@ nav {
   .slider-box p {
     font-size: 1rem;
     font-family: 'Spectral', serif;
-    max-width: 400px; }
+    max-width: 400px;
+    overflow: hidden;
+    max-height: 15vw; }
     @media (min-width: 576px) {
       .slider-box p {
         font-size: calc(1.275rem + 0.3vw); } }
@@ -136,8 +149,14 @@ nav {
   @media (min-width: 1200px) and (min-width: 1200px) {
     .slider-box p {
       font-size: 2.7rem; } }
+    @media (max-width: 575.98px) {
+      .slider-box p {
+        max-height: 25vw; } }
+    @media (min-width: 992px) and (max-width: 1199.98px) {
+      .slider-box p {
+        max-height: 7vw; } }
 
-.link-nav:after {
+.ltr-hover:after {
   content: '';
   position: absolute;
   bottom: 10%;
@@ -149,10 +168,10 @@ nav {
   transform-origin: bottom left;
   transition: transform 0.3s; }
   @media (max-width: 767.98px) {
-    .link-nav:after {
+    .ltr-hover:after {
       display: none; } }
 
-.link-nav:hover:after {
+.ltr-hover:hover:after {
   transform: scaleX(1); }
 
 /* search animation */
