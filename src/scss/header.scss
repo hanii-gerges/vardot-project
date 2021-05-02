@@ -47,13 +47,18 @@ nav {
 }
 
 @include media-breakpoint-up (md) {
-    .scroll{
+    .scroll {
         height: 80px;
         border-bottom: 4px solid $secondaryColor;
-        background-color: rgba($color: $primaryColor, $alpha: 0.9);
+        background-color: rgba($color:$primaryColor,$alpha: 0.9);
         box-shadow: 0 2px 5px 1px rgba(0, 0, 0, 0.73);
+        top: 0;
+        position: fixed;
+        width: 100%;
+        z-index: 100000;
     }
 }
+
 
 .nav-icons {
     font-size: 12px;
@@ -80,8 +85,6 @@ nav {
 .internal-header {
     position: relative;
     .blurry {
-        filter: blur(6px);
-        -webkit-filter: blur(6px);
         height: 500px;
         background-position: center;
         background-repeat: no-repeat;
@@ -96,13 +99,13 @@ nav {
             background-image: url("../images/academics.jpg");
         }
         &.international {
-            background-image: url("../images/about.jpg");
+            background-image: url("../images/international.jpg");
         }
         &.events {
             background-image: url("../images/events.jpg");
         }
         &.contact-us {
-            background-image: url("../images/about.jpg");
+            background-image: url("../images/contact-us.jpg");
         }
     }
     .bread-crumbs {

@@ -36,7 +36,11 @@ nav {
     height: 80px;
     border-bottom: 4px solid #e4c800;
     background-color: rgba(2, 26, 79, 0.9);
-    box-shadow: 0 2px 5px 1px rgba(0, 0, 0, 0.73); } }
+    box-shadow: 0 2px 5px 1px rgba(0, 0, 0, 0.73);
+    top: 0;
+    position: fixed;
+    width: 100%;
+    z-index: 100000; } }
 
 .nav-icons {
   font-size: 12px; }
@@ -58,8 +62,6 @@ nav {
 .internal-header {
   position: relative; }
   .internal-header .blurry {
-    filter: blur(6px);
-    -webkit-filter: blur(6px);
     height: 500px;
     background-position: center;
     background-repeat: no-repeat;
@@ -71,11 +73,11 @@ nav {
     .internal-header .blurry.academics {
       background-image: url("../images/academics.jpg"); }
     .internal-header .blurry.international {
-      background-image: url("../images/about.jpg"); }
+      background-image: url("../images/international.jpg"); }
     .internal-header .blurry.events {
       background-image: url("../images/events.jpg"); }
     .internal-header .blurry.contact-us {
-      background-image: url("../images/about.jpg"); }
+      background-image: url("../images/contact-us.jpg"); }
   .internal-header .bread-crumbs {
     color: white;
     font-weight: bold;

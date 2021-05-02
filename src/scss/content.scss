@@ -28,9 +28,10 @@ a {
 // opacity effect
 .opacity-effect {
     opacity: 1;
+    transition: all .3s !important;
     &:hover {
-        opacity: .5;
-        transition: all .3s;
+        opacity: .5 !important;
+        transition: all .3s !important;
     }
 }
 
@@ -211,6 +212,10 @@ a {
         }
     }
 }
+.major {
+    width: 18rem;
+}
+
 
 .event-wrapper {
     border-top: 1px solid #EAEAEA;
@@ -231,12 +236,8 @@ a {
     }
 }
 .top {
-    @media screen and ( max-height: 600px ){
-        top: 20%;
-    }
-    @media screen and ( min-height: 600px ){
-        top: 10%;
-    }}
+    top: 20%;
+}
 
 
 .apply-now {
@@ -403,4 +404,8 @@ ol {
     small {
         line-height: 2;
     }
+}
+
+.box-shadow {
+    box-shadow: 0 2px 5px 1px rgba(0, 0, 0, 0.73);
 }

@@ -16,10 +16,11 @@ a:hover {
     border-bottom: 1px solid #e4c800; }
 
 .opacity-effect {
-  opacity: 1; }
+  opacity: 1;
+  transition: all .3s !important; }
   .opacity-effect:hover {
-    opacity: .5;
-    transition: all .3s; }
+    opacity: .5 !important;
+    transition: all .3s !important; }
 
 .zoom-effect img {
   -webkit-transform: scale(1);
@@ -166,6 +167,9 @@ a:hover {
   .card-wrapper .more {
     font-size: 0.8rem; } }
 
+.major {
+  width: 18rem; }
+
 .event-wrapper {
   border-top: 1px solid #EAEAEA; }
   .event-wrapper a:hover img {
@@ -177,13 +181,8 @@ a:hover {
   .event-wrapper a:hover .title {
     border-bottom: 1px solid #e4c800; }
 
-@media screen and (max-height: 600px) {
-  .top {
-    top: 20%; } }
-
-@media screen and (min-height: 600px) {
-  .top {
-    top: 10%; } }
+.top {
+  top: 20%; }
 
 .apply-now {
   position: relative;
@@ -326,3 +325,6 @@ ol.styled {
 
 .about small {
   line-height: 2; }
+
+.box-shadow {
+  box-shadow: 0 2px 5px 1px rgba(0, 0, 0, 0.73); }

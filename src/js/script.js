@@ -1,6 +1,6 @@
 // sticky top navbar on scroll
 $(window).on('scroll',function(){
-    if($(window).scrollTop()>65){
+    if($(window).scrollTop()>100){
         $('nav').addClass('scroll');
         $('nav .navbar-brand').addClass('d-xl-block');
         $('.collapse').addClass('justify-content-xl-end');
@@ -27,22 +27,17 @@ $(window).on('scroll',function(){
     });
 })
 
-$(function () {
-    $('a[href="#search"]').on('click', function(event) {
-        event.preventDefault();
-        $('#search').addClass('open');
-        $('#search > form > input[type="search"]').focus();
-    });
-    
-    $('#search, #search button.close').on('click keyup', function(event) {
-        if (event.target == this || event.target.className == 'close' || event.keyCode == 27) {
-            $(this).removeClass('open');
-        }
-    });
+$('a[href="#search"]').on('click', function(event) {
+    event.preventDefault();
+    $('#search').addClass('open');
+    $('#search > form > input[type="search"]').focus();
 });
 
-
-
+$('#search, #search button.close').on('click keyup', function(event) {
+    if (event.target == this || event.target.className == 'close' || event.keyCode == 27) {
+        $(this).removeClass('open');
+    }
+});
 
 // preloader
 $(window).on('load',function() { // makes sure the whole site is loaded
