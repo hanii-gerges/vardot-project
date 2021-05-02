@@ -17,10 +17,10 @@ a:hover {
 
 .opacity-effect {
   opacity: 1;
-  transition: all .3s !important; }
+  transition: opacity 1s !important; }
   .opacity-effect:hover {
     opacity: .5 !important;
-    transition: all .3s !important; }
+    transition: opacity  1s !important; }
 
 .zoom-effect img {
   -webkit-transform: scale(1);

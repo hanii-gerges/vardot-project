@@ -28,10 +28,10 @@ a {
 // opacity effect
 .opacity-effect {
     opacity: 1;
-    transition: all .3s !important;
+    transition: opacity 1s !important;
     &:hover {
         opacity: .5 !important;
-        transition: all .3s !important;
+        transition: opacity  1s !important;
     }
 }
 
