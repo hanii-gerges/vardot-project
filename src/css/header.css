@@ -7,54 +7,59 @@ body {
 nav {
   transition: all 0.4s; }
   nav a {
-    max-height: 60px;
+    max-height: 3.75rem;
     overflow: hidden; }
   @media (max-width: 991.98px) {
     nav {
       background-color: white; } }
   @media (max-width: 767.98px) {
     nav {
-      border-bottom: 2px solid #e4c800;
-      box-shadow: 0 2px 10px 0.1px rgba(0, 0, 0, 0.73); } }
+      border-bottom: 0.125rem solid #e4c800;
+      box-shadow: 0 0.125rem 0.625rem 0.006rem rgba(0, 0, 0, 0.73); } }
   @media (min-width: 768px) {
     nav {
-      height: 40px;
+      height: 2.5rem;
       background-color: #021A4F; }
       nav a {
-        max-width: 170px;
+        max-width: 10.6rem;
         color: white !important; } }
   @media (max-width: 767.98px) {
     nav .mobile-link-underline {
       color: #021A4F !important;
-      border-bottom: 1px solid black;
+      border-bottom: 0.06rem solid black;
       width: 100%; } }
   nav .active {
     color: #e4c800 !important; }
 
 @media (min-width: 768px) {
   .scroll {
-    height: 80px;
-    border-bottom: 4px solid #e4c800;
+    height: 5rem;
+    border-bottom: 0.25rem solid #e4c800;
     background-color: rgba(2, 26, 79, 0.9);
-    box-shadow: 0 2px 5px 1px rgba(0, 0, 0, 0.73);
+    box-shadow: 0 0.125rem 0.31rem 0.06rem rgba(0, 0, 0, 0.73);
     top: 0;
     position: fixed;
     width: 100%;
     z-index: 100000; } }
 
 .nav-icons {
-  font-size: 12px; }
+  font-size: 0.75rem;
+  line-height: 100; }
   .nav-icons a {
     color: #b6b6b6;
-    transition: all 0.4s; }
+    transition: all 0.4s;
+    margin-right: 0.625rem; }
   .nav-icons a:hover {
     color: #021A4F;
     text-decoration: none; }
 
 .nav-btn {
-  font-size: 25px;
+  font-size: calc(1.281rem + 0.372vw);
   font-weight: 900;
   color: #B6B6B6; }
+  @media (min-width: 1200px) {
+    .nav-btn {
+      font-size: 1.56rem; } }
 
 .nav-btn:hover {
   color: #021A4F; }
@@ -62,7 +67,7 @@ nav {
 .internal-header {
   position: relative; }
   .internal-header .blurry {
-    height: 500px;
+    height: 31.25rem;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover; }
@@ -87,10 +92,10 @@ nav {
     transform: translate(-50%, -50%);
     z-index: 2;
     width: 80%;
-    padding: 20px;
+    padding: 1.25rem;
     text-align: center; }
     .internal-header .bread-crumbs .head {
-      text-shadow: 2px 2px 10px #000000; }
+      text-shadow: .12rem .12rem .62rem #000000; }
       .internal-header .bread-crumbs .head a {
         color: white;
         transition: all .3s; }
@@ -107,12 +112,12 @@ nav {
 .carousel .carousel-indicators li {
   width: 1vw;
   height: 1vw;
-  max-width: 10px;
-  max-height: 10px;
+  max-width: .62rem;
+  max-height: .62rem;
   border-radius: 100%;
-  margin-right: 15px;
-  box-shadow: 0 2px 5px 1px rgba(0, 0, 0, 0.73);
-  border: solid 1px #ffffff;
+  margin-right: .93rem;
+  box-shadow: 0 0.12rem 0.31rem 0.06rem rgba(0, 0, 0, 0.73);
+  border: solid .06rem #ffffff;
   background-color: #ffffff;
   opacity: 1; }
 
@@ -126,7 +131,7 @@ nav {
   left: 55%;
   width: auto;
   background-color: rgba(2, 26, 79, 0.75);
-  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0.12rem 0.25rem 0 rgba(0, 0, 0, 0.5);
   z-index: 10; }
   @media (max-width: 767.98px) {
     .slider-box {
@@ -136,7 +141,7 @@ nav {
   .slider-box p {
     font-size: 1rem;
     font-family: 'Spectral', serif;
-    max-width: 400px;
+    max-width: 25rem;
     overflow: hidden;
     max-height: 15vw; }
     @media (min-width: 576px) {
@@ -164,7 +169,7 @@ nav {
   bottom: 10%;
   left: 0;
   width: 100%;
-  height: 1px;
+  height: .06rem;
   background-color: #e4c800;
   transform: scaleX(0);
   transform-origin: bottom left;
@@ -179,8 +184,8 @@ nav {
 /* search animation */
 #search {
   position: fixed;
-  top: 0px;
-  left: 0px;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.9);
@@ -189,11 +194,11 @@ nav {
   -o-transition: all 0.25s ease-in-out;
   -ms-transition: all 0.25s ease-in-out;
   transition: all 0.25s ease-in-out;
-  -webkit-transform: translate(0px, -100%) scale(0, 0);
-  -moz-transform: translate(0px, -100%) scale(0, 0);
-  -o-transform: translate(0px, -100%) scale(0, 0);
-  -ms-transform: translate(0px, -100%) scale(0, 0);
-  transform: translate(0px, -100%) scale(0, 0);
+  -webkit-transform: translate(0rem, -100%) scale(0, 0);
+  -moz-transform: translate(0rem, -100%) scale(0, 0);
+  -o-transform: translate(0rem, -100%) scale(0, 0);
+  -ms-transform: translate(0rem, -100%) scale(0, 0);
+  transform: translate(0rem, -100%) scale(0, 0);
   opacity: 0;
   z-index: 10000; }
   #search h3 {
@@ -212,11 +217,11 @@ nav {
     font-size: calc(1.5rem + 3vw);
     font-weight: 300;
     text-align: center;
-    border: 0px;
-    margin: 0px auto;
-    margin-top: -51px;
-    padding-left: 30px;
-    padding-right: 30px;
+    border: 0rem;
+    margin: 0rem auto;
+    margin-top: -3.188rem;
+    padding-left: 1.87rem;
+    padding-right: 1.87rem;
     outline: none; }
     @media (max-width: 767.98px) {
       #search input[type="search"] {
@@ -231,27 +236,30 @@ nav {
     position: absolute;
     top: 50%;
     left: 50%;
-    min-width: 100px;
-    max-width: 200px;
-    margin-top: 61px;
-    margin-left: -45px; }
+    min-width: 6.25rem;
+    max-width: 12.5rem;
+    margin-top: 3.81rem;
+    margin-left: -2.81rem; }
     @media (max-width: 767.98px) {
       #search .btn {
         top: 45%; } }
   #search .close {
     position: fixed;
-    top: 15px;
-    right: 15px;
+    top: .93rem;
+    right: .93rem;
     color: #fff;
     background-color: #e4c800;
     border-color: #ccc;
     opacity: 1;
-    padding: 10px 17px;
-    font-size: 27px; }
+    padding: .62rem 1.06rem;
+    font-size: calc(1.293rem + 0.516vw); }
+    @media (min-width: 1200px) {
+      #search .close {
+        font-size: 1.68rem; } }
   #search.open {
-    -webkit-transform: translate(0px, 0px) scale(1, 1);
-    -moz-transform: translate(0px, 0px) scale(1, 1);
-    -o-transform: translate(0px, 0px) scale(1, 1);
-    -ms-transform: translate(0px, 0px) scale(1, 1);
-    transform: translate(0px, 0px) scale(1, 1);
+    -webkit-transform: translate(0rem, 0rem) scale(1, 1);
+    -moz-transform: translate(0rem, 0rem) scale(1, 1);
+    -o-transform: translate(0rem, 0rem) scale(1, 1);
+    -ms-transform: translate(0rem, 0rem) scale(1, 1);
+    transform: translate(0rem, 0rem) scale(1, 1);
     opacity: 1; }

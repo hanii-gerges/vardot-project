@@ -8,7 +8,7 @@ footer .link:hover {
   color: white; }
 
 footer .title {
-  letter-spacing: 0.93px; }
+  letter-spacing: 0.058rem; }
 
 footer ul {
   margin-bottom: 0%; }
@@ -17,9 +17,9 @@ footer ul {
     padding-bottom: 0.15rem; }
   footer ul a {
     font-family: Open Sans , sans-serif;
-    font-size: 14px;
+    font-size: 0.875rem;
     font-weight: 600;
-    letter-spacing: 0.82px;
+    letter-spacing: 0.051rem;
     color: white; }
 
 footer .border-left {

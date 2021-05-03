@@ -18,7 +18,7 @@ footer {
         }
     }
     .title {
-        letter-spacing: 0.93px;
+        letter-spacing: 0.058rem;
     }
     ul {
         margin-bottom: 0%;
@@ -28,9 +28,9 @@ footer {
         }
         a{
             font-family:  Open Sans , sans-serif;
-            font-size: 14px;
+            @include font-size(0.875rem);
             font-weight: 600;
-            letter-spacing: 0.82px;
+            letter-spacing: 0.051rem;
             color: white;
         }
     }
@@ -43,6 +43,6 @@ footer {
     }
     .copy-rights {
         background-color: #223663;
-        font-size: 0.68rem;
+        @include font-size(0.68rem);
     }
 }

@@ -18,10 +18,10 @@ a {
 
 .link {
     transition: all 0.4s;
-    border-bottom: 1px solid rgba($secondaryColor, $alpha: 0);
+    border-bottom: .06rem solid rgba($secondaryColor, $alpha: 0);
     &:hover {
         text-decoration: none;
-        border-bottom: 1px solid rgba($secondaryColor, $alpha: 1);
+        border-bottom: .06rem solid rgba($secondaryColor, $alpha: 1);
     }
 }
 
@@ -63,7 +63,7 @@ a {
         left: 0%;
         right: 0%;
         z-index: 100;
-        letter-spacing: 0.4px;
+        letter-spacing: .025rem;
         background-color: rgba($primaryColor, $alpha: 0.8);
     }
 }
@@ -97,22 +97,22 @@ a {
 
 
 .more {
-    font-size: 14px;
-    letter-spacing: 0.35px;
+    @include font-size(.87rem);
+    letter-spacing: .022rem;
 }
 
 .heading {
-    font-size: 36px;
+    @include font-size(2.25rem);
     font-weight: bold;
-    border-bottom: solid 1px #021a4e;
+    border-bottom: solid .06rem #021a4e;
     text-decoration: none;
-    letter-spacing: 0.9px;
+    letter-spacing: .056rem;
 }
 
 .title {
     @include font-size(1rem);
     font-weight: 600;
-    letter-spacing: 0.4px;
+    letter-spacing: .025rem;
     &:hover {
         text-decoration: none;
     }
@@ -126,14 +126,14 @@ a {
 .statistics {
     .number {
         @include font-size(4.1rem);
-        letter-spacing: 1.65px;
+        letter-spacing: .103rem;
     }
     p {
         @include font-size(1.5rem);
         font-weight: 600;
-        letter-spacing: 1.48px;
+        letter-spacing: .093rem;
         width: auto;
-        max-width: 260px;
+        max-width: 16.25rem;
     }
     .odometer {
         font-family: $primaryFontFamily!important;
@@ -218,7 +218,7 @@ a {
 
 
 .event-wrapper {
-    border-top: 1px solid #EAEAEA;
+    border-top: .063rem solid #EAEAEA;
     a {
         &:hover {
             img {
@@ -230,7 +230,7 @@ a {
                 color: black;
             }
             .title {
-                border-bottom: 1px solid $secondaryColor;
+                border-bottom: .063rem solid $secondaryColor;
             }
         }
     }
@@ -252,7 +252,7 @@ a {
         @include font-size(3.6rem);
         font-weight: 800;
         line-height: 1.59;
-        text-shadow: 0 2px 4px rgba(83, 83, 83, 0.48);
+        text-shadow: 0 .125rem .25rem rgba(83, 83, 83, 0.48);
     }
 }
 
@@ -262,7 +262,7 @@ a {
         input,textarea {
             border-radius: 0%;
             &::placeholder {
-                font-size: 14px;
+                @include font-size(.875rem);
                 line-height: 1.57;
                 color: #9f9f9f;
             }
@@ -300,13 +300,13 @@ a {
 #button {
     display: inline-block;
     background-color: #E4C800;
-    width: 50px;
-    height: 50px;
+    width: 3.125rem;
+    height: 3.125rem;
     text-align: center;
-    border-radius: 4px;
+    border-radius: 0.25rem;
     position: fixed;
-    bottom: 30px;
-    right: 30px;
+    bottom: 1.875rem;
+    right: 1.875rem;
     transition: background-color .3s, 
         opacity .5s, visibility .5s;
     opacity: 0;
@@ -342,8 +342,8 @@ a {
     z-index:99999;
 }
 #status {
-    width:100px;
-    height:100px;
+    width:6.25rem;
+    height:6.25rem;
     position:absolute;
     left:50%;
     top:50%;
@@ -352,7 +352,7 @@ a {
     background-repeat:no-repeat;
     background-position:center;
     background-size: cover;
-    margin:-50px 0 0 -50px;
+    margin:-3.125rem 0 0 -3.125rem;
 }
 
 
@@ -377,20 +377,20 @@ ol {
         counter-reset: item;
         li {
             background: rgba(78,68,50,.10);
-            border-radius: 4px;
+            border-radius: 0.25rem;
             font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
             @include font-size(1.8rem);
             line-height: 2;
-            margin-bottom: 10px;
+            margin-bottom: 0.625rem;
             align-items: center;
             &::before {
                 content: '' counter(item, decimal) '';
                 background: $primaryColor;
-                border-radius: 4px;
+                border-radius: 0.25rem;
                 color: #f7f7ef;
                 @include font-size(1.8rem);
-                margin: 0 5px 0 8px;
-                padding: 10px 15px;
+                margin: 0 0.313rem 0 0.5rem;
+                padding: 0.625rem 0.938rem;
             }
         }
     }
@@ -398,8 +398,8 @@ ol {
 
 .about {
     .about-border {
-        width: 150px;
-        border-bottom: 10px solid $secondaryColor!important;
+        width: 9.375rem;
+        border-bottom: 0.625rem solid $secondaryColor!important;
     }
     small {
         line-height: 2;
@@ -407,5 +407,5 @@ ol {
 }
 
 .box-shadow {
-    box-shadow: 0 2px 5px 1px rgba(0, 0, 0, 0.73);
+    box-shadow: 0 0.125rem 0.313rem 0.063rem rgba(0, 0, 0, 0.73);
 }

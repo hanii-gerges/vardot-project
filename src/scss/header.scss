@@ -13,7 +13,7 @@ body {
 nav {
     transition: all 0.4s;
     a {
-        max-height: 60px;
+        max-height: 3.75rem;
         overflow: hidden;
     }
     @include media-breakpoint-down(md) {
@@ -21,15 +21,15 @@ nav {
     }
 
     @include media-breakpoint-down(sm) {
-        border-bottom: 2px solid $secondaryColor;
-        box-shadow: 0 2px 10px .1px rgba(0, 0, 0, 0.73);
+        border-bottom: 0.125rem solid $secondaryColor;
+        box-shadow: 0 0.125rem 0.625rem 0.006rem rgba(0, 0, 0, 0.73);
     }
 
     @include media-breakpoint-up(md) {
-        height: 40px;
+        height: 2.5rem;
         background-color: $primaryColor;
         a {
-            max-width: 170px;
+            max-width: 10.6rem;
             color: white!important;
         }
     }
@@ -37,7 +37,7 @@ nav {
         @include media-breakpoint-down(sm)
         {
             color: $primaryColor!important;
-            border-bottom: 1px solid black;
+            border-bottom: 0.06rem solid black;
             width: 100%;
         }
     }
@@ -48,10 +48,10 @@ nav {
 
 @include media-breakpoint-up (md) {
     .scroll {
-        height: 80px;
-        border-bottom: 4px solid $secondaryColor;
+        height: 5rem;
+        border-bottom: .25rem solid $secondaryColor;
         background-color: rgba($color:$primaryColor,$alpha: 0.9);
-        box-shadow: 0 2px 5px 1px rgba(0, 0, 0, 0.73);
+        box-shadow: 0 .125rem .31rem .06rem rgba(0, 0, 0, 0.73);
         top: 0;
         position: fixed;
         width: 100%;
@@ -61,10 +61,12 @@ nav {
 
 
 .nav-icons {
-    font-size: 12px;
+    @include font-size(.75rem);
+    line-height: 100;
     a {
         color: #b6b6b6;
         transition: all 0.4s;
+        margin-right: 0.625rem;
     }
 
     a:hover {
@@ -74,7 +76,7 @@ nav {
 }
 
 .nav-btn {
-    font-size: 25px;
+    @include font-size(1.56rem);
     font-weight: 900;
     color: #B6B6B6;
 }
@@ -85,7 +87,7 @@ nav {
 .internal-header {
     position: relative;
     .blurry {
-        height: 500px;
+        height: 31.25rem;
         background-position: center;
         background-repeat: no-repeat;
         background-size: cover;
@@ -119,10 +121,10 @@ nav {
         transform: translate(-50%, -50%);
         z-index: 2;
         width: 80%;
-        padding: 20px;
+        padding: 1.25rem;
         text-align: center;
         .head {
-            text-shadow: 2px 2px 10px #000000;
+            text-shadow: .12rem .12rem .62rem #000000;
             a {
                 color: white;
                 transition: all .3s;
@@ -147,12 +149,12 @@ nav {
         li {
             width: 1vw;
             height: 1vw;
-            max-width: 10px;
-            max-height: 10px;
+            max-width: .62rem;
+            max-height: .62rem;
             border-radius: 100%;
-            margin-right: 15px;
-            box-shadow: 0 2px 5px 1px rgba(0, 0, 0, 0.73);
-            border: solid 1px #ffffff;
+            margin-right: .93rem;
+            box-shadow: 0 .12rem .31rem .06rem rgba(0, 0, 0, 0.73);
+            border: solid .06rem #ffffff;
             background-color: #ffffff;
             opacity: 1;
         }
@@ -176,7 +178,7 @@ nav {
         transform: translate(-50%, -50%);
     }
     background-color: rgba($color: $primaryColor, $alpha: 0.75);
-    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+    box-shadow: 0 .12rem .25rem 0 rgba(0, 0, 0, 0.5);
     z-index: 10;
     p {
         @include font-size(1rem);
@@ -188,7 +190,7 @@ nav {
             @include font-size(2.7rem);
         }
         font-family: 'Spectral', serif;  
-        max-width: 400px;
+        max-width: 25rem;
         overflow: hidden;
         @include media-breakpoint-only(xs)
         {
@@ -216,7 +218,7 @@ nav {
         bottom: 10%;
         left: 0;
         width: 100%;
-        height: 1px;
+        height: .06rem;
         background-color: $secondaryColor;
         transform: scaleX(0);
         transform-origin: bottom left;
@@ -232,8 +234,8 @@ nav {
 /* search animation */
 #search {
     position: fixed;
-    top: 0px;
-    left: 0px;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.9);
@@ -244,11 +246,11 @@ nav {
 	-ms-transition: all 0.25s ease-in-out;
 	transition: all 0.25s ease-in-out;
 
-    -webkit-transform: translate(0px, -100%) scale(0, 0);
-	-moz-transform: translate(0px, -100%) scale(0, 0);
-	-o-transform: translate(0px, -100%) scale(0, 0);
-	-ms-transform: translate(0px, -100%) scale(0, 0);
-	transform: translate(0px, -100%) scale(0, 0);
+    -webkit-transform: translate(0rem, -100%) scale(0, 0);
+	-moz-transform: translate(0rem, -100%) scale(0, 0);
+	-o-transform: translate(0rem, -100%) scale(0, 0);
+	-ms-transform: translate(0rem, -100%) scale(0, 0);
+	transform: translate(0rem, -100%) scale(0, 0);
     
     opacity: 0;
     z-index: 10000;
@@ -274,11 +276,11 @@ nav {
         @include font-size(3.75rem);
         font-weight: 300;
         text-align: center;
-        border: 0px;
-        margin: 0px auto;
-        margin-top: -51px;
-        padding-left: 30px;
-        padding-right: 30px;
+        border: 0rem;
+        margin: 0rem auto;
+        margin-top: -3.188rem;
+        padding-left: 1.87rem;
+        padding-right: 1.87rem;
         outline: none;
     }
     .btn {
@@ -289,29 +291,29 @@ nav {
         }
         top: 50%;
         left: 50%;
-        min-width: 100px;
-        max-width: 200px;
-        margin-top: 61px;
-        margin-left: -45px;
+        min-width: 6.25rem;
+        max-width: 12.5rem;
+        margin-top: 3.81rem;
+        margin-left: -2.81rem;
     }
     .close {
         position: fixed;
-        top: 15px;
-        right: 15px;
+        top: .93rem;
+        right: .93rem;
         color: #fff;
         background-color: $secondaryColor;
         border-color: #ccc;
         opacity: 1;
-        padding: 10px 17px;
-        font-size: 27px;
+        padding: .62rem 1.06rem;
+        @include font-size(1.68rem);
     }
     
     &.open {
-        -webkit-transform: translate(0px, 0px) scale(1, 1);
-        -moz-transform: translate(0px, 0px) scale(1, 1);
-        -o-transform: translate(0px, 0px) scale(1, 1);
-        -ms-transform: translate(0px, 0px) scale(1, 1);
-        transform: translate(0px, 0px) scale(1, 1); 
+        -webkit-transform: translate(0rem, 0rem) scale(1, 1);
+        -moz-transform: translate(0rem, 0rem) scale(1, 1);
+        -o-transform: translate(0rem, 0rem) scale(1, 1);
+        -ms-transform: translate(0rem, 0rem) scale(1, 1);
+        transform: translate(0rem, 0rem) scale(1, 1); 
         opacity: 1;
     }
 }

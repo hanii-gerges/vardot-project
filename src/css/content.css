@@ -10,10 +10,10 @@ a:hover {
 
 .link {
   transition: all 0.4s;
-  border-bottom: 1px solid rgba(228, 200, 0, 0); }
+  border-bottom: 0.06rem solid rgba(228, 200, 0, 0); }
   .link:hover {
     text-decoration: none;
-    border-bottom: 1px solid #e4c800; }
+    border-bottom: 0.06rem solid #e4c800; }
 
 .opacity-effect {
   opacity: 1;
@@ -43,7 +43,7 @@ a:hover {
   left: 0%;
   right: 0%;
   z-index: 100;
-  letter-spacing: 0.4px;
+  letter-spacing: .025rem;
   background-color: rgba(2, 26, 79, 0.8); }
 
 .news {
@@ -67,20 +67,23 @@ a:hover {
   overflow: hidden; }
 
 .more {
-  font-size: 14px;
-  letter-spacing: 0.35px; }
+  font-size: 0.87rem;
+  letter-spacing: .022rem; }
 
 .heading {
-  font-size: 36px;
+  font-size: calc(1.35rem + 1.2vw);
   font-weight: bold;
-  border-bottom: solid 1px #021a4e;
+  border-bottom: solid .06rem #021a4e;
   text-decoration: none;
-  letter-spacing: 0.9px; }
+  letter-spacing: .056rem; }
+  @media (min-width: 1200px) {
+    .heading {
+      font-size: 2.25rem; } }
 
 .title {
   font-size: 1rem;
   font-weight: 600;
-  letter-spacing: 0.4px; }
+  letter-spacing: .025rem; }
   .title:hover {
     text-decoration: none; }
 
@@ -90,7 +93,7 @@ a:hover {
 
 .statistics .number {
   font-size: calc(1.535rem + 3.42vw);
-  letter-spacing: 1.65px; }
+  letter-spacing: .103rem; }
   @media (min-width: 1200px) {
     .statistics .number {
       font-size: 4.1rem; } }
@@ -98,9 +101,9 @@ a:hover {
 .statistics p {
   font-size: calc(1.275rem + 0.3vw);
   font-weight: 600;
-  letter-spacing: 1.48px;
+  letter-spacing: .093rem;
   width: auto;
-  max-width: 260px; }
+  max-width: 16.25rem; }
   @media (min-width: 1200px) {
     .statistics p {
       font-size: 1.5rem; } }
@@ -171,7 +174,7 @@ a:hover {
   width: 18rem; }
 
 .event-wrapper {
-  border-top: 1px solid #EAEAEA; }
+  border-top: .063rem solid #EAEAEA; }
   .event-wrapper a:hover img {
     transition: all .4s;
     opacity: .5; }
@@ -179,7 +182,7 @@ a:hover {
     transition: all .4s;
     color: black; }
   .event-wrapper a:hover .title {
-    border-bottom: 1px solid #e4c800; }
+    border-bottom: 0.063rem solid #e4c800; }
 
 .top {
   top: 20%; }
@@ -195,7 +198,7 @@ a:hover {
     font-size: calc(1.485rem + 2.82vw);
     font-weight: 800;
     line-height: 1.59;
-    text-shadow: 0 2px 4px rgba(83, 83, 83, 0.48); }
+    text-shadow: 0 0.125rem 0.25rem rgba(83, 83, 83, 0.48); }
     @media (min-width: 1200px) {
       .apply-now .apply-now-text {
         font-size: 3.6rem; } }
@@ -205,7 +208,7 @@ a:hover {
   .get-in-touch form input, .get-in-touch form textarea {
     border-radius: 0%; }
     .get-in-touch form input::placeholder, .get-in-touch form textarea::placeholder {
-      font-size: 14px;
+      font-size: 0.875rem;
       line-height: 1.57;
       color: #9f9f9f; }
 
@@ -237,13 +240,13 @@ a:hover {
 #button {
   display: inline-block;
   background-color: #E4C800;
-  width: 50px;
-  height: 50px;
+  width: 3.125rem;
+  height: 3.125rem;
   text-align: center;
-  border-radius: 4px;
+  border-radius: 0.25rem;
   position: fixed;
-  bottom: 30px;
-  right: 30px;
+  bottom: 1.875rem;
+  right: 1.875rem;
   transition: background-color .3s,  opacity .5s, visibility .5s;
   opacity: 0;
   visibility: hidden;
@@ -271,8 +274,8 @@ a:hover {
   z-index: 99999; }
 
 #status {
-  width: 100px;
-  height: 100px;
+  width: 6.25rem;
+  height: 6.25rem;
   position: absolute;
   left: 50%;
   top: 50%;
@@ -281,7 +284,7 @@ a:hover {
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
-  margin: -50px 0 0 -50px; }
+  margin: -3.125rem 0 0 -3.125rem; }
 
 ol .prefixed {
   counter-reset: item;
@@ -298,11 +301,11 @@ ol.styled {
   counter-reset: item; }
   ol.styled li {
     background: rgba(78, 68, 50, 0.1);
-    border-radius: 4px;
+    border-radius: 0.25rem;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: calc(1.305rem + 0.66vw);
     line-height: 2;
-    margin-bottom: 10px;
+    margin-bottom: 0.625rem;
     align-items: center; }
     @media (min-width: 1200px) {
       ol.styled li {
@@ -310,21 +313,21 @@ ol.styled {
     ol.styled li::before {
       content: "" counter(item, decimal) "";
       background: #021A4F;
-      border-radius: 4px;
+      border-radius: 0.25rem;
       color: #f7f7ef;
       font-size: calc(1.305rem + 0.66vw);
-      margin: 0 5px 0 8px;
-      padding: 10px 15px; }
+      margin: 0 0.313rem 0 0.5rem;
+      padding: 0.625rem 0.938rem; }
       @media (min-width: 1200px) {
         ol.styled li::before {
           font-size: 1.8rem; } }
 
 .about .about-border {
-  width: 150px;
-  border-bottom: 10px solid #e4c800 !important; }
+  width: 9.375rem;
+  border-bottom: 0.625rem solid #e4c800 !important; }
 
 .about small {
   line-height: 2; }
 
 .box-shadow {
-  box-shadow: 0 2px 5px 1px rgba(0, 0, 0, 0.73); }
+  box-shadow: 0 0.125rem 0.313rem 0.063rem rgba(0, 0, 0, 0.73); }
