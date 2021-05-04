@@ -1,0 +1,103 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,600;1,700;1,800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Spectral&display=swap");
+body {
+  font-family: Open Sans, sans-serif; }
+
+a:hover {
+  text-decoration: none; }
+
+/* Atomic classes*/
+.text {
+  color: #4a4a4a;
+  line-height: 1.63; }
+
+.link {
+  transition: all 0.4s;
+  border-bottom: 0.06rem solid rgba(228, 200, 0, 0); }
+  .link:hover {
+    text-decoration: none;
+    border-bottom: 0.06rem solid #e4c800; }
+
+.box-shadow-hover:hover {
+  box-shadow: 0 0 0.625rem 0.125rem #021A4F; }
+
+.opacity-effect {
+  opacity: 1;
+  transition: opacity 1s !important; }
+  .opacity-effect:hover {
+    opacity: .5 !important;
+    transition: opacity  1s !important; }
+
+.zoom-effect img {
+  -webkit-transform: scale(1);
+  transform: scale(1);
+  -webkit-transition: .3s ease-in-out;
+  transition: .3s ease-in-out; }
+
+.zoom-effect:hover img {
+  -webkit-transform: scale(1.2);
+  transform: scale(1.2); }
+
+.overflow-2l {
+  max-height: 3.1rem;
+  overflow: hidden; }
+
+.overflow-3l-lg {
+  max-height: 15.6rem;
+  overflow: hidden; }
+
+.overflow-3l {
+  max-height: 4.7rem;
+  overflow: hidden; }
+
+.more {
+  font-size: 0.87rem;
+  letter-spacing: .022rem; }
+
+.heading {
+  font-size: calc(1.35rem + 1.2vw);
+  font-weight: bold;
+  border-bottom: solid .06rem #021a4e;
+  text-decoration: none;
+  letter-spacing: .056rem; }
+  @media (min-width: 1200px) {
+    .heading {
+      font-size: 2.25rem; } }
+
+.title {
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: .025rem; }
+  .title:hover {
+    text-decoration: none; }
+
+.info {
+  font-size: 0.8rem;
+  line-height: 1.64; }
+
+.button {
+  font-size: 1rem;
+  color: #e4c800;
+  border-radius: 0%; }
+  .button:hover {
+    color: #021A4F;
+    background-color: #e4c800; }
+
+.button-xl {
+  font-size: calc(1.455rem + 2.46vw);
+  font-weight: 800;
+  line-height: 1.06;
+  color: #e4c800;
+  border-radius: 0%; }
+  @media (min-width: 1200px) {
+    .button-xl {
+      font-size: 3.3rem; } }
+  @media (max-width: 575.98px) {
+    .button-xl {
+      font-size: 1.2rem; } }
+  .button-xl:hover {
+    color: #021A4F;
+    background-color: #e4c800; }
+
+.box-shadow {
+  box-shadow: 0 0.125rem 0.313rem 0.063rem rgba(0, 0, 0, 0.73); }

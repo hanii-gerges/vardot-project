@@ -1,0 +1,133 @@
+@import "node_modules/bootstrap/scss/_functions.scss";
+@import "node_modules/bootstrap/scss/_variables.scss";
+@import "node_modules/bootstrap/scss/_mixins.scss";
+@import "su_variables";
+
+body {
+    font-family: $primaryFontFamily;
+}
+
+a {
+    &:hover {
+        text-decoration: none;
+    }
+}
+
+/* Atomic classes*/
+.text {
+    color: #4a4a4a;
+    line-height: 1.63;
+}
+
+.link {
+    transition: all 0.4s;
+    border-bottom: .06rem solid rgba($secondaryColor, $alpha: 0);
+    &:hover {
+        text-decoration: none;
+        border-bottom: .06rem solid rgba($secondaryColor, $alpha: 1);
+    }
+}
+
+.box-shadow-hover {
+     &:hover {
+         box-shadow: 0 0 0.625rem 0.125rem $primaryColor;
+     }
+}
+
+// opacity effect
+.opacity-effect {
+    opacity: 1;
+    transition: opacity 1s !important;
+    &:hover {
+        opacity: .5 !important;
+        transition: opacity  1s !important;
+    }
+}
+
+// zoom in effect
+.zoom-effect {
+    img {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+        -webkit-transition: .3s ease-in-out;
+        transition: .3s ease-in-out;
+    }
+    &:hover {
+        img {
+            -webkit-transform: scale(1.2);
+            transform: scale(1.2);
+        }
+    }
+}
+
+.overflow-2l {
+    max-height: 3.1rem;
+    overflow: hidden;
+}
+
+.overflow-3l-lg {
+    max-height: 15.6rem;
+    overflow: hidden;
+}
+
+.overflow-3l {
+    max-height: 4.7rem;
+    overflow: hidden;
+}
+
+.more {
+    @include font-size(.87rem);
+    letter-spacing: .022rem;
+}
+
+.heading {
+    @include font-size(2.25rem);
+    font-weight: bold;
+    border-bottom: solid .06rem #021a4e;
+    text-decoration: none;
+    letter-spacing: .056rem;
+}
+
+.title {
+    @include font-size(1rem);
+    font-weight: 600;
+    letter-spacing: .025rem;
+    &:hover {
+        text-decoration: none;
+    }
+}
+
+.info {
+    @include font-size(0.8rem);
+    line-height: 1.64;
+}
+
+.button {
+    @include font-size(1rem);
+    color: $secondaryColor;
+    border-radius: 0%;
+    &:hover {
+        color: $primaryColor;
+        background-color: $secondaryColor;
+    }
+}
+
+.button-xl {
+    @include font-size(3.3rem);
+    @include media-breakpoint-down(xs)
+    {
+        @include font-size(1.2rem);
+    }
+    font-weight: 800;
+    line-height: 1.06;
+    color: $secondaryColor;
+    border-radius: 0%;
+    &:hover {
+        color: $primaryColor;
+        background-color: $secondaryColor;
+    }
+}
+
+.box-shadow {
+    box-shadow: 0 0.125rem 0.313rem 0.063rem rgba(0, 0, 0, 0.73);
+}

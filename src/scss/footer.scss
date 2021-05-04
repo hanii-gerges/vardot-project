@@ -45,4 +45,11 @@ footer {
         background-color: #223663;
         @include font-size(0.68rem);
     }
+
+    // @include media-breakpoint-up(sm)
+    // {
+    //     .collapse.dont-collapse {
+    //         display: block;
+    //     }
+    // }
 }
