@@ -1,20 +1,38 @@
 <?php
 
-class Database{
-	
-	private $host  = 'localhost';
-    private $user  = 'root';
-    private $password   = "123123";
-    private $database  = "su"; 
-    
-    public function getConnection(){		
-		try {
-            $conn = new PDO("mysql:host=$servername;dbname=myDB", $username, $password);
-            // set the PDO error mode to exception
-            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            echo "Connected successfully";
-          } catch(PDOException $e) {
-            echo "Connection failed: " . $e->getMessage();
-          }
+class Database
+{
+  private static $instance;
+  private $conn;
+  private $host  = 'sciences-university.com';
+  private $user  = 'root';
+  private $password   = "123123";
+  private $database  = "su";
+
+  public function __construct()
+  {
+    try {
+      $this->conn = new PDO("mysql:host=$this->host;dbname=$this->database", $this->user, $this->password);
+      // set the PDO error mode to exception
+      $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+      // echo "Connected successfully";
+    } catch (PDOException $e) {
+      echo "Connection failed: " . $e->getMessage();
     }
+  }
+
+  public function getConnection()
+  {
+    return $this->conn;
+  }
+
+  public static function getInstance()
+  {
+    if(!SELF::$instance)
+    {
+      SELF::$instance = new Database();
+    }
+
+    return SELF::$instance;
+  }
 }

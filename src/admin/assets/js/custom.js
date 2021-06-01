@@ -12,6 +12,7 @@
   8.2. BIND PROGRESS BUTTONS AND SIMULATE LOADING PROGRESS
 9. TOASTER
 10. PROGRESS BAR
+11. DELETE BUTTON
 
 ====== End ======*/
 
@@ -250,4 +251,10 @@ $(document).ready(function() {
 
   /*======== 10. PROGRESS BAR ========*/
   NProgress.done();
+
+    /*======== 11. DELETE BUTTON ========*/
+  $('.delete').on('click',function(e){
+    let id = $(this).attr('data-id');
+    $('#deleteForm').append('<input type=hidden value="'+id+'" name="id">');
+  });
 });
