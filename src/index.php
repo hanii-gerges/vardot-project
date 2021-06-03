@@ -2,13 +2,11 @@
 include_once 'config/Database.php';
 include_once 'admin/class/News.php';
 
-$database = new Database();
-$conn = $database->getConnection();
 
-$news = new News($conn);
-$allNews = $news->all();
+$news = new News();
+$allNews = $news->lastAdded();
 
-$conn->close;
+$news->close;
 ?>
 
 

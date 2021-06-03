@@ -13,6 +13,8 @@
 9. TOASTER
 10. PROGRESS BAR
 11. DELETE BUTTON
+12. DATATABLE
+13. CKEDITOR
 
 ====== End ======*/
 
@@ -257,4 +259,28 @@ $(document).ready(function() {
     let id = $(this).attr('data-id');
     $('#deleteForm').append('<input type=hidden value="'+id+'" name="id">');
   });
+
+
+    /*======== 12. DATATABLE ========*/
+  $('#newsTable').DataTable({
+    "paging": false,
+    scrollY: 500,
+    "language": {
+      "info": ""
+    },
+    "order": [[ 6, "desc" ]]
+  });
+  $('#usersTable').DataTable({
+    "paging": false,
+    scrollY: 500,
+    "language": {
+      "info": ""
+    },
+    "order": [[ 1, "asc" ]]
+  });
+
+    /*======== 13. CKEDITOR ========*/
+  CKEDITOR.replace('editor1');
+
+
 });

@@ -7,53 +7,14 @@ $user = new User();
 // get all users
 $users = $user->all();
 
-$user->conn = null;
 ?>
 
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 
 <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+<?php include '../header.php' ?>
 
-    <title>Sleek - Admin Dashboard Template</title>
-
-    <!-- GOOGLE FONTS -->
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500|Poppins:400,500,600,700|Roboto:400,500" rel="stylesheet" />
-    <link href="https://cdn.materialdesignicons.com/3.0.39/css/materialdesignicons.min.css" rel="stylesheet" />
-    
-
-    <!-- PLUGINS CSS STYLE -->
-    <link href="../assets/plugins/toaster/toastr.min.css" rel="stylesheet" />
-    <link href="../assets/plugins/nprogress/nprogress.css" rel="stylesheet" />
-    <link href="../assets/plugins/flag-icons/css/flag-icon.min.css" rel="stylesheet" />
-    <link href="../assets/plugins/jvectormap/jquery-jvectormap-2.0.3.css" rel="stylesheet" />
-    <link href="../assets/plugins/ladda/ladda.min.css" rel="stylesheet" />
-    <link href="../assets/plugins/select2/css/select2.min.css" rel="stylesheet" />
-    <link href="../assets/plugins/daterangepicker/daterangepicker.css" rel="stylesheet" />
-    <link href="../../fonts/fontawesome-free-5.15.3-web/css/all.min.css" rel="stylesheet" />
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.css">
-  
-
-    <!-- SLEEK CSS -->
-    <link id="sleek-css" rel="stylesheet" href="../assets/css/sleek.css" />
-
-
-
-    <!-- FAVICON -->
-    <link href="../assets/img/favicon.png" rel="shortcut icon" />
-
-    <!--
-    HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries
-  -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-  <![endif]-->
-    <script src="../assets/plugins/nprogress/nprogress.js"></script>
 </head>
 
 
@@ -62,7 +23,6 @@ $user->conn = null;
     <div class="card card-table-border-none recent-orders" id="recent-orders">
         <div class="px-0 px-md-5 mt-5">
             <?php
-            // die(2);
             if (isset($_SESSION['error'])) {
                 echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">' . $_SESSION['error'] . "</div>\n";
                 unset($_SESSION['error']);
@@ -74,7 +34,7 @@ $user->conn = null;
             ?>
 
         </div>
-        <div class="pt-4 mb-5 card-header justify-content-between">
+        <div class="pt-0 mb-5 card-header justify-content-between">
             <h1>Users</h1>
         <div class="">
             <a class="h5 p-2 bg-light rounded-pill text-primarty" href="/admin/users/create.php">
@@ -83,7 +43,7 @@ $user->conn = null;
         </div>
         </div>
         <div class="card-body pt-0 pb-5">
-            <table id="myTable" class="hover row-border table card-table table-responsive table-responsive-large" style="width:100%">
+            <table id="usersTable" class="hover row-border table card-table table-responsive table-responsive-large" style="width:100%">
                 <thead>
                     <tr>
                         <th>User ID</th>
@@ -101,11 +61,11 @@ $user->conn = null;
                         <tr>
                             <td><?= $user['user_id'] ?></td>
                             <td>
-                                <a class="text-dark" href="/admin/user/view.php?id=<?= $user['user_id'] ?>"> <?= $user['name'] ?></a>
+                                <a class="text-dark" href="/admin/user/view.php?id=<?= $user['user_id'] ?>"> <?= $user['firstname'] ?> <?= $user['lastname'] ?></a>
                             </td>
-                            <td class="d-none d-lg-table-cell"><?= $user['Role'] ?></td>
+                            <td class="d-none d-lg-table-cell"><?= $user['role'] ?></td>
                             <td>
-                                <span class="<?= $user['status'] == 'published' ? 'badge badge-success' :  'badge badge-danger';  ?>"><?= $user['status'] ?></span>
+                                <span class="<?= $user['status'] == 'active' ? 'badge badge-success' :  'badge badge-danger';  ?>"><?= $user['status'] ?></span>
                             </td>
                             <td class="d-none d-lg-table-cell"><?= $user['created_at'] ?></td>
                             <td class="d-none d-lg-table-cell"><?= $user['updated_at'] ?></td>
@@ -129,19 +89,19 @@ $user->conn = null;
                 </tbody>
             </table>
             <!-- Pagination -->
-            <!-- <nav class="justify-content-center d-flex">
+            <nav class="mt-3 justify-content-center d-flex">
                 <ul class="pagination">
-                    <li class="page-item <?= $_GET['page'] == 1 ? "disabled" : "" ?>">
-                        <a class="page-link" href="index.php?page=<?= $_GET['page'] - 1 ?>" tabindex="-1">Previous</a>
+                    <li class="page-item <?= $_GET['page'] == 1 || !isset($_GET['page']) ? "disabled" : "" ?>">
+                        <a class="page-link" href="index.php?page=<?= $_GET['page'] - 1 ?>">Previous</a>
                     </li>
-                    <?php for ($i = 1; $i <= $alluser['total_pages']; $i++) : ?>
+                    <?php for ($i = 1; $i <= $users['total_pages']; $i++) : ?>
                         <li class="page-item <?= $_GET['page'] == $i ? "active" : "" ?>"><a class="page-link" href="index.php?page=<?= $i ?>"><?= $i ?></a></li>
                     <?php endfor; ?>
-                    <li class="page-item <?= $_GET['page'] == $alluser['total_pages'] ? "disabled" : "" ?>">
+                    <li class="page-item <?= $_GET['page'] >= $users['total_pages'] ? "disabled" : "" ?>">
                         <a class="page-link" href="index.php?page=<?= $_GET['page'] + 1 ?>">Next</a>
                     </li>
                 </ul>
-            </nav> -->
+            </nav>
             <!-- Modal -->
             <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
