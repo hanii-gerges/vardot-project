@@ -5,12 +5,12 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/config/Database.php';
 include_once $_SERVER['DOCUMENT_ROOT'] . '/admin/class/EntityCRUD.php';
 include_once $_SERVER['DOCUMENT_ROOT'] . '/admin/class/Helper.php';
 
-class User implements EntityCRUD
+class Event implements EntityCRUD
 {
-    private $userTable = "user";
+    private $eventTable = 'event';
+    private $userTable = 'user';
     private $instance;
     public $conn;
-
     public function __construct()
     {
         $this->instance = Database::getInstance();
@@ -23,7 +23,7 @@ class User implements EntityCRUD
         if (isset($_GET['page'])) {
             Helper::filterValue($_GET['page']);
             $_GET['page'] = intval($_GET['page']);
-            if($_GET['page'] <= 0)$_GET['page'] = 1;
+            if ($_GET['page'] <= 0) $_GET['page'] = 1;
             $page = $_GET['page'];
         } else {
             $page = 1;
@@ -31,103 +31,151 @@ class User implements EntityCRUD
         }
         $records_per_page = 10;
         $offset = ($page - 1) * $records_per_page;
-        $query = "SELECT COUNT(*) FROM user";
+        $query = "SELECT COUNT(*) FROM event";
         $stmt = $this->conn->prepare($query);
         $stmt->execute();
         $total_rows = $stmt->fetch(PDO::FETCH_ASSOC);
         $total_pages = ceil($total_rows['COUNT(*)'] / $records_per_page);
 
         $query =
-            "SELECT u.user_id, u.firstname,u.lastname, u.email, u.status, u.role, u.created_at, u.updated_at
-        FROM $this->userTable u
-        ORDER BY u.firstname asc
+            "SELECT e.event_id, e.title, e.highlight, e.status,u1.firstname as created_by, e.created_at, e.updated_at, u2.firstname as updated_by
+        FROM $this->eventTable e
+        INNER JOIN $this->userTable u1 on e.user_id = u1.user_id
+        INNER JOIN $this->userTable u2 on e.updated_by = u2.user_id
+        ORDER BY e.created_at desc
         LIMIT $offset, $records_per_page
         ";
         $stmt = $this->conn->prepare($query);
         $stmt->execute();
-        $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        $users['total_pages'] = $total_pages;
-        return $users;
+        $events = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $events['total_pages'] = $total_pages;
+        // die(print_r($events));
+        return $events;
     }
-
-    public function getById($id)
+    public function lastAdded()
     {
         $query =
-            "SELECT u.user_id, u.firstname,u.lastname, u.email, u.status, u.role, u.created_at, u.updated_at
-        FROM $this->userTable u
-        WHERE user_id = $id
+            "SELECT e.event_id, e.title, e.highlight, e.date, e.start_time, e.end_time, e.location, e.created_at
+        FROM $this->eventTable e
+        WHERE status = 'published'
+        ORDER BY e.created_at desc
+        LIMIT 3
         ";
         $stmt = $this->conn->prepare($query);
         $stmt->execute();
-        $user = $stmt->fetch(PDO::FETCH_ASSOC);
-        return $user;
+        $events = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $events;
+    }
+    public function getById($id)
+    {
+        $query =
+            "SELECT e.event_id, e.title, e.highlight, e.body, e.date, e.start_time, e.end_time, e.location,  e.status, u.firstname as created_by, e.created_at, e.updated_at
+        FROM $this->eventTable e, $this->userTable u
+        WHERE e.event_id = $id
+        ";
+        $stmt = $this->conn->prepare($query);
+        $stmt->execute();
+        $event = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $event;
     }
 
     public function store($request)
     {
         $request = Helper::filter($request);
-        $valid = Helper::required($request,[
-            'firstname',
-            'lastname',
-            'email',
-            'password',
-            'confirm_password',
-            'role',
+        $valid = Helper::required($request, [
+            'title',
+            'highlight',
+            'body',
+            'date',
+            'start_time',
+            'end_time',
+            'location',
+            'status',
         ]);
 
-        if(!$valid)
-        {
+        if (!$valid) {
             header('Location:create.php');
             return;
-        }        $query = "INSERT INTO user (firstname, lastname, email, password, role)
-         VALUES (:firstname, :lastname, :email, :password, :role)";
-        $hashed_password = password_hash($request['password'], PASSWORD_DEFAULT);
+        }
+        $query = "
+        INSERT INTO event (user_id, title, highlight, body, date, start_time, end_time, location,  status, updated_by)
+         VALUES(1, :title, :highlight, :body, :date, :start_time, :end_time, :location, :status, 1)
+        ";
         $stmt = $this->conn->prepare($query);
         $stmt->execute([
-            ':firstname' => $request['firstname'],
-            ':lastname' => $request['lastname'],
-            ':email' => $request['email'],
-            ':password' => $hashed_password,
-            ':role' => $request['role'],
+            ':title' => $request['title'],
+            ':highlight' => $request['highlight'],
+            ':body' => $request['body'],
+            ':date' => $request['date'],
+            ':start_time' => $request['start_time'],
+            ':end_time' => $request['end_time'],
+            ':location' => $request['location'],
+            ':status' => $request['status'],
         ]);
-        $_SESSION['success'] = 'User created';
+
+        if ($_FILES['eventImage']['name'] != "") {
+            if ($this->validateImage('eventImage')) {
+                $this->storeImage($_FILES['eventImage']['name'], $request['id']);
+                $image = $this->getMedia($request['id']);
+                if (!$this->uploadImage('eventImage', $image['id'])) {
+                    $_SESSION['error'] = 'There was error uploading image.';
+                }
+            }
+        }
+
+        $_SESSION['success'] = 'Record created';
         header('Location:index.php?page=1');
     }
 
     public function update($request)
     {
         $request = Helper::filter($request);
-        $valid = Helper::required($request,[
-            'firstname',
-            'lastname',
-            'email',
+        $valid = Helper::required($request, [
+            'title',
+            'highlight',
+            'body',
+            'date',
+            'start_time',
+            'end_time',
+            'location',
+            'status',
         ]);
 
-        if(!$valid)
-        {
-            header('Location:view.php?id='.$request['id']);
+        if (!$valid) {
+            header('Location:view.php?id=' . $request['id']);
             return;
         }
 
         $query = "
-            UPDATE user SET 
-            firstname = :firstname,
-            lastname = :lastname,
-            email = :email
-            WHERE user_id = :id;
+            UPDATE event SET 
+            title = :title,
+            highlight = :highlight,
+            body = :body,
+            date = :date,
+            start_time = :start_time,
+            end_time = :end_time,
+            location = :location,
+            status = :status
+            WHERE event_id = :id
             ";
         $stmt = $this->conn->prepare($query);
         $stmt->execute([
-            ':firstname' => $request['firstname'],
-            ':lastname' => $request['lastname'],
-            ':email' => $request['email'],
+            ':title' => $request['title'],
+            ':highlight' => $request['highlight'],
+            ':body' => $request['body'],
+            ':date' => $request['date'],
+            ':start_time' => $request['start_time'],
+            ':end_time' => $request['end_time'],
+            ':location' => $request['location'],
+            ':status' => $request['status'],
             ':id' => $request['id'],
         ]);
-        if ($_FILES['userImage']['name'] != "") {
-            if ($this->validateImage('userImage')) {
-                $this->storeImage($_FILES['userImage']['name'], $request['id']);
+
+        if ($_FILES['eventImage']['name'] != "") {
+            if ($this->validateImage('eventImage')) {
+                $this->storeImage($_FILES['eventImage']['name'], $request['id']);
                 $image = $this->getMedia($request['id']);
-                if (!$this->uploadImage('userImage', $image['id'])) {
+                if (!$this->uploadImage('eventImage', $image['id'])) {
                     $_SESSION['error'] = 'There was error uploading image.';
                 }
             }
@@ -141,14 +189,15 @@ class User implements EntityCRUD
     public function delete($id)
     {
         $query = "
-        DELETE FROM user 
-        WHERE user_id = :id
+        DELETE FROM event 
+        WHERE event_id = :id
         ";
         $stmt = $this->conn->prepare($query);
         $stmt->execute([':id' => $id]);
         $_SESSION['success'] = 'Record deleted';
         header('Location:index.php?page=1');
     }
+
 
     public function uploadImage($imageName, $mediaId)
     {
@@ -213,7 +262,7 @@ class User implements EntityCRUD
         $query = "INSERT INTO media(model_name, record_id, file_name) VALUES (:model_name, :record_id, :file_name)";
         $stmt = $this->conn->prepare($query);
         $stmt->execute([
-            ':model_name' => 'user',
+            ':model_name' => 'event',
             ':record_id' => $id,
             ':file_name' => $imageName,
         ]);
@@ -224,7 +273,7 @@ class User implements EntityCRUD
         $query =
             "SELECT m.media_id as id, m.file_name as name
         FROM media m
-        WHERE model_name = 'user'
+        WHERE model_name = 'event'
         AND record_id = :id
         ORDER BY id desc LIMIT 1";
         $stmt = $this->conn->prepare($query);
@@ -232,4 +281,6 @@ class User implements EntityCRUD
         $media = $stmt->fetch(PDO::FETCH_ASSOC);
         return $media;
     }
+
+    
 }

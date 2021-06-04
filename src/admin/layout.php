@@ -41,6 +41,13 @@
 
                     </li>
                     <li class="">
+                        <a class="sidenav-item-link" href="/admin/events?page=1">
+                            <i class="mdi mdi-view-dashboard-outline"></i>
+                            <span class="nav-text">Events</span> <b class="caret"></b>
+                        </a>
+
+                    </li>
+                    <li class="">
                         <a class="sidenav-item-link" href="/admin/users/index.php?page=1">
                             <i class="mdi mdi-view-dashboard-outline"></i>
                             <span class="nav-text">Users</span> <b class="caret"></b>

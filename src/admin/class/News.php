@@ -1,5 +1,6 @@
 <?php
 session_start();
+
 include_once $_SERVER['DOCUMENT_ROOT'].'/config/Database.php';
 include_once $_SERVER['DOCUMENT_ROOT'].'/admin/class/EntityCRUD.php';
 include_once $_SERVER['DOCUMENT_ROOT'].'/admin/class/Helper.php';
@@ -19,9 +20,13 @@ class News implements EntityCRUD{
     {
         /* Pagination */
         if (isset($_GET['page'])) {
+            Helper::filterValue($_GET['page']);
+            $_GET['page'] = intval($_GET['page']);
+            if($_GET['page'] <= 0)$_GET['page'] = 1;
             $page = $_GET['page'];
         } else {
             $page = 1;
+            $_GET['page'] = 1;
         }
         $records_per_page = 10;
         $offset = ($page-1) * $records_per_page; 
@@ -75,6 +80,19 @@ class News implements EntityCRUD{
 
     public function store($request)
     {
+        $request = Helper::filter($request);
+        $valid = Helper::required($request,[
+            'title',
+            'highlight',
+            'body',
+            'status',
+        ]);
+
+        if(!$valid)
+        {
+            header('Location:create.php');
+            return;
+        }
         $query = "
         INSERT INTO news (user_id, title, highlight, body, status, updated_by)
          VALUES(1, :title, :highlight, :body, :status, 1)
@@ -92,6 +110,20 @@ class News implements EntityCRUD{
 
     public function update($request)
     {
+        $request = Helper::filter($request);
+        $valid = Helper::required($request,[
+            'title',
+            'highlight',
+            'body',
+            'status',
+        ]);
+
+        if(!$valid)
+        {
+            header('Location:view.php?id='.$request['id']);
+            return;
+        }
+
         $query = "
             UPDATE news SET 
             title = :title,
@@ -124,8 +156,11 @@ class News implements EntityCRUD{
         header('Location:index.php?page=1');
     }
 
-    public function storeImage($imageName, $mediaId)
-    {
-        
-    }
+
+    public function uploadImage($imageName,$imageId){}
+    public function validateImage($imageName){}
+    public function storeImage($imageName, $id){}
+    public function getMedia($id){}
 }
+
+

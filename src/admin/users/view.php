@@ -5,19 +5,12 @@ include_once '../class/User.php';
 $user = new User();
 
 
-
-if(isset($_POST['update']))
-{
-    // die(print_r($_FILES));
-
-    $user->update($_POST);
-}
-
 //return element by id
+$image = $user->getMedia($_GET['id']);
 $user = $user->getById($_GET['id']);
-if ( $user === false ) {
-    $_SESSION['error'] = 'Bad value for id';
-    header( 'Location:index.php?page=1') ;
+if ($user === false) {
+    $_SESSION['error'][] = 'Bad value for id';
+    header('Location:index.php?page=1');
 }
 
 ?>
@@ -32,10 +25,10 @@ if ( $user === false ) {
 
 <body class="sidebar-fixed sidebar-dark header-light header-fixed" id="body">
     <?php include '../layout.php' ?>
-    <div class="content-wrapper container">
+    <div class="content-wrapper">
         <div class="content">
             <div class="bg-white border rounded">
-                <div class="row no-gutters">
+                <div class="row">
                     <div class="col-12">
                         <div class="profile-content-right profile-right-spacing py-5">
                             <ul class="nav nav-tabs px-3 px-xl-5 nav-style-border" id="myTab" role="tablist">
@@ -559,10 +552,19 @@ if ( $user === false ) {
                                 </div>
 
                                 <div class="tab-pane fade show active" id="settings" role="tabpanel" aria-labelledby="settings-tab">
-                                    <div class="tab-pane-content mt-5">
-                                        <form method="post" action="" enctype="multipart/form-data">
-                                        <!-- <img src="/images" alt="" srcset=""> -->
-                                        <input type="hidden" name="id" value="<?= $user['user_id'] ?>">
+                                    <div class="tab-pane-content mt-5 row">
+                                        <form class="col-12 col-lg-8" method="post" action="update.php" enctype="multipart/form-data">
+                                            <?php
+                                            if (isset($_SESSION['error'])) {
+                                                echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">';
+                                                foreach ($_SESSION['error'] as $error) {
+                                                    echo "-$error<br>";
+                                                }
+                                                echo "</div>\n";
+                                                unset($_SESSION['error']);
+                                            }
+                                            ?>
+                                            <input type="hidden" name="id" value="<?= $user['user_id'] ?>">
                                             <div class="form-group row mb-6">
                                                 <label for="coverImage" class="col-sm-4 col-lg-2 col-form-label">User Image</label>
                                                 <div class="col-sm-8 col-lg-10">
@@ -577,32 +579,36 @@ if ( $user === false ) {
                                             <div class="row mb-2">
                                                 <div class="col-lg-6">
                                                     <div class="form-group">
-                                                        <label for="firstName">First name</label>
-                                                        <input type="text" class="form-control" name="firstname" value="<?= $user['firstname'] ?>">
+                                                        <label for="firstName">First name&nbsp<span class="text-danger">*</span></label>
+                                                        <input type="text" class="form-control" name="firstname" value="<?= $user['firstname'] ?>" required>
                                                     </div>
                                                 </div>
 
                                                 <div class="col-lg-6">
                                                     <div class="form-group">
-                                                        <label for="lastName">Last name</label>
-                                                        <input type="text" class="form-control" name="lastname" value="<?= $user['lastname'] ?>">
+                                                        <label for="lastName">Last name&nbsp<span class="text-danger">*</span></label>
+                                                        <input type="text" class="form-control" name="lastname" value="<?= $user['lastname'] ?>" required>
                                                     </div>
                                                 </div>
                                             </div>
 
-                                           
+
 
                                             <div class="form-group mb-4">
-                                                <label for="email">Email</label>
-                                                <input type="email" class="form-control" id="email" name="email" value="<?= $user['email'] ?>">
+                                                <label for="email">Email&nbsp<span class="text-danger">*</span></label>
+                                                <input type="email" class="form-control" id="email" name="email" value="<?= $user['email'] ?>" required>
                                             </div>
 
-                                            
+
                                             <div class="d-flex justify-content-end mt-5">
                                                 <a class="btn btn-secondary btn-default mx-1" href="index.php?page=1">Cancel</a>
                                                 <input type="submit" class="btn btn-primary btn-default mx-2" name="update" value="Update">
                                             </div>
                                         </form>
+                                        <div class="col-12 col-lg-4 mt-4 mt-md-0 justify-content-center pr-5">
+                                            <div class="h3">Current Image</div>
+                                            <img class="img-thumbnail mt-2" src="/images/entities/<?= $image['id'] ?>/<?= $image['name'] ?>" alt="" srcset="" width=auto>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

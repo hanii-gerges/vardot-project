@@ -12,6 +12,7 @@ class Helper
 
         return $data;
     }
+
     public static function filterValue($value)
     {
         $value = trim($value);
@@ -21,9 +22,17 @@ class Helper
         return $value;
     }
 
-    // public static function storeMedia()
-    // {
-
-    // }
-
+    public static function required($data, $fields)
+    {
+        $flag = true;
+        foreach($fields as $field)
+        {
+            if(!isset($data[$field]) || $data[$field] == '')
+            {
+                $_SESSION['error'][] = "$field field is required.";
+                $flag = false;
+            }
+        }
+        return $flag;
+    }
 }

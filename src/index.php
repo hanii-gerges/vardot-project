@@ -1,12 +1,17 @@
 <?php
 include_once 'config/Database.php';
 include_once 'admin/class/News.php';
+include_once 'admin/class/Event.php';
 
 
-$news = new News();
-$allNews = $news->lastAdded();
 
-$news->close;
+$newsInstance = new News();
+$eventInstance = new Event();
+
+$allNews = $newsInstance->lastAdded();
+$events = $eventInstance->lastAdded();
+
+
 ?>
 
 
@@ -35,7 +40,7 @@ $news->close;
   <div id="preloader">
     <div id="status">
     </div>
-  </div>
+  </div> 
   <!-- preloader end -->
 
   <!-- header start -->
@@ -301,26 +306,33 @@ $news->close;
         </a>
       </div>
       <div class="row">
+        <?php foreach($events as $event): ?>
+        <?php $media = $eventInstance->getMedia($event['event_id']);
+        ?>
         <div class="col-12 col-md-4 mt-3">
           <div class="card card-wrapper box-shadow-hover border-0 text-left" data-aos="zoom-in" data-aos-duration="1500">
             <div class="icon-wrapper">
               <div class="position-relative w-100 h-100">
-                <div class="icon-day text-primary"> 18 </div>
-                <div class="icon-month text-primary"> March </div>
+                <div class="icon-day text-primary"> <?= date('w', strtotime($event['date'])) ?> </div>
+                <div class="icon-month text-primary"> <?= date('F', strtotime($event['date'])) ?> </div>
               </div>
             </div>
-            <img class="card-img-top" src="images/events1.png" alt="Postgraduate Drop-in Evening">
+            <?php if($media): ?>
+            <img class="card-img-top" src="images/entities/<?= $media['id'] ?>/<?= $media['name'] ?>" alt="Postgraduate Drop-in Evening">
+            <?php else: ?>
+              <img class="card-img-top" src="images/events2.png" alt="Postgraduate Drop-in Evening">
+              <?php endif; ?>
             <div class="border card-border d-flex flex-column">
               <div class="card-body">
                 <ul class="list-inline mb-2 overflow-2l">
-                  <li class="list-inline-item info text-primary">2:00 P.M - 4:00 P.M.</li>
+                  <li class="list-inline-item info text-primary"><?= date('h:i A', strtotime($event['start_time'])) ?> - <?= date('h:i A', strtotime($event['end_time'])) ?></li>
                   <li class="list-inline-item text">|</li>
-                  <li class="list-inline-item info text-primary">Ajloun Campus</li>
+                  <li class="list-inline-item info text-primary"><?= $event['location'] ?></li>
                 </ul>
                 <a href="events.html">
-                  <h3 class="card-text title text-primary link overflow-2l"> Postgraduate Drop-in Evening </h3>
+                  <h3 class="card-text title text-primary link overflow-2l"> <?= $event['title'] ?> </h3>
                 </a>
-                <p class="card-text overflow-3l text mb-auto mt-2 w-100"> Our Postgraduate Drop-in Evenings are an excellent opportunity for you to meet our staff and talk to current students </p>
+                <p class="card-text overflow-3l text mb-auto mt-2 w-100"> <?= $event['highlight'] ?> </p>
               </div>
               <div class="text-right mb-2 pb-1 pr-1">
                 <a href="events.html" class="more link font-weight-bold mr-3 stretched-link">LEARN MORE</a>
@@ -328,7 +340,8 @@ $news->close;
             </div>
           </div>
         </div>
-        <div class="col-12 col-md-4 mt-3">
+        <?php endforeach; ?>
+        <!-- <div class="col-12 col-md-4 mt-3">
           <div class="card card-wrapper box-shadow-hover border-0 text-left" data-aos="zoom-in" data-aos-duration="1500">
             <div class="icon-wrapper">
               <div class="position-relative w-100 h-100">
@@ -381,7 +394,7 @@ $news->close;
               </div>
             </div>
           </div>
-        </div>
+        </div> -->
       </div>
     </div>
     <!-- events section end -->
