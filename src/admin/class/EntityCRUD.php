@@ -6,5 +6,5 @@ interface EntityCRUD {
     public function store($request);
     public function update($request);
     public function delete($id);
-    public function storeImage($imageName,$imageId);
+    public function uploadImage($imageName,$imageId);
 }

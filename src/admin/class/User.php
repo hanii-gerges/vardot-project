@@ -93,11 +93,18 @@ class User implements EntityCRUD
             ':email' => $request['email'],
             ':id' => $request['id'],
         ]);
+        if ($_FILES['userImage']['name'] != "") {
+            if ($this->validateImage('userImage')) {
+                $this->storeImage($_FILES['userImage']['name'], $request['id']);
+                $image = $this->getMedia($request['id']);
+                if (!$this->uploadImage('userImage', $image['id'])) {
+                    $_SESSION['error'] = 'There was error uploading image.';
+                }
+            }
+        }
+        if (!$_SESSION['error'])
+            $_SESSION['success'] = 'Record updated';
 
-        if (isset($request['userImage']))
-            if($this->validateImage($request['userImage']));
-
-        $_SESSION['success'] = 'Record updated';
         header('Location:index.php?page=1');
     }
 
@@ -113,31 +120,39 @@ class User implements EntityCRUD
         header('Location:index.php?page=1');
     }
 
-    public function storeImage($imageName, $mediaId)
+    public function uploadImage($imageName, $mediaId)
     {
-        $target_dir = $_SERVER['DOCUMENT_ROOT'] . "/images/";
+        if (file_exists($_SERVER['DOCUMENT_ROOT'] . "/images/entities/$mediaId")) {
+            $files = glob($_SERVER['DOCUMENT_ROOT'] . "/images/entities/$mediaId" . '/*');
+            foreach ($files as $file) {
+                unlink($file);
+            }
+            rmdir($_SERVER['DOCUMENT_ROOT'] . "/images/entities/$mediaId");
+        }
+        mkdir($_SERVER['DOCUMENT_ROOT'] . "/images/entities/$mediaId");
+        chmod($_SERVER['DOCUMENT_ROOT'] . "/images/entities/$mediaId", 0777);
+        // die('directory made');
+        $target_dir = $_SERVER['DOCUMENT_ROOT'] . "/images/entities/$mediaId/";
         $target_file = $target_dir . basename($_FILES["$imageName"]["name"]);
         // Check if $uploadOk is set to 0 by an error
 
-        if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
-            echo "The file " . htmlspecialchars(basename($_FILES["fileToUpload"]["name"])) . " has been uploaded.";
-        } else {
-            echo "Sorry, there was an error uploading your file.";
+        if (!move_uploaded_file($_FILES[$imageName]["tmp_name"], $target_file)) {
+            return false;
         }
+        return true;
     }
+
     public function validateImage($imageName)
     {
-        $target_dir = $_SERVER['DOCUMENT_ROOT'] . "/images/";
+        $target_dir = $_SERVER['DOCUMENT_ROOT'] . "/images/entities/";
         $target_file = $target_dir . basename($_FILES[$imageName]["name"]);
         $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
 
         // Check if image file is a actual image or fake image
-        if (isset($_POST["submit"])) {
-            $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
-            if ($check === false) {
-                echo "File is not an image.";
-                return false;
-            }
+        $check = getimagesize($_FILES[$imageName]["tmp_name"]);
+        if ($check === false) {
+            $_SESSION['error'] = "File is not an image.";
+            return false;
         }
 
         // // Check if file already exists
@@ -147,8 +162,8 @@ class User implements EntityCRUD
         // }
 
         // Check file size
-        if ($_FILES["fileToUpload"]["size"] > 500000) {
-            echo "Sorry, your file is too large.";
+        if ($_FILES[$imageName]["size"] > 500000) {
+            $_SESSION['error'] = "Sorry, your file is too large.";
             return false;
         }
 
@@ -157,9 +172,33 @@ class User implements EntityCRUD
             $imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
             && $imageFileType != "gif"
         ) {
-            echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+            $_SESSION['error'] = "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
             return false;
         }
         return true;
+    }
+
+    public function storeImage($imageName, $id)
+    {
+        $query = "INSERT INTO media(model_name, record_id, file_name) VALUES (:model_name, :record_id, :file_name)";
+        $stmt = $this->conn->prepare($query);
+        $stmt->execute([
+            ':model_name' => 'user',
+            ':record_id' => $id,
+            ':file_name' => $imageName,
+        ]);
+    }
+
+    public function getMedia($id)
+    {
+        $query =
+            "SELECT m.media_id as id, m.file_name
+        FROM media m
+        WHERE model_name = 'user'
+        AND record_id = :id";
+        $stmt = $this->conn->prepare($query);
+        $stmt->execute([':id' => $id]);
+        $media = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $media;
     }
 }

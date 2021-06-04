@@ -8,6 +8,8 @@ $user = new User();
 
 if(isset($_POST['update']))
 {
+    // die(print_r($_FILES));
+
     $user->update($_POST);
 }
 
@@ -559,12 +561,13 @@ if ( $user === false ) {
                                 <div class="tab-pane fade show active" id="settings" role="tabpanel" aria-labelledby="settings-tab">
                                     <div class="tab-pane-content mt-5">
                                         <form method="post" action="" enctype="multipart/form-data">
+                                        <!-- <img src="/images" alt="" srcset=""> -->
                                         <input type="hidden" name="id" value="<?= $user['user_id'] ?>">
                                             <div class="form-group row mb-6">
                                                 <label for="coverImage" class="col-sm-4 col-lg-2 col-form-label">User Image</label>
                                                 <div class="col-sm-8 col-lg-10">
                                                     <div class="custom-file mb-1">
-                                                        <input type="file" class="custom-file-input" id="coverImage" name="userImage">
+                                                        <input type="file" class="custom-file-input" name="userImage" id="coverImage">
                                                         <label class="custom-file-label" for="coverImage">Choose file...</label>
                                                         <div class="invalid-feedback">Example invalid custom file feedback</div>
                                                     </div>
@@ -597,7 +600,7 @@ if ( $user === false ) {
                                             
                                             <div class="d-flex justify-content-end mt-5">
                                                 <a class="btn btn-secondary btn-default mx-1" href="index.php?page=1">Cancel</a>
-                                                <button type="submit" class="btn btn-primary btn-default mx-2" name="update">Update</button>
+                                                <input type="submit" class="btn btn-primary btn-default mx-2" name="update" value="Update">
                                             </div>
                                         </form>
                                     </div>
