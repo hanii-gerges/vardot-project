@@ -114,8 +114,8 @@ $("form[name='get-in-touch']").validate({
   // Make sure the form is submitted to the destination defined
   // in the "action" attribute of the form when valid
   submitHandler: function(form) {
-    $('#form-modal').modal('show');
-    // form.submit();
+    // $('#form-modal').modal('show');
+    form.submit();
   }
 });
 

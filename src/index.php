@@ -2,14 +2,18 @@
 include_once 'config/Database.php';
 include_once 'admin/class/News.php';
 include_once 'admin/class/Event.php';
+include_once 'admin/class/Slider.php';
+
 
 
 
 $newsInstance = new News();
 $eventInstance = new Event();
+$sliderInstance = new Slider();
 
 $allNews = $newsInstance->lastAdded();
 $events = $eventInstance->lastAdded();
+$sliders = $sliderInstance->publishedOnly();
 
 
 ?>
@@ -40,7 +44,7 @@ $events = $eventInstance->lastAdded();
   <div id="preloader">
     <div id="status">
     </div>
-  </div> 
+  </div>
   <!-- preloader end -->
 
   <!-- header start -->
@@ -114,31 +118,30 @@ $events = $eventInstance->lastAdded();
   <div id="carouselExampleIndicators" class="carousel slide carousel-fade" data-ride="carousel">
     <ol class="carousel-indicators d-flex">
       <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-      <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-      <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-      <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
-      <li data-target="#carouselExampleIndicators" data-slide-to="4"></li>
+      <?php $count = 1 ?>
+      <?php foreach($sliders as $slider): ?>
+        <?php if($count == count($sliders)) break; ?>
+      <li data-target="#carouselExampleIndicators" data-slide-to="<?= $count++ ?>"></li>
+      <?php endforeach; ?>
     </ol>
     <div class="carousel-inner position-relative">
-      <div class="slider-box  d-flex justify-content-center align-items-center py-lg-5 px-lg-3">
-        <p class="text-center text-uppercase text-white m-4">one of the top 10 universities in design</p>
-      </div>
+
       <!-- <p class="slider-p text-uppercase d-none text-white">one of the top 10 universities in design</p> -->
-      <div class="carousel-item active">
-        <img src="images/slider1.jpg" class="d-block w-100" alt="bulding">
+      <?php $count = 0 ?>
+      <?php foreach($sliders as $slider): ?>
+        <?php $media = $sliderInstance->getMedia($slider['hero_slider_id']);?>
+
+      <div class="carousel-item <?= $count++ == 1 ? 'active' : '' ?>">
+        <div class="slider-box  d-flex justify-content-center align-items-center py-lg-5 px-lg-3">
+          <p class="text-center text-uppercase text-white m-4"><?= $slider['text'] ?></p>
+        </div>
+        <?php if ($media) : ?>
+        <img src="images/entities/<?= $media['id'] ?>/<?= $media['name'] ?>" class="d-block w-100" alt="bulding">
+        <?php else : ?>
+          <img src="images/slider1.jpg" class="d-block w-100" alt="bulding">
+          <?php endif; ?>
       </div>
-      <div class="carousel-item">
-        <img src="images/slider5.jpg" class="d-block w-100" alt="bulding">
-      </div>
-      <div class="carousel-item">
-        <img src="images/slider4.jpg" class="d-block w-100" alt="bulding">
-      </div>
-      <div class="carousel-item ">
-        <img src="images/slider5.jpg" class="d-block w-100" alt="bulding">
-      </div>
-      <div class="carousel-item">
-        <img src="images/slider3.jpg" class="d-block w-100" alt="bulding">
-      </div>
+      <?php endforeach; ?>
     </div>
     <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
       <span class="carousel-control-prev-icon d-none" aria-hidden="true"></span>
@@ -223,8 +226,8 @@ $events = $eventInstance->lastAdded();
                 <div class="d-flex justify-content-end">
                   <a href="#" class="font-weight-bold more link mb-3">READ MORE</a>
                 </div>
-                <?php if(++$i < count($allNews)): ?>
-                <hr class="mt-1">
+                <?php if (++$i < count($allNews)) : ?>
+                  <hr class="mt-1">
                 <?php endif; ?>
               </div>
             <?php endforeach; ?>
@@ -306,40 +309,40 @@ $events = $eventInstance->lastAdded();
         </a>
       </div>
       <div class="row">
-        <?php foreach($events as $event): ?>
-        <?php $media = $eventInstance->getMedia($event['event_id']);
-        ?>
-        <div class="col-12 col-md-4 mt-3">
-          <div class="card card-wrapper box-shadow-hover border-0 text-left" data-aos="zoom-in" data-aos-duration="1500">
-            <div class="icon-wrapper">
-              <div class="position-relative w-100 h-100">
-                <div class="icon-day text-primary"> <?= date('w', strtotime($event['date'])) ?> </div>
-                <div class="icon-month text-primary"> <?= date('F', strtotime($event['date'])) ?> </div>
+        <?php foreach ($events as $event) : ?>
+          <?php $media = $eventInstance->getMedia($event['event_id']);
+          ?>
+          <div class="col-12 col-md-4 mt-3">
+            <div class="card card-wrapper box-shadow-hover border-0 text-left" data-aos="zoom-in" data-aos-duration="1500">
+              <div class="icon-wrapper">
+                <div class="position-relative w-100 h-100">
+                  <div class="icon-day text-primary"> <?= date('w', strtotime($event['date'])) ?> </div>
+                  <div class="icon-month text-primary"> <?= date('F', strtotime($event['date'])) ?> </div>
+                </div>
               </div>
-            </div>
-            <?php if($media): ?>
-            <img class="card-img-top" src="images/entities/<?= $media['id'] ?>/<?= $media['name'] ?>" alt="Postgraduate Drop-in Evening">
-            <?php else: ?>
-              <img class="card-img-top" src="images/events2.png" alt="Postgraduate Drop-in Evening">
+              <?php if ($media) : ?>
+                <img class="card-img-top" src="images/entities/<?= $media['id'] ?>/<?= $media['name'] ?>" alt="Postgraduate Drop-in Evening">
+              <?php else : ?>
+                <img class="card-img-top" src="images/events2.png" alt="Postgraduate Drop-in Evening">
               <?php endif; ?>
-            <div class="border card-border d-flex flex-column">
-              <div class="card-body">
-                <ul class="list-inline mb-2 overflow-2l">
-                  <li class="list-inline-item info text-primary"><?= date('h:i A', strtotime($event['start_time'])) ?> - <?= date('h:i A', strtotime($event['end_time'])) ?></li>
-                  <li class="list-inline-item text">|</li>
-                  <li class="list-inline-item info text-primary"><?= $event['location'] ?></li>
-                </ul>
-                <a href="events.html">
-                  <h3 class="card-text title text-primary link overflow-2l"> <?= $event['title'] ?> </h3>
-                </a>
-                <p class="card-text overflow-3l text mb-auto mt-2 w-100"> <?= $event['highlight'] ?> </p>
-              </div>
-              <div class="text-right mb-2 pb-1 pr-1">
-                <a href="events.html" class="more link font-weight-bold mr-3 stretched-link">LEARN MORE</a>
+              <div class="border card-border d-flex flex-column">
+                <div class="card-body">
+                  <ul class="list-inline mb-2 overflow-2l">
+                    <li class="list-inline-item info text-primary"><?= date('h:i A', strtotime($event['start_time'])) ?> - <?= date('h:i A', strtotime($event['end_time'])) ?></li>
+                    <li class="list-inline-item text">|</li>
+                    <li class="list-inline-item info text-primary"><?= $event['location'] ?></li>
+                  </ul>
+                  <a href="events.html">
+                    <h3 class="card-text title text-primary link overflow-2l"> <?= $event['title'] ?> </h3>
+                  </a>
+                  <p class="card-text overflow-3l text mb-auto mt-2 w-100"> <?= $event['highlight'] ?> </p>
+                </div>
+                <div class="text-right mb-2 pb-1 pr-1">
+                  <a href="events.html" class="more link font-weight-bold mr-3 stretched-link">LEARN MORE</a>
+                </div>
               </div>
             </div>
           </div>
-        </div>
         <?php endforeach; ?>
         <!-- <div class="col-12 col-md-4 mt-3">
           <div class="card card-wrapper box-shadow-hover border-0 text-left" data-aos="zoom-in" data-aos-duration="1500">
@@ -415,11 +418,29 @@ $events = $eventInstance->lastAdded();
     <div class="container my-5">
       <div class="row justify-content-center pb-5">
         <div class="col-12 col-md-10 get-in-touch">
-          <form name="get-in-touch" action="#" method="get">
+          <form id="get-in-touch" name="get-in-touch" action="admin/messages/store.php" method="post">
             <div class="row px-lg-5 py-5 justify-content-center">
               <div class="col-12 text-center my-4">
                 <span class="heading text-primary"> GET IN TOUCH </span>
               </div>
+              <div class="col-12">
+
+                <?php
+                if (isset($_SESSION['error'])) {
+                  echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">';
+                  foreach ($_SESSION['error'] as $error) {
+                    echo "-$error<br>";
+                  }
+                  echo "</div>\n";
+                  unset($_SESSION['error']);
+                }
+                if (isset($_SESSION['success'])) {
+                  echo '<div class="alert alert-success alert-dismissible fade show" role="alert">' . $_SESSION['success'] . "</div>\n";
+                  unset($_SESSION['success']);
+                }
+                ?>
+              </div>
+
               <div class="col-12 col-md-6 pl-md-5 my-2 ml-md">
                 <input class="form-control" type="text" name="fullname" placeholder="Full Name" required>
               </div>
@@ -430,13 +451,13 @@ $events = $eventInstance->lastAdded();
                 <input class="form-control" type="email" name="email" placeholder="Email" required>
               </div>
               <div class="col-12 px-md-5 my-2">
-                <textarea id="form-textarea" class="form-control" name="message" cols="30" rows="7" placeholder="Message" required></textarea>
+                <textarea id="form-textarea" class="form-control" name="content" cols="30" rows="7" placeholder="Message" required></textarea>
                 <div class="text-right">
                   <span id="display_count">0</span><span>/</span><span id="word_left">50</span>
                 </div>
               </div>
               <div class="col-12 mt-4 mb-2 text-center">
-                <button class="btn btn-primary button font-weight-bold px-5 py-3" type="submit">SUBMIT</button>
+                <button class="btn btn-primary button font-weight-bold px-5 py-3" type="submit" name="submit">SUBMIT</button>
               </div>
             </div>
           </form>

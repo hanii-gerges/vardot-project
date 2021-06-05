@@ -1,11 +1,11 @@
 <?php
 session_start();
-include_once '../class/Event.php';
+include_once '../class/Message.php';
 
-$event = new Event();
+$message = new Message();
 
-// get all events
-$events = $event->all();
+// get all messages
+$messages = $message->all();
 
 ?>
 
@@ -14,6 +14,7 @@ $events = $event->all();
 
 <head>
 <?php include '../header.php' ?>
+
 </head>
 
 
@@ -22,7 +23,6 @@ $events = $event->all();
     <div class="card card-table-border-none recent-orders" id="recent-orders">
         <div class="px-0 px-md-5 mt-5">
             <?php
-            // die(2);
             if (isset($_SESSION['error'])) {
                 echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">' . $_SESSION['error'] . "</div>\n";
                 unset($_SESSION['error']);
@@ -35,55 +35,36 @@ $events = $event->all();
 
         </div>
         <div class="pt-0 mb-5 card-header justify-content-between">
-            <h1>Events</h1>
-        <div class="">
-            <a class="h5 p-2 bg-light rounded-pill text-primarty" href="/admin/events/create.php">
-                <i class="fas fa-plus"></i>
-                Add New</a>
-        </div>
+            <h1>Messages</h1>
         </div>
         <div class="card-body pt-0 pb-5">
-            <table id="eventsTable" class="hover row-border table card-table table-responsive table-responsive-large" style="width:100%">
+            <table id="messagesTable" class="hover row-border table card-table table-responsive table-responsive-large" style="width:100%">
                 <thead>
                     <tr>
-                        <th>Event ID</th>
-                        <th>Title</th>
-                        <th class="d-none d-lg-table-cell">Created By</th>
-                        <th class="d-none d-lg-table-cell">Highlight</th>
-                        <th>Status</th>
-                        <th class="d-none d-lg-table-cell">Last Updated By</th>
+                        <th>Message ID</th>
+                        <th>Fullname</th>
+                        <th>Email</th>
                         <th class="d-none d-lg-table-cell">Created At</th>
-                        <th class="d-none d-lg-table-cell">Updated At</th>
                         <th></th>
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach ($events as $event) : ?>
-                        <?php if (!isset($event['event_id'])) break; ?>
-                        <tr>
-                            <td><?= $event['event_id'] ?></td>
+                    <?php foreach ($messages as $message) : ?>
+                        <?php if (!isset($message['message_id'])) break; ?>
+                        <tr class="<?= $message['status'] == 'read' ? 'read' : '' ?>">
+                            <td><?= $message['message_id'] ?></td>
                             <td>
-                                <a class="text-dark" href="/admin/events/view.php?id=<?= $event['event_id'] ?>"> <?= $event['title'] ?></a>
+                                <a class="text-dark" href="/admin/messages/view.php?id=<?= $message['message_id'] ?>"> <?= $message['fullname'] ?> </a>
                             </td>
-                            <td class="d-none d-lg-table-cell"><?= $event['created_by'] ?></td>
-                            <td class="d-none d-lg-table-cell"><?= $event['highlight'] ?></td>
-                            <td>
-                                <span class="<?= $event['status'] == 'published' ? 'badge badge-success' :  'badge badge-danger';  ?>"><?= $event['status'] ?></span>
-                            </td>
-                            <td class="d-none d-lg-table-cell"><?= $event['updated_by'] ?></td>
-                            <td class="d-none d-lg-table-cell"><?= $event['created_at'] ?></td>
-                            <td class="d-none d-lg-table-cell"><?= $event['updated_at'] ?></td>
-
+                            <td class="d-none d-lg-table-cell"><?= $message['email'] ?></td>
+                            <td class="d-none d-lg-table-cell"><?= $message['created_at'] ?></td>
                             <!-- <td class="d-none d-lg-table-cell"></td> -->
                             <td class="text-right">
                                 <div class="dropdown show d-inline-block widget-dropdown">
                                     <a class="dropdown-toggle icon-burger-mini" href="" role="button" id="dropdown-recent-order1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static"></a>
                                     <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown-recent-order1">
                                         <li class="dropdown-item">
-                                            <a href="view.php?id=<?= $event['event_id'] ?>">Edit</a>
-                                        </li>
-                                        <li class="dropdown-item">
-                                            <a class="delete" href="delete.php" data-id=<?= $event['event_id'] ?> data-toggle="modal" data-target="#exampleModal">Remove</a>
+                                            <a class="delete" href="delete.php" data-id=<?= $message['message_id'] ?> data-toggle="modal" data-target="#exampleModal">Remove</a>
                                         </li>
                                     </ul>
                                 </div>
@@ -95,13 +76,13 @@ $events = $event->all();
             <!-- Pagination -->
             <nav class="mt-3 justify-content-center d-flex">
                 <ul class="pagination">
-                <li class="page-item <?= $_GET['page'] == 1 || !isset($_GET['page']) ? "disabled" : "" ?>">
-                        <a class="page-link" href="index.php?page=<?= $_GET['page'] - 1 ?>" tabindex="-1">Previous</a>
+                    <li class="page-item <?= $_GET['page'] == 1 || !isset($_GET['page']) ? "disabled" : "" ?>">
+                        <a class="page-link" href="index.php?page=<?= $_GET['page'] - 1 ?>">Previous</a>
                     </li>
-                    <?php for ($i = 1; $i <= $events['total_pages']; $i++) : ?>
+                    <?php for ($i = 1; $i <= $messages['total_pages']; $i++) : ?>
                         <li class="page-item <?= $_GET['page'] == $i ? "active" : "" ?>"><a class="page-link" href="index.php?page=<?= $i ?>"><?= $i ?></a></li>
                     <?php endfor; ?>
-                    <li class="page-item <?= $_GET['page'] >= $events['total_pages'] ? "disabled" : "" ?>">
+                    <li class="page-item <?= $_GET['page'] >= $messages['total_pages'] ? "disabled" : "" ?>">
                         <a class="page-link" href="index.php?page=<?= $_GET['page'] + 1 ?>">Next</a>
                     </li>
                 </ul>
@@ -134,10 +115,7 @@ $events = $event->all();
 
     </div>
     </div>
-    
     <?php include '../footer.php' ?>
-
-
 
 </body>
 

@@ -18,14 +18,14 @@
         <div id="sidebar" class="sidebar sidebar-with-footer">
             <!-- Aplication Brand -->
             <div class="app-brand">
-                <a href="/index.html">
+                <a href="/admin/index.php">
                     <svg class="brand-icon" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid" width="30" height="33" viewBox="0 0 30 33">
                         <g fill="none" fill-rule="evenodd">
                             <path class="logo-fill-blue" fill="#7DBCFF" d="M0 4v25l8 4V0zM22 4v25l8 4V0z" />
                             <path class="logo-fill-white" fill="#FFF" d="M11 4v25l8 4V0z" />
                         </g>
                     </svg>
-                    <span class="brand-name">Sleek Dashboard</span>
+                    <span class="brand-name">Sciences University</span>
                 </a>
             </div>
             <!-- begin sidebar scrollbar -->
@@ -51,6 +51,20 @@
                         <a class="sidenav-item-link" href="/admin/users/index.php?page=1">
                             <i class="mdi mdi-view-dashboard-outline"></i>
                             <span class="nav-text">Users</span> <b class="caret"></b>
+                        </a>
+
+                    </li>
+                    <li class="">
+                        <a class="sidenav-item-link" href="/admin/messages/index.php?page=1">
+                            <i class="mdi mdi-view-dashboard-outline"></i>
+                            <span class="nav-text">Messages</span> <b class="caret"></b>
+                        </a>
+
+                    </li>
+                    <li class="">
+                        <a class="sidenav-item-link" href="/admin/sliders/index.php?page=1">
+                            <i class="mdi mdi-view-dashboard-outline"></i>
+                            <span class="nav-text">Hero Slider</span> <b class="caret"></b>
                         </a>
 
                     </li>

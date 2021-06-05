@@ -278,6 +278,31 @@ $(document).ready(function() {
     },
     "order": [[ 1, "asc" ]]
   });
+  $('#eventsTable').DataTable({
+    "paging": false,
+    scrollY: 500,
+    "language": {
+      "info": ""
+    },
+    "order": [[ 1, "asc" ]]
+  });
+  $('#messagesTable').DataTable({
+    "paging": false,
+    scrollY: 500,
+    "language": {
+      "info": ""
+    },
+    "order": [[ 3, "asc" ]]
+  });
+
+  $('#slidersTable').DataTable({
+    "paging": false,
+    scrollY: 500,
+    "language": {
+      "info": ""
+    },
+    "order": []
+  });
 
     /*======== 13. CKEDITOR ========*/
   CKEDITOR.replace('editor1');

@@ -12129,3 +12129,12 @@ tbody tr td:first-child {
 /*===== REBOOT =====*/
 html[dir="rtl"] .sidebar li > a .caret:before {
   content: '\f141'; }
+
+/* Message Status */
+.read {
+  background-color: #e7fff7 !important;
+}
+
+.unread {
+  background-color: #ffcdd1 !important;
+}
