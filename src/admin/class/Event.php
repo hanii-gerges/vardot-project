@@ -112,16 +112,22 @@ class Event implements EntityCRUD
             ':location' => $request['location'],
             ':status' => $request['status'],
         ]);
-
+        $lastId = $this->conn->lastInsertId();
+        // print_r($_FILES);
+        // die('seen');
         if ($_FILES['eventImage']['name'] != "") {
             if ($this->validateImage('eventImage')) {
-                $this->storeImage($_FILES['eventImage']['name'], $request['id']);
-                $image = $this->getMedia($request['id']);
+                $this->storeImage($_FILES['eventImage']['name'], $lastId);
+                $image = $this->getMedia($lastId);
                 if (!$this->uploadImage('eventImage', $image['id'])) {
-                    $_SESSION['error'] = 'There was error uploading image.';
+                    $_SESSION['error'][] = 'There was error uploading image.';
                 }
+            } else {
+                header('Location:create.php');
+                return;
             }
         }
+        else die('no image');
 
         $_SESSION['success'] = 'Record created';
         header('Location:index.php?page=1');
@@ -230,7 +236,7 @@ class Event implements EntityCRUD
         // Check if image file is a actual image or fake image
         $check = getimagesize($_FILES[$imageName]["tmp_name"]);
         if ($check === false) {
-            $_SESSION['error'] = "File is not an image.";
+            $_SESSION['error'][] = "File is not an image.";
             return false;
         }
 
@@ -242,7 +248,7 @@ class Event implements EntityCRUD
 
         // Check file size
         if ($_FILES[$imageName]["size"] > 500000) {
-            $_SESSION['error'] = "Sorry, your file is too large.";
+            $_SESSION['error'][] = "your file is too large.";
             return false;
         }
 
@@ -251,7 +257,7 @@ class Event implements EntityCRUD
             $imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
             && $imageFileType != "gif"
         ) {
-            $_SESSION['error'] = "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+            $_SESSION['error'][] = "only JPG, JPEG, PNG & GIF files are allowed.";
             return false;
         }
         return true;
@@ -266,6 +272,7 @@ class Event implements EntityCRUD
             ':record_id' => $id,
             ':file_name' => $imageName,
         ]);
+        return true;
     }
 
     public function getMedia($id)
@@ -281,6 +288,4 @@ class Event implements EntityCRUD
         $media = $stmt->fetch(PDO::FETCH_ASSOC);
         return $media;
     }
-
-    
 }

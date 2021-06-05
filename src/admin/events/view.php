@@ -1,6 +1,7 @@
 <?php
 session_start();
 include_once '../class/Event.php';
+include_once '../authinticate.php';
 
 $event = new Event();
 
@@ -70,15 +71,15 @@ if ($event === false) {
                     </div>
                     <div class="form-group">
                         <label for="date">Date&nbsp<span class="text-danger">*</span></label>
-                        <input type="date" class="form-control" id="date" name="date" value="<?= $event['date'] ?>">
+                        <input type="date" class="form-control" id="date" name="date" value="<?= $event['date'] ?>" required>
                     </div>
                     <div class="form-group">
                         <label for="start_time">Starts at&nbsp<span class="text-danger">*</span></label>
-                        <input type="time" class="form-control" id="start_time" name="start_time" value="<?= $event['start_time'] ?>">
+                        <input type="time" class="form-control" id="start_time" name="start_time" value="<?= $event['start_time'] ?>" required>
                     </div>
                     <div class="form-group">
                         <label for="end_time">Ends at&nbsp<span class="text-danger">*</span></label>
-                        <input type="time" class="form-control" id="end_time" name="end_time" value="<?= $event['end_time'] ?>">
+                        <input type="time" class="form-control" id="end_time" name="end_time" value="<?= $event['end_time'] ?>" required>
                     </div>
                     <div class="form-group">
                         <label for="location">Location&nbsp<span class="text-danger">*</span></label>

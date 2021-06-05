@@ -101,11 +101,12 @@ class Slider implements EntityCRUD
             ':slider_order' => $request['order'],
             ':status' => $request['status'],
         ]);
+        $lastId = $this->conn->lastInsertId();
 
         if ($_FILES['sliderImage']['name'] != "") {
             if ($this->validateImage('sliderImage')) {
-                $this->storeImage($_FILES['sliderImage']['name'], $request['id']);
-                $image = $this->getMedia($request['id']);
+                $this->storeImage($_FILES['sliderImage']['name'], $lastId);
+                $image = $this->getMedia($lastId);
                 if (!$this->uploadImage('sliderImage', $image['id'])) {
                     $_SESSION['error'] = 'There was error uploading image.';
                 }

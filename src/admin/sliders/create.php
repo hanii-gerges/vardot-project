@@ -1,5 +1,6 @@
 <?php
 session_start();
+include_once '../authinticate.php';
 
 ?>
 
@@ -21,7 +22,7 @@ session_start();
                 <h2>Create Slider</h2>
             </div>
             <div class="card-body row">
-                <form class="col-12" method="POST" action="store.php">
+                <form class="col-12" method="POST" action="store.php" enctype="multipart/form-data">
                     <?php
                     if (isset($_SESSION['error'])) {
                         echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">';

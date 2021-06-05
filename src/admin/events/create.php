@@ -1,6 +1,6 @@
 <?php
 session_start();
-
+include_once '../authinticate.php';
 ?>
 
 <!DOCTYPE html>
@@ -21,7 +21,7 @@ session_start();
                 <h2>Create Event</h2>
             </div>
             <div class="card-body row">
-                <form class="col-12" method="POST" action="store.php">
+                <form class="col-12" method="POST" action="store.php" enctype="multipart/form-data">
                     <?php
                     if (isset($_SESSION['error'])) {
                         echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">';
@@ -57,15 +57,15 @@ session_start();
                     </div>
                     <div class="form-group">
                         <label for="date">Date&nbsp<span class="text-danger">*</span></label>
-                        <input type="date" class="form-control" id="date" name="date">
+                        <input type="date" class="form-control" id="date" name="date" required>
                     </div>
                     <div class="form-group">
                         <label for="start_time">Starts at&nbsp<span class="text-danger">*</span></label>
-                        <input type="time" class="form-control" id="start_time" name="start_time">
+                        <input type="time" class="form-control" id="start_time" name="start_time" required>
                     </div>
                     <div class="form-group">
                         <label for="end_time">Ends at&nbsp<span class="text-danger">*</span></label>
-                        <input type="time" class="form-control" id="end_time" name="end_time">
+                        <input type="time" class="form-control" id="end_time" name="end_time" required>
                     </div>
                     <div class="form-group">
                         <label for="location">Location&nbsp<span class="text-danger">*</span></label>

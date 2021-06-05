@@ -1,6 +1,7 @@
 <?php
 session_start();
 include_once '../class/Slider.php';
+include_once '../authinticate.php';
 
 $slider = new Slider();
 
@@ -81,7 +82,7 @@ $sliders = $slider->all();
                                             <a href="view.php?id=<?= $slider['hero_slider_id'] ?>">Edit</a>
                                         </li>
                                         <li class="dropdown-item">
-                                            <a class="delete" href="delete.php" data-id=<?= $slider['slider_id'] ?> data-toggle="modal" data-target="#exampleModal">Remove</a>
+                                            <a class="delete" href="delete.php" data-id=<?= $slider['hero_slider_id'] ?> data-toggle="modal" data-target="#exampleModal">Remove</a>
                                         </li>
                                     </ul>
                                 </div>

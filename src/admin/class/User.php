@@ -17,13 +17,64 @@ class User implements EntityCRUD
         $this->conn = $this->instance->getConnection();
     }
 
+    public function login($request)
+    {
+        $request = Helper::filter($request);
+        $valid = Helper::required($request, [
+            'email',
+            'password',
+        ]);
+
+        if (!$valid) {
+            header('Location:login.php');
+            return;
+        }
+
+        $query = "
+        SELECT u.user_id, u.firstname, u.lastname, u.email, u.password, u.role, u.status
+        FROM $this->userTable u
+        WHERE email = :email
+        ";
+        $stmt = $this->conn->prepare($query);
+        $stmt->execute([':email' => $request['email']]);
+
+
+        if (!$user = $stmt->fetchAll(PDO::FETCH_ASSOC)) {
+            $_SESSION['error'][] = 'Wrong Email and/or Password';
+            header('Location:login.php');
+            return;
+        }
+
+        $user = $user[0];
+
+        if (!password_verify($request['password'], $user['password'])) {
+            $_SESSION['error'][] = 'Wrong Email and/or Password';
+            header('Location:login.php');
+            return;
+        }
+
+        $_SESSION['user_id'] = $user['user_id'];
+        $_SESSION['role'] = $user['role'];
+        $_SESSION['name'] = $user['firstname'] . " " . $user['lastname'];
+        $_SESSION['email'] = $user['email'];
+        header('Location:../index.php');
+    }
+
+    public function loggedIn (){
+		if(!empty($_SESSION["user_id"])) {
+			return 1;
+		} else {
+			return 0;
+		}
+	}
+
     public function all()
     {
         /* Pagination */
         if (isset($_GET['page'])) {
             Helper::filterValue($_GET['page']);
             $_GET['page'] = intval($_GET['page']);
-            if($_GET['page'] <= 0)$_GET['page'] = 1;
+            if ($_GET['page'] <= 0) $_GET['page'] = 1;
             $page = $_GET['page'];
         } else {
             $page = 1;
@@ -66,7 +117,7 @@ class User implements EntityCRUD
     public function store($request)
     {
         $request = Helper::filter($request);
-        $valid = Helper::required($request,[
+        $valid = Helper::required($request, [
             'firstname',
             'lastname',
             'email',
@@ -75,11 +126,12 @@ class User implements EntityCRUD
             'role',
         ]);
 
-        if(!$valid)
-        {
+        if (!$valid) {
             header('Location:create.php');
             return;
-        }        $query = "INSERT INTO user (firstname, lastname, email, password, role)
+        }
+
+        $query = "INSERT INTO user (firstname, lastname, email, password, role)
          VALUES (:firstname, :lastname, :email, :password, :role)";
         $hashed_password = password_hash($request['password'], PASSWORD_DEFAULT);
         $stmt = $this->conn->prepare($query);
@@ -97,15 +149,14 @@ class User implements EntityCRUD
     public function update($request)
     {
         $request = Helper::filter($request);
-        $valid = Helper::required($request,[
+        $valid = Helper::required($request, [
             'firstname',
             'lastname',
             'email',
         ]);
 
-        if(!$valid)
-        {
-            header('Location:view.php?id='.$request['id']);
+        if (!$valid) {
+            header('Location:view.php?id=' . $request['id']);
             return;
         }
 
