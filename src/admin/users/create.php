@@ -39,14 +39,14 @@ include_once '../authorize.php';
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <label for="firstName">First name&nbsp<span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" name="firstname" id="firstName" required>
+                                <input type="text" class="form-control" name="firstname" id="firstName" maxlength=250 required>
                             </div>
                         </div>
 
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <label for="lastName">Last name&nbsp<span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" name="lastname" id="lastName" required>
+                                <input type="text" class="form-control" name="lastname" id="lastName" maxlength=250 required>
                             </div>
                         </div>
                     </div>
@@ -55,18 +55,15 @@ include_once '../authorize.php';
 
                     <div class="form-group mb-4">
                         <label for="email">Email&nbsp<span class="text-danger">*</span></label>
-                        <input type="email" class="form-control" name="email" id="email" required>
+                        <input type="email" class="form-control" name="email" id="email" maxlength=250 required>
                     </div>
 
                     <div class="form-group mb-4">
                         <label for="newPassword">password&nbsp<span class="text-danger">*</span></label>
-                        <input type="password" class="form-control" name="password" id="newPassword" required>
+                        <input type="password" class="form-control" name="password" id="newPassword" maxlength=250 required>
                     </div>
 
-                    <div class="form-group mb-4">
-                        <label for="conPassword">Confirm password&nbsp<span class="text-danger">*</span></label>
-                        <input type="password" class="form-control" name="confirm_password" id="conPassword" required>
-                    </div>
+                    
                     <div class="row form-group">
                         <label class="col-1" for="exampleFormControlSelect1">Role&nbsp<span class="text-danger">*</span></label>
                         <select class="col-2 form-control" name="role">

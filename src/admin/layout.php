@@ -33,40 +33,62 @@
 
                 <!-- sidebar menu -->
                 <ul class="nav sidebar-inner" id="sidebar-menu">
-                    <li class="">
+                    <?php if($_SESSION['role'] == 'admin'): ?>
+                        <li class="<?= $_SERVER['PHP_SELF'] == '/admin/users/index.php' ? 'active' : '' ?>">
+                        <a class="sidenav-item-link" href="/admin/users/index.php?page=1">
+                            <i class="mdi mdi-account-group"></i>
+                            <span class="nav-text">Users</span> <b class="caret"></b>
+                        </a>
+
+                    </li>
+                    <?php endif; ?>
+                    <li class="<?= $_SERVER['PHP_SELF'] == '/admin/news/index.php' ? 'active' : '' ?>">
                         <a class="sidenav-item-link" href="/admin/news?page=1">
-                            <i class="mdi mdi-view-dashboard-outline"></i>
+                            <i class="mdi mdi-newspaper"></i>
                             <span class="nav-text">News</span> <b class="caret"></b>
                         </a>
 
                     </li>
-                    <li class="">
+                    <li class="<?= $_SERVER['PHP_SELF'] == '/admin/events/index.php' ? 'active' : '' ?>">
                         <a class="sidenav-item-link" href="/admin/events?page=1">
                             <i class="mdi mdi-view-dashboard-outline"></i>
                             <span class="nav-text">Events</span> <b class="caret"></b>
                         </a>
 
                     </li>
-                    <li class="">
-                        <a class="sidenav-item-link" href="/admin/users/index.php?page=1">
-                            <i class="mdi mdi-view-dashboard-outline"></i>
-                            <span class="nav-text">Users</span> <b class="caret"></b>
+                    <li class="<?= $_SERVER['PHP_SELF'] == '/admin/sliders/index.php' ? 'active' : '' ?>">
+                        <a class="sidenav-item-link" href="/admin/sliders/index.php?page=1">
+                            <i class="mdi mdi-page-next-outline"></i>
+                            <span class="nav-text">Hero Slider</span> <b class="caret"></b>
                         </a>
 
                     </li>
-                    <li class="">
+                    <li class="<?= $_SERVER['PHP_SELF'] == '/admin/nav_links/index.php' ? 'active' : '' ?>">
+                        <a class="sidenav-item-link" href="/admin/nav_links/index.php?page=1">
+                            <i class="mdi mdi-link-variant"></i>
+                            <span class="nav-text">Navbar Links</span> <b class="caret"></b>
+                        </a>
+
+                    </li>
+                    <li class="<?= $_SERVER['PHP_SELF'] == '/admin/social_links/index.php' ? 'active' : '' ?>">
+                        <a class="sidenav-item-link" href="/admin/social_links/index.php?page=1">
+                            <i class="mdi mdi-link-variant"></i>
+                            <span class="nav-text">Social Links</span> <b class="caret"></b>
+                        </a>
+
+                    </li>
+                    <li class="<?= $_SERVER['PHP_SELF'] == '/admin/messages/index.php' ? 'active' : '' ?>">
                         <a class="sidenav-item-link" href="/admin/messages/index.php?page=1">
-                            <i class="mdi mdi-view-dashboard-outline"></i>
+                            <i class="mdi mdi-message-outline"></i>
                             <span class="nav-text">Messages</span> <b class="caret"></b>
                         </a>
 
                     </li>
-                    <li class="">
-                        <a class="sidenav-item-link" href="/admin/sliders/index.php?page=1">
-                            <i class="mdi mdi-view-dashboard-outline"></i>
-                            <span class="nav-text">Hero Slider</span> <b class="caret"></b>
+                    <li class="<?= $_SERVER['PHP_SELF'] == '/admin/meta_contents/index.php' ? 'active' : '' ?>">
+                        <a class="sidenav-item-link" href="/admin/meta_contents/index.php?page=1">
+                            <i class="mdi mdi-settings-outline"></i>
+                            <span class="nav-text">Site Settings</span> <b class="caret"></b>
                         </a>
-
                     </li>
                 </ul>
 
@@ -96,75 +118,18 @@
     <div class="page-wrapper">
         <!-- Header -->
         <header class="main-header " id="header">
-            <nav class="navbar navbar-static-top navbar-expand-lg">
+            <nav class="navbar navbar-static-top navbar-expand-lg justify-content-between">
                 <!-- Sidebar toggle button -->
                 <button id="sidebar-toggler" class="sidebar-toggle">
                     <span class="sr-only">Toggle navigation</span>
                 </button>
                 <!-- search form -->
-                <div class="search-form d-none d-lg-inline-block">
-                    <div class="input-group">
-                        <button type="button" name="search" id="search-btn" class="btn btn-flat">
-                            <i class="mdi mdi-magnify"></i>
-                        </button>
-                        <input type="text" name="query" id="search-input" class="form-control" placeholder="'button', 'chart' etc." autofocus autocomplete="off" />
-                    </div>
-                    <div id="search-results-container">
-                        <ul id="search-results"></ul>
-                    </div>
-                </div>
+                
 
                 <div class="navbar-right ">
                     <ul class="nav navbar-nav">
-                        <!-- Github Link Button -->
-                        <li class="github-link mr-3">
-                            <a class="btn btn-outline-secondary btn-sm" href="https://github.com/tafcoder/sleek-dashboard" target="_blank">
-                                <span class="d-none d-md-inline-block mr-2">Source Code</span>
-                                <i class="mdi mdi-github-circle"></i>
-                            </a>
-
-                        </li>
-                        <li class="dropdown notifications-menu">
-                            <button class="dropdown-toggle" data-toggle="dropdown">
-                                <i class="mdi mdi-bell-outline"></i>
-                            </button>
-                            <ul class="dropdown-menu dropdown-menu-right">
-                                <li class="dropdown-header">You have 5 notifications</li>
-                                <li>
-                                    <a href="#">
-                                        <i class="mdi mdi-account-plus"></i> New user registered
-                                        <span class=" font-size-12 d-inline-block float-right"><i class="mdi mdi-clock-outline"></i> 10 AM</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="mdi mdi-account-remove"></i> User deleted
-                                        <span class=" font-size-12 d-inline-block float-right"><i class="mdi mdi-clock-outline"></i> 07 AM</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="mdi mdi-chart-areaspline"></i> Sales report is ready
-                                        <span class=" font-size-12 d-inline-block float-right"><i class="mdi mdi-clock-outline"></i> 12 PM</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="mdi mdi-account-supervisor"></i> New client
-                                        <span class=" font-size-12 d-inline-block float-right"><i class="mdi mdi-clock-outline"></i> 10 AM</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="mdi mdi-server-network-off"></i> Server overloaded
-                                        <span class=" font-size-12 d-inline-block float-right"><i class="mdi mdi-clock-outline"></i> 05 AM</span>
-                                    </a>
-                                </li>
-                                <li class="dropdown-footer">
-                                    <a class="text-center" href="#"> View All </a>
-                                </li>
-                            </ul>
-                        </li>
+                        
+                        
                         <!-- User Account -->
                         <li class="dropdown user-menu">
                             <button href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
@@ -186,25 +151,14 @@
                                     </div>
                                 </li>
 
+                                
                                 <li>
-                                    <a href="profile.html">
-                                        <i class="mdi mdi-account"></i> My Profile
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="email-inbox.html">
-                                        <i class="mdi mdi-email"></i> Message
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#"> <i class="mdi mdi-diamond-stone"></i> Projects </a>
-                                </li>
-                                <li>
-                                    <a href="#"> <i class="mdi mdi-settings"></i> Account Setting </a>
+                                <a href="/admin/users/view.php?id=<?= $_SESSION['user_id'] ?>">
+                                     <i class="mdi mdi-settings"></i> Account Setting </a>
                                 </li>
 
                                 <li class="dropdown-footer">
-                                    <a href="../users/logout.php"> <i class="mdi mdi-logout"></i> Log Out </a>
+                                    <a href="/admin/users/logout.php"> <i class="mdi mdi-logout"></i> Log Out </a>
                                 </li>
                             </ul>
                         </li>

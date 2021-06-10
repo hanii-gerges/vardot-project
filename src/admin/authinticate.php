@@ -5,5 +5,5 @@ $user = new User();
 $media = $user->getMedia($_SESSION['user_id']);
 
 if (!$user->loggedIn()) {
-  header('Location:../login.php');
+  header('Location:/admin/users/login.php');
 }

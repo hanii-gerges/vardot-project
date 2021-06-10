@@ -53,6 +53,13 @@ class User implements EntityCRUD
             return;
         }
 
+        if($user['status'] == 'banned')
+        {
+            $_SESSION['error'][] = 'Your account has been blocked, please contact you admin for more details.';
+            header('Location:login.php');
+            return;
+        }
+
         $_SESSION['user_id'] = $user['user_id'];
         $_SESSION['role'] = $user['role'];
         $_SESSION['name'] = $user['firstname'] . " " . $user['lastname'];
@@ -60,13 +67,14 @@ class User implements EntityCRUD
         header('Location:../index.php');
     }
 
-    public function loggedIn (){
-		if(!empty($_SESSION["user_id"])) {
-			return 1;
-		} else {
-			return 0;
-		}
-	}
+    public function loggedIn()
+    {
+        if (!empty($_SESSION["user_id"])) {
+            return 1;
+        } else {
+            return 0;
+        }
+    }
 
     public function all()
     {
@@ -122,7 +130,6 @@ class User implements EntityCRUD
             'lastname',
             'email',
             'password',
-            'confirm_password',
             'role',
         ]);
 
@@ -130,6 +137,8 @@ class User implements EntityCRUD
             header('Location:create.php');
             return;
         }
+
+
 
         $query = "INSERT INTO user (firstname, lastname, email, password, role)
          VALUES (:firstname, :lastname, :email, :password, :role)";
@@ -282,5 +291,49 @@ class User implements EntityCRUD
         $stmt->execute([':id' => $id]);
         $media = $stmt->fetch(PDO::FETCH_ASSOC);
         return $media;
+    }
+
+    public function rowsCount()
+    {
+        $query =
+            "SELECT count(*) as count
+        FROM $this->userTable u
+        ";
+        $stmt = $this->conn->prepare($query);
+        $stmt->execute();
+        $users = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $users;
+    }
+
+    public function block($id)
+    {
+        // var_dump($id);
+        // die();
+        $query = "
+        UPDATE user SET 
+        status = 'banned'
+        WHERE user_id = :id
+        ";
+        $stmt = $this->conn->prepare($query);
+        $stmt->execute([
+            ':id' => $id,
+        ]);
+        header('Location:index.php?page=1');
+    }
+
+    public function unblock($id)
+    {
+        // var_dump($id);
+        // die();
+        $query = "
+        UPDATE user SET 
+        status = 'active'
+        WHERE user_id = :id
+        ";
+        $stmt = $this->conn->prepare($query);
+        $stmt->execute([
+            ':id' => $id,
+        ]);
+        header('Location:index.php?page=1');
     }
 }

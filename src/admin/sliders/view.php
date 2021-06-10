@@ -49,16 +49,15 @@ if ($slider === false) {
                     <div class="form-group row mb-6">
                         <label for="coverImage" class="col-sm-4 col-lg-2 col-form-label">Slider Image</label>
                         <div class="col-sm-8 col-lg-10">
-                            <div class="custom-file mb-1">
-                                <input type="file" class="custom-file-input" name="sliderImage" id="coverImage">
-                                <label class="custom-file-label" for="coverImage">Choose file...</label>
+                            <div class="custom-file mb-1 text-right">
+                                <input type="file" class="" name="sliderImage" id="coverImage">
                                 <div class="invalid-feedback">Example invalid custom file feedback</div>
                             </div>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="text">Slider Text&nbsp<span class="text-danger">*</span></label>
-                        <input type="text" class="form-control" id="text" name="text" value="<?= $slider['text'] ?>" required>
+                        <input type="text" class="form-control" id="text" name="text" value="<?= $slider['text'] ?>" maxlength=250 required>
                     </div>
                     <div class="form-group">
                         <label for="order">Order&nbsp<span class="text-danger">*</span></label>

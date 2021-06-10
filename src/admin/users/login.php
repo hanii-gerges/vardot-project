@@ -72,11 +72,11 @@ session_start()
             <form action="signin.php" method="post">
               <div class="row">
                 <div class="form-group col-md-12 mb-4">
-                  <input type="email" class="form-control input-lg" id="email" name="email" aria-describedby="emailHelp" placeholder="Email">
+                  <input type="email" class="form-control input-lg" id="email" name="email" aria-describedby="emailHelp" maxlength=250 placeholder="Email">
                 </div>
 
                 <div class="form-group col-md-12 ">
-                  <input type="password" class="form-control input-lg" id="password" name="password" placeholder="Password">
+                  <input type="password" class="form-control input-lg" id="password" name="password" maxlength=250 placeholder="Password">
                 </div>
 
                 <div class="col-md-12">
@@ -93,7 +93,12 @@ session_start()
 
                   <button type="submit" class="btn btn-lg btn-primary btn-block mb-4 mt-3" name='login'>Sign In</button>
 
-                  <p> if you dont have account yet please contact you admin. </p>
+                  <div class="font-weight-bold"> Admin demo account </div>
+                  <div> Email: admin@gmail.com </div>
+                  <div> Password: 123123 </div>
+                  <div class="mt-2 font-weight-bold"> Editor demo account </div>
+                  <div> Email: editor@gmail.com </div>
+                  <div> Password: 123123 </div>
                 </div>
               </div>
             </form>

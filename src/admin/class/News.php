@@ -93,9 +93,10 @@ class News implements EntityCRUD{
             header('Location:create.php');
             return;
         }
+        $userId = $_SESSION['user_id'];
         $query = "
         INSERT INTO news (user_id, title, highlight, body, status, updated_by)
-         VALUES(1, :title, :highlight, :body, :status, 1)
+         VALUES($userId, :title, :highlight, :body, :status, 1)
         ";
         $stmt = $this->conn->prepare($query);
         $stmt->execute([
@@ -123,13 +124,14 @@ class News implements EntityCRUD{
             header('Location:view.php?id='.$request['id']);
             return;
         }
-
+        $userId = $_SESSION['user_id'];
         $query = "
             UPDATE news SET 
             title = :title,
             highlight = :highlight,
             body = :body,
-            status = :status
+            status = :status,
+            updated_by = $userId
             WHERE news_id = :id
             ";
         $stmt = $this->conn->prepare($query);
@@ -161,6 +163,17 @@ class News implements EntityCRUD{
     public function validateImage($imageName){}
     public function storeImage($imageName, $id){}
     public function getMedia($id){}
+
+    public function rowsCount(){
+        $query =
+            "SELECT count(*) as count
+        FROM $this->newsTable u
+        ";
+        $stmt = $this->conn->prepare($query);
+        $stmt->execute();
+        $news = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $news;
+    }
 }
 
 

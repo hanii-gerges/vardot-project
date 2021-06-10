@@ -45,11 +45,11 @@ if ($news === false) {
                     ?>
                     <div class="form-group">
                         <label for="title">News Title&nbsp<span class="text-danger">*</span></label>
-                        <input type="text" class="form-control" id="title" name="title" value="<?= $news['title'] ?>" required>
+                        <input type="text" class="form-control" id="title" name="title" value="<?= $news['title'] ?>" maxlength=250 required>
                     </div>
                     <div class="form-group">
                         <label for="highlight">Highlight&nbsp<span class="text-danger">*</span></label>
-                        <input type="text" class="form-control" id="highlight" name="highlight" value="<?= $news['highlight'] ?>" required>
+                        <input type="text" class="form-control" id="highlight" name="highlight" value="<?= $news['highlight'] ?>" maxlength=250 required>
                     </div>
 
                     <div class="form-group">

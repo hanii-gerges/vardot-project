@@ -3,6 +3,11 @@ include_once 'config/Database.php';
 include_once 'admin/class/News.php';
 include_once 'admin/class/Event.php';
 include_once 'admin/class/Slider.php';
+include_once 'admin/class/SocialLink.php';
+include_once 'admin/class/MetaContent.php';
+include_once 'admin/class/NavLink.php';
+
+
 
 
 
@@ -10,10 +15,22 @@ include_once 'admin/class/Slider.php';
 $newsInstance = new News();
 $eventInstance = new Event();
 $sliderInstance = new Slider();
+$socialLinkInstance = new SocialLink();
+$metaContentInstance = new MetaContent();
+$navLinkInstance = new NavLink();
+
 
 $allNews = $newsInstance->lastAdded();
 $events = $eventInstance->lastAdded();
 $sliders = $sliderInstance->publishedOnly();
+$socialLinks = $socialLinkInstance->publishedOnly();
+$metaContent = $metaContentInstance->all();
+$headerLinks = $navLinkInstance->headerLinks();
+$footerLinks = $navLinkInstance->footerLinks();
+
+// print_r($footerLinks);
+// die();
+
 
 
 ?>
@@ -36,7 +53,7 @@ $sliders = $sliderInstance->publishedOnly();
   <link rel="stylesheet" href="css/footer.css">
   <link rel="stylesheet" href="http://github.hubspot.com/odometer/themes/odometer-theme-default.css">
   <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css">
-  <title>Siences University</title>
+  <title><?= $metaContent[0]['content'] ?></title>
 </head>
 
 <body>
@@ -49,13 +66,11 @@ $sliders = $sliderInstance->publishedOnly();
 
   <!-- header start -->
   <div class="container navbar d-none d-md-flex justify-content-between">
-    <a class="navbar-brand" href="index.html"><img src="images/group-4.png" alt="siences university"></a>
+    <a class="navbar-brand" href="index.php"><img src="images/group-4.png" alt="siences university"></a>
     <div class="nav-icons d-flex align-items-center">
-      <a class="fab fa-linkedin fa-2x" href="#"></a>
-      <a class="fab fa-youtube-square fa-2x" href="#"></a>
-      <a class="fab fa-instagram-square fa-2x" href="#"></a>
-      <a class="fab fa-twitter-square fa-2x" href="#"></a>
-      <a class="fab fa-facebook-square fa-2x" href="#"></a>
+    <?php foreach($socialLinks as $socialLink): ?>
+      <a class="fab fa-<?= $socialLink['name'] == 'linkedin' ? $socialLink['name'] : $socialLink['name'].'-square' ?> fa-2x" href="<?= $socialLink['url'] ?>"></a>
+      <?php endforeach; ?>
       <a href="#search" class="px-3 fas fa-search fa-2x btn nav-btn"></a>
     </div>
   </div>
@@ -66,7 +81,7 @@ $sliders = $sliderInstance->publishedOnly();
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-        <a class="navbar-brand d-block d-md-none" href="index.html">
+        <a class="navbar-brand d-block d-md-none" href="index.php">
           <picture>
             <source media="(min-width:768px)" srcset="images/brand-white.png">
             <img src="images/group-4.png" alt="siences university">
@@ -82,24 +97,11 @@ $sliders = $sliderInstance->publishedOnly();
         </div>
         <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
           <ul class="navbar-nav mt-4 mt-md-0">
+          <?php foreach($headerLinks as $link): ?>
             <li class="nav-item position-relative mr-3 mx-lg-4  d-flex justify-content-center">
-              <a class="nav-link text-left text-center ltr-hover mobile-link-underline" href="about.html">ABOUT</a>
+              <a class="nav-link text-left text-center ltr-hover mobile-link-underline text-uppercase" href="about.html"><?= $link['name'] ?></a>
             </li>
-            <li class="nav-item position-relative mr-3 mx-lg-4  d-flex justify-content-center">
-              <a class="nav-link text-left text-center ltr-hover mobile-link-underline" href="academics.html">ACADEMICS</a>
-            </li>
-            <li class="nav-item position-relative mr-3 mx-lg-4  d-flex justify-content-center">
-              <a class="nav-link text-left text-center ltr-hover mobile-link-underline" href="admissions.html">ADMISSIONS</a>
-            </li>
-            <li class="nav-item position-relative mr-3 mx-lg-4  d-flex justify-content-center">
-              <a class="nav-link text-left text-center ltr-hover mobile-link-underline" href="international.html">INTERNATIONAL</a>
-            </li>
-            <li class="nav-item position-relative mr-3 mx-lg-4  d-flex justify-content-center">
-              <a class="nav-link text-left text-center ltr-hover mobile-link-underline" href="events.html">EVENTS</a>
-            </li>
-            <li class="nav-item position-relative mr-3 mx-lg-4  d-flex justify-content-center">
-              <a class="nav-link text-left text-center ltr-hover mobile-link-underline text-nowrap" href="contact.html">CONTACT US</a>
-            </li>
+            <?php endforeach; ?>
             <li class="d-block d-md-none d-flex align-items-center justify-content-center my-4 px-3">
               <a class="mr-2 fab fa-linkedin fa-2x mx-2" href="#"></a>
               <a class="mr-2 fab fa-youtube-square fa-2x mx-2" href="#"></a>
@@ -126,7 +128,6 @@ $sliders = $sliderInstance->publishedOnly();
     </ol>
     <div class="carousel-inner position-relative">
 
-      <!-- <p class="slider-p text-uppercase d-none text-white">one of the top 10 universities in design</p> -->
       <?php $count = 0 ?>
       <?php foreach($sliders as $slider): ?>
         <?php $media = $sliderInstance->getMedia($slider['hero_slider_id']);?>
@@ -231,27 +232,6 @@ $sliders = $sliderInstance->publishedOnly();
                 <?php endif; ?>
               </div>
             <?php endforeach; ?>
-            <!-- <div class="wrapper">
-              <p class="text-primary text-capitalize info mb-2 mt-4">December 13, 2016</p>
-              <a class="mb-2 overflow-2l d-block" href="#">
-                <h3 class="text-capitalize title link d-inline"> Sciences University To Offer Now Undergraduate Major In Creative Writing </h3>
-              </a>
-              <p class="text mt-2 overflow-3l"> The Department of English Language and Literature will offer a new undergraduate major in creative writing, beginning </p>
-              <div class="d-flex justify-content-end">
-                <a href="#" class="font-weight-bold more link mb-3">READ MORE</a>
-              </div>
-              <hr class="mt-1">
-            </div>
-            <div class="wrapper">
-              <p class="text-primary text-capitalize info mb-2 mt-4">November 13, 2016</p>
-              <a class="mb-2 overflow-2l d-block" href="#">
-                <h3 class="text-capitalize title link d-inline"> New Method Uses Heat Flow To Levitate Variety Of Objects </h3>
-              </a>
-              <p class="text mt-2 overflow-3l"> Even the most casual observer is probably acquainted with the Classical style, that aesthetic anchored in the ancient</p>
-              <div class="d-flex justify-content-end">
-                <a href="#" class="font-weight-bold more link mb-3">READ MORE</a>
-              </div>
-            </div> -->
           </div>
         </div>
       </div>
@@ -344,60 +324,6 @@ $sliders = $sliderInstance->publishedOnly();
             </div>
           </div>
         <?php endforeach; ?>
-        <!-- <div class="col-12 col-md-4 mt-3">
-          <div class="card card-wrapper box-shadow-hover border-0 text-left" data-aos="zoom-in" data-aos-duration="1500">
-            <div class="icon-wrapper">
-              <div class="position-relative w-100 h-100">
-                <div class="icon-day text-primary"> 07 </div>
-                <div class="icon-month text-primary"> May </div>
-              </div>
-            </div>
-            <img class="card-img-top" src="images/events2.png" alt="Undergraduate Music Open Day">
-            <div class="border card-border d-flex flex-column">
-              <div class="card-body py-3">
-                <ul class="list-inline mb-2 overflow-2l">
-                  <li class="list-inline-item info text-primary">2:00 P.M - 4:00 P.M.</li>
-                  <li class="list-inline-item text">|</li>
-                  <li class="list-inline-item info text-primary">Irbed Campus</li>
-                </ul>
-                <a href="events.html">
-                  <h3 class="card-text title text-primary link overflow-2l"> Undergraduate Music Open Day </h3>
-                </a>
-                <p class="card-text overflow-3l text mt-2 w-100"> Music open days are aimed at candidates who have made Kingston University one of their university choices </p>
-              </div>
-              <div class="text-right mb-2 pb-1 pr-1">
-                <a href="events.html" class="more link font-weight-bold mr-3 stretched-link">LEARN MORE</a>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class=" col-12 col-md-4 mt-3">
-          <div class="card card-wrapper box-shadow-hover border-0 text-left" data-aos="zoom-in" data-aos-duration="1500">
-            <div class="icon-wrapper">
-              <div class="position-relative w-100 h-100">
-                <div class="icon-day text-primary"> 20 </div>
-                <div class="icon-month text-primary"> August </div>
-              </div>
-            </div>
-            <img class="card-img-top" src="images/events3.png" alt="people in event">
-            <div class="border card-border d-flex flex-column">
-              <div class="card-body">
-                <ul class="list-inline mb-2 overflow-2l">
-                  <li class="list-inline-item info text-primary">4:00 P.M - 6:00 P.M.</li>
-                  <li class="list-inline-item text">|</li>
-                  <li class="list-inline-item info text-primary">Amman Campus</li>
-                </ul>
-                <a href="events.html">
-                  <h3 class="card-text title text-primary link overflow-2l"> Making Nature’ Exhibition At Wellcome Collection </h3>
-                </a>
-                <p class="card-text overflow-3l text mb-auto mt-2 w-100"> The question of how humans relate to other animals has captivated, scientists, ethicists and artists for centuries </p>
-              </div>
-              <div class="text-right mb-2 pb-1 pr-1">
-                <a href="events.html" class="more link font-weight-bold mr-3 stretched-link">LEARN MORE</a>
-              </div>
-            </div>
-          </div>
-        </div> -->
       </div>
     </div>
     <!-- events section end -->
@@ -442,13 +368,13 @@ $sliders = $sliderInstance->publishedOnly();
               </div>
 
               <div class="col-12 col-md-6 pl-md-5 my-2 ml-md">
-                <input class="form-control" type="text" name="fullname" placeholder="Full Name" required>
+                <input class="form-control" type="text" name="fullname" placeholder="Full Name" maxlength=250 required>
               </div>
               <div class="col-12 col-md-6 pr-md-5 my-2">
-                <input class="form-control" type="text" name="phone" placeholder="Phone Number" required>
+                <input class="form-control" type="text" name="phone" placeholder="Phone Number" maxlength=250 required>
               </div>
               <div class="col-12 px-md-5 my-2">
-                <input class="form-control" type="email" name="email" placeholder="Email" required>
+                <input class="form-control" type="email" name="email" placeholder="Email" maxlength=250 required>
               </div>
               <div class="col-12 px-md-5 my-2">
                 <textarea id="form-textarea" class="form-control" name="content" cols="30" rows="7" placeholder="Message" required></textarea>
@@ -492,114 +418,71 @@ $sliders = $sliderInstance->publishedOnly();
         <div class="col-lg-3 col-md-6 border-left order-1 text-center text-md-left">
           <a class="d-block text-secondary font-weight-bold title text-center text-md-left mb-2" data-toggle="collapse" href="#footer-menu1" role="button" aria-expanded="false" aria-controls="footer-menu1">EXPLORE</a>
           <ul class="footer-menu collapse list-unstyled text-center text-md-left mb-0 mt-3 mb-4" id="footer-menu1">
+          <?php foreach($footerLinks as $link): ?>
+          <?php if($link['parent'] == 'explore'): ?>
             <li>
-              <a href="#!" class="text-capitalize link">Privacy and Cookies</a>
+              <a href="#!" class="text-capitalize link"><?= $link['name'] ?></a>
             </li>
-            <li>
-              <a href="#!" class="text-capitalize link">Legal Information</a>
-            </li>
-            <li>
-              <a href="#!" class="text-capitalize link">About the University</a>
-            </li>
-            <li>
-              <a href="#!" class="text-capitalize link">News and Events</a>
-            </li>
-            <li>
-              <a href="#!" class="text-capitalize link">Research</a>
-            </li>
-            <li>
-              <a href="#!" class="text-capitalize link">Schools and Departments</a>
-            </li>
-            <li>
-              <a href="#!" class="text-capitalize link">International</a>
-            </li>
-            <li>
-              <a href="#!" class="text-capitalize link">Job Vacancies</a>
-            </li>
+            <?php endif; ?>
+            <?php endforeach; ?>
           </ul>
         </div>
         <div class="col-lg-3 col-md-6 border-left order-2 text-center text-md-left">
           <a class="d-block text-secondary font-weight-bold title text-center text-md-left mb-2" data-toggle="collapse" href="#footer-menu2" role="button" aria-expanded="false" aria-controls="footer-menu2">QUICK LINKS</a>
           <ul class="footer-menu collapse list-unstyled text-center text-md-left mt-3 mb-4" id="footer-menu2">
+          <?php foreach($footerLinks as $link): ?>
+          <?php if($link['parent'] == 'quick links'): ?>
             <li>
-              <a href="#!" class="text-capitalize link">Online Payments</a>
+              <a href="#!" class="text-capitalize link"><?= $link['name'] ?></a>
             </li>
-            <li>
-              <a href="#!" class="text-capitalize link">Library</a>
-            </li>
-            <li>
-              <a href="#!" class="text-capitalize link">Alumni</a>
-            </li>
-            <li>
-              <a href="#!" class="text-capitalize link">Community Information</a>
-            </li>
+            <?php endif; ?>
+            <?php endforeach; ?>
           </ul>
           <a class="d-block text-secondary font-weight-bold title text-center text-md-left mb-2" data-toggle="collapse" href="#footer-menu3" role="button" aria-expanded="false" aria-controls="footer-menu3">USING OUR SITE</a>
           <ul class="footer-menu collapse list-unstyled text-center text-md-left mt-3 mb-4" id="footer-menu3">
+          <?php foreach($footerLinks as $link): ?>
+          <?php if($link['parent'] == 'using our site'): ?>
             <li>
-              <a href="#!" class="text-capitalize link">Accessibilty</a>
+              <a href="#!" class="text-capitalize link"><?= $link['name'] ?></a>
             </li>
-            <li>
-              <a href="#!" class="text-capitalize link">Freedom of Information</a>
-            </li>
+            <?php endif; ?>
+            <?php endforeach; ?>
+
           </ul>
         </div>
         <div class="col-lg-3 col-md-6 border-left order-3 text-center text-md-left">
           <a class="d-block text-secondary font-weight-bold title text-center text-md-left mb-2" data-toggle="collapse" href="#footer-menu4" role="button" aria-expanded="false" aria-controls="footer-menu4">HOW TO FIND US</a>
           <ul class="footer-menu collapse list-unstyled text-center text-md-left mb-0 mt-3 mb-4" id="footer-menu4">
-            <li class="my-2">
-              <i class="fas fa-phone-alt text-white pr-2"></i>
-              <a href="#!" class="text-capitalize link">+ 1 (408) 703 8738</a>
+          <?php foreach($footerLinks as $link): ?>
+          <?php if($link['parent'] == 'how to find us'): ?>
+            <li>
+              <a href="#!" class="text-capitalize link"><?= $link['name'] ?></a>
             </li>
-            <li class="my-2">
-              <i class="fas fa-phone-alt text-white pr-2"></i>
-              <a href="#!" class="text-capitalize link">+ 962 6 581 7612</a>
-            </li>
-            <li class="my-2">
-              <i class="fas fa-envelope text-white pr-2"></i>
-              <a href="#!" class="text-capitalize link">info@SciencesUniversity.edu</a>
-            </li>
-            <li class="my-2">
-              <i class="fas fa-envelope text-white pr-2"></i>
-              <a href="#!" class="text-capitalize link">Contact Us</a>
-            </li>
-            <li class="my-2">
-              <i class="fas fa-map-marker-alt text-white pr-2"></i>
-              <a href="#!" class="text-capitalize link">Find Us</a>
-            </li>
+            <?php endif; ?>
+            <?php endforeach; ?>
           </ul>
         </div>
         <div class="col-lg-3 col-md-6 mb-4 mb-md-0 border-left order-last order-md-4">
           <div class="mb-5 mt-4 text-center text-md-left">
-            <a href="index.html">
+            <a href="index.php">
               <img src="images/brand-white.png" alt="Sciences University">
             </a>
           </div>
           <div class="text-secondary font-weight-bold title mb-2 text-center text-md-left">FOLLOW US</div>
           <ul class="list-unstyled text-center text-md-left">
             <li>
+            <?php foreach($socialLinks as $socialLink): ?>
               <a href="#!" class="text-capitalize link-social mr-3">
-                <i class="fab fa-linkedin-in fa-sm"></i>
+                <i class="fab fa-<?= $socialLink['name'] != 'linkedin' ? $socialLink['name'] : $socialLink['name'].'-in' ?>" href="<?= $socialLink['url'] ?> fa-sm"></i>
               </a>
-              <a href="#!" class="text-capitalize link-social mr-3">
-                <i class="fab fa-facebook-f fa-sm"></i>
-              </a>
-              <a href="#!" class="text-capitalize link-social mr-3">
-                <i class="fab fab fa-instagram fa-sm"></i>
-              </a>
-              <a href="#!" class="text-capitalize link-social mr-3">
-                <i class="fab fa-twitter fa-sm"></i>
-              </a>
-              <a href="#!" class="text-capitalize link-social mr-3">
-                <i class="fab fa-youtube  fa-sm"></i>
-              </a>
+              <?php endforeach; ?>
             </li>
           </ul>
         </div>
       </div>
     </div>
     <div class="text-center text-white copy-rights p-2">
-      © 2017 <a class="link text-white" href="index.html">Sciences University</a>. All Rights Reserved.
+      <?= $metaContent[1]['content'] ?>
     </div>
   </footer>
   <!-- footer end -->

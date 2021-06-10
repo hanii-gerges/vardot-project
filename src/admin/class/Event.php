@@ -97,9 +97,10 @@ class Event implements EntityCRUD
             header('Location:create.php');
             return;
         }
+        $userId = $_SESSION['user_id'];
         $query = "
         INSERT INTO event (user_id, title, highlight, body, date, start_time, end_time, location,  status, updated_by)
-         VALUES(1, :title, :highlight, :body, :date, :start_time, :end_time, :location, :status, 1)
+         VALUES($userId, :title, :highlight, :body, :date, :start_time, :end_time, :location, :status, 1)
         ";
         $stmt = $this->conn->prepare($query);
         $stmt->execute([
@@ -127,7 +128,6 @@ class Event implements EntityCRUD
                 return;
             }
         }
-        else die('no image');
 
         $_SESSION['success'] = 'Record created';
         header('Location:index.php?page=1');
@@ -151,7 +151,7 @@ class Event implements EntityCRUD
             header('Location:view.php?id=' . $request['id']);
             return;
         }
-
+        $userId = $_SESSION['user_id'];
         $query = "
             UPDATE event SET 
             title = :title,
@@ -161,7 +161,8 @@ class Event implements EntityCRUD
             start_time = :start_time,
             end_time = :end_time,
             location = :location,
-            status = :status
+            status = :status,
+            updated_by = $userId
             WHERE event_id = :id
             ";
         $stmt = $this->conn->prepare($query);
@@ -287,5 +288,15 @@ class Event implements EntityCRUD
         $stmt->execute([':id' => $id]);
         $media = $stmt->fetch(PDO::FETCH_ASSOC);
         return $media;
+    }
+    public function rowsCount(){
+        $query =
+            "SELECT count(*) as count
+        FROM $this->eventTable u
+        ";
+        $stmt = $this->conn->prepare($query);
+        $stmt->execute();
+        $event = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $event;
     }
 }

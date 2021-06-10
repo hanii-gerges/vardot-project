@@ -91,9 +91,10 @@ class Slider implements EntityCRUD
             header('Location:create.php');
             return;
         }
+        $userId = $_SESSION['user_id'];
         $query = "
         INSERT INTO hero_slider (user_id, text, slider_order, status, updated_by)
-         VALUES(1, :text, :slider_order, :status, 1)
+         VALUES($userId, :text, :slider_order, :status, 1)
         ";
         $stmt = $this->conn->prepare($query);
         $stmt->execute([
@@ -130,12 +131,13 @@ class Slider implements EntityCRUD
             header('Location:view.php?id=' . $request['id']);
             return;
         }
-
+        $userId = $_SESSION['user_id'];
         $query = "
             UPDATE hero_slider SET 
             text = :text,
             slider_order = :order,
-            status = :status
+            status = :status,
+            updated_by = $userId
             WHERE hero_slider_id = :id
             ";
         $stmt = $this->conn->prepare($query);
@@ -257,5 +259,14 @@ class Slider implements EntityCRUD
         return $media;
     }
 
-    
+    public function rowsCount(){
+        $query =
+            "SELECT count(*) as count
+        FROM $this->sliderTable u
+        ";
+        $stmt = $this->conn->prepare($query);
+        $stmt->execute();
+        $slider = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $slider;
+    }
 }

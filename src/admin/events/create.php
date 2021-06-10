@@ -35,20 +35,19 @@ include_once '../authinticate.php';
                     <div class="form-group row mb-6">
                         <label for="coverImage" class="col-sm-4 col-lg-2 col-form-label">Event Image</label>
                         <div class="col-sm-8 col-lg-10">
-                            <div class="custom-file mb-1">
-                                <input type="file" class="custom-file-input" name="eventImage" id="coverImage">
-                                <label class="custom-file-label" for="coverImage">Choose file...</label>
+                            <div class="custom-file mb-1 text-right">
+                                <input type="file" class="" name="eventImage" id="coverImage">
                                 <div class="invalid-feedback">Example invalid custom file feedback</div>
                             </div>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="title">Event Title&nbsp<span class="text-danger">*</span></label>
-                        <input type="text" class="form-control" id="title" name="title" required>
+                        <input type="text" class="form-control" id="title" name="title" maxlength=250 required>
                     </div>
                     <div class="form-group">
                         <label for="highlight">Highlight&nbsp<span class="text-danger">*</span></label>
-                        <input type="text" class="form-control" id="highlight" name="highlight" required>
+                        <input type="text" class="form-control" id="highlight" name="highlight" maxlength=250 required>
                     </div>
 
                     <div class="form-group">
@@ -69,7 +68,7 @@ include_once '../authinticate.php';
                     </div>
                     <div class="form-group">
                         <label for="location">Location&nbsp<span class="text-danger">*</span></label>
-                        <input type="text" class="form-control" id="location" name="location" required>
+                        <input type="text" class="form-control" id="location" name="location" maxlength=250 required>
                     </div>
                     <div class="form-group">
                         <label class="mb-2 mt-4 d-inline-block mr-3" for="">Status&nbsp<span class="text-danger">*</span></label>

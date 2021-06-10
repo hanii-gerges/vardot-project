@@ -35,11 +35,11 @@ include_once '../authinticate.php';
                     ?>
                     <div class="form-group">
                         <label for="title">News Title&nbsp<span class="text-danger">*</span></label>
-                        <input type="text" class="form-control" id="title" name="title" required>
+                        <input type="text" class="form-control" id="title" name="title" maxlength=250 required>
                     </div>
                     <div class="form-group">
                         <label for="highlight">Highlight&nbsp<span class="text-danger">*</span></label>
-                        <input type="text" class="form-control" id="highlight" name="highlight" required>
+                        <input type="text" class="form-control" id="highlight" name="highlight" maxlength=250 required>
                     </div>
 
                     <div class="form-group">

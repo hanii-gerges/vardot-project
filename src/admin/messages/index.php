@@ -14,7 +14,7 @@ $messages = $message->all();
 <html lang="en" dir="ltr">
 
 <head>
-<?php include '../header.php' ?>
+    <?php include '../header.php' ?>
 
 </head>
 
@@ -53,9 +53,13 @@ $messages = $message->all();
                     <?php foreach ($messages as $message) : ?>
                         <?php if (!isset($message['message_id'])) break; ?>
                         <tr class="<?= $message['status'] == 'read' ? 'read' : '' ?>">
-                            <td><?= $message['message_id'] ?></td>
                             <td>
-                                <a class="text-dark" href="/admin/messages/view.php?id=<?= $message['message_id'] ?>"> <?= $message['fullname'] ?> </a>
+                                <a class="stretched-link" href="view.php?id=<?= $message['message_id'] ?>">
+                                <?= $message['message_id'] ?>
+                            </a>
+                            </td>
+                            <td>
+                                <?= $message['fullname'] ?>
                             </td>
                             <td class="d-none d-lg-table-cell"><?= $message['email'] ?></td>
                             <td class="d-none d-lg-table-cell"><?= $message['created_at'] ?></td>

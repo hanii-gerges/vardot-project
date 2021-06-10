@@ -21,17 +21,7 @@
 $(document).ready(function() {
   "use strict";
 
-  /*======== 1. JEKYLL INSTANT SEARCH ========*/
-
-  SimpleJekyllSearch.init({
-    searchInput: document.getElementById('search-input'),
-    resultsContainer: document.getElementById('search-results'),
-    dataSource: '/assets/data/search.json',
-    searchResultTemplate: '<li><div class="link"><a href="{link}">{label}</a></div><div class="location">{location}</div><\/li>',
-    noResultsText: '<li>No results found</li>',
-    limit: 10,
-    fuzzy: true,
-  });
+  
 
 
   /*======== 2. SCROLLBAR CONTENT ========*/
@@ -254,12 +244,22 @@ $(document).ready(function() {
   /*======== 10. PROGRESS BAR ========*/
   NProgress.done();
 
-    /*======== 11. DELETE BUTTON ========*/
+    /*======== 11. DELETE/UNBLOCK BUTTON ========*/
+    $('.delete').on('click',function(e){
+      let id = $(this).attr('data-id');
+      console.log(id);
+      $('#deleteForm').append('<input type=hidden value="'+id+'" name="id">');
+    });
   $('.delete').on('click',function(e){
     let id = $(this).attr('data-id');
-    $('#deleteForm').append('<input type=hidden value="'+id+'" name="id">');
+    console.log(id);
+    $('#blockForm').append('<input type=hidden value="'+id+'" name="id">');
   });
 
+  $('.unblock').on('click',function(e){
+    let id = $(this).attr('data-id');
+    $('#unblockForm').append('<input type=hidden value="'+id+'" name="id">');
+  });
 
     /*======== 12. DATATABLE ========*/
   $('#newsTable').DataTable({
@@ -296,6 +296,22 @@ $(document).ready(function() {
   });
 
   $('#slidersTable').DataTable({
+    "paging": false,
+    scrollY: 500,
+    "language": {
+      "info": ""
+    },
+    "order": []
+  });
+  $('#linksTable').DataTable({
+    "paging": false,
+    scrollY: 500,
+    "language": {
+      "info": ""
+    },
+    "order": []
+  });
+  $('#metaContentsTable').DataTable({
     "paging": false,
     scrollY: 500,
     "language": {

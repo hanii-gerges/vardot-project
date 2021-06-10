@@ -14,7 +14,7 @@ $allNews = $news->all();
 <html lang="en" dir="ltr">
 
 <head>
-<?php include '../header.php' ?>
+    <?php include '../header.php' ?>
 </head>
 
 
@@ -37,11 +37,11 @@ $allNews = $news->all();
         </div>
         <div class="pt-0 mb-5 card-header justify-content-between">
             <h1>News</h1>
-        <div class="">
-            <a class="h5 p-2 bg-light rounded-pill text-primarty" href="/admin/news/create.php">
-                <i class="fas fa-plus"></i>
-                Add New</a>
-        </div>
+            <div class="">
+                <a class="h5 p-2 bg-light rounded-pill text-primarty" href="/admin/news/create.php">
+                    <i class="fas fa-plus"></i>
+                    Add New</a>
+            </div>
         </div>
         <div class="card-body pt-0 pb-5">
             <table id="newsTable" class="hover row-border table card-table table-responsive table-responsive-large" style="width:100%">
@@ -96,7 +96,7 @@ $allNews = $news->all();
             <!-- Pagination -->
             <nav class="mt-3 justify-content-center d-flex">
                 <ul class="pagination">
-                <li class="page-item <?= $_GET['page'] == 1 || !isset($_GET['page']) ? "disabled" : "" ?>">
+                    <li class="page-item <?= $_GET['page'] == 1 || !isset($_GET['page']) ? "disabled" : "" ?>">
                         <a class="page-link" href="index.php?page=<?= $_GET['page'] - 1 ?>" tabindex="-1">Previous</a>
                     </li>
                     <?php for ($i = 1; $i <= $allNews['total_pages']; $i++) : ?>
@@ -135,7 +135,7 @@ $allNews = $news->all();
 
     </div>
     </div>
-    
+
     <?php include '../footer.php' ?>
 
 
